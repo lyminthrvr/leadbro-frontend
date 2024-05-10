@@ -43,7 +43,7 @@ const Notification = ({ className }) => {
         </button>
         <div className={styles.body}>
           <div className={styles.top}>
-            <div className={styles.title}>Notification</div>
+            <div className={styles.title}>Уведомления</div>
             <Actions
               className={styles.actions}
               classActionsHead={styles.actionsHead}
@@ -57,7 +57,7 @@ const Notification = ({ className }) => {
             to="/notification"
             onClick={() => setVisible(false)}
           >
-            See all notifications
+            Посмотреть уведомления
           </Link>
         </div>
       </div>
