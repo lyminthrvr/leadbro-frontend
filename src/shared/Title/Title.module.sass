@@ -1,0 +1,28 @@
+@import ../../styles/helpers
+.title
+  display: flex
+  justify-content: space-between
+  margin-bottom: 24px
+  +m
+    margin-bottom: 16px
+
+.container
+  display: flex
+  flex-direction: row
+  gap: 20px
+
+  .icon
+    display: flex
+    align-self: center
+
+.sortIcon
+  display: none !important
+  transition: ease-in-out .3s
+  transform: rotateX(-180deg)
+  &_active
+    transform: rotateX(0deg)
+  +x
+    display: flex !important
+
+
+
