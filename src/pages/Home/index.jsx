@@ -7,7 +7,9 @@ import homeApi from "./home.api";
 import useHomeApi from "./home.api";
 const Home = observer(() => {
     const homeApi = useHomeApi()
-    useEffect(()=> homeApi.getClients,[])
+    useEffect(()=> {
+        homeApi.getClients()
+    },[])
 
     return (
         <div className={styles.container}>

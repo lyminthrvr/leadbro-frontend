@@ -14,6 +14,7 @@ export class HomeStore {
 
     setClients(result){
         this.clients = result
+        console.log(this.clients,'clients')
     }
 
 

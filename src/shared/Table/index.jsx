@@ -11,8 +11,9 @@ import Icon from "../Icon";
 import {clickRecursive} from "../../utils/click";
 import AdaptiveCards from "./AdaptiveCards";
 import Title from "../Title";
+import {observer} from "mobx-react";
 
-const Table = ({columns, data, title,headerActions,statusType}) => {
+const Table = observer(({columns, data, title,headerActions,statusType}) => {
     console.log(data, 'data')
     // const [chooseAll, setChooseAll] = useState(false);
     //
@@ -127,6 +128,6 @@ const Table = ({columns, data, title,headerActions,statusType}) => {
             </Card>
             <AdaptiveCards statusType={statusType} rows={rows}/>
         </div>)
-};
+});
 
 export default Table;
