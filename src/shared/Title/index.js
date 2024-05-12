@@ -3,9 +3,9 @@ import cn from "classnames";
 import styles from "./Title.module.sass";
 import Icon from "../Icon";
 import Button from "../Button ";
-
-const Index = ({title,actions,tableHeaders,tableActions}) => {
-    console.log(tableHeaders[0].getHeaderGroupProps(),'headers')
+import TitleButtons from "./Buttons";
+const Title = ({title,...rest}) => {
+    const {actions,tableActions,smallTable} = rest??{}
     const [isSortDecrease,setSortDecrease] = useState(true)
 
     const makeAction = (name) => {
@@ -24,23 +24,14 @@ const Index = ({title,actions,tableHeaders,tableActions}) => {
     const doFiltering = () => {
 
     }
-
     return (
         <>
-            {title && <div className={cn("h4", styles.title)}>
+            {<div className={cn("h4", styles.title,{[styles.format_margin]:rest.smallTable})}>
                 {title}
-                <div className={styles.container}>
-                    <div onClick={doSort} className={cn(styles.icon,styles.sortIcon,{[styles.sortIcon_active]:!isSortDecrease})}>
-                        <Icon viewBox={24} name={'sort'} size={'24'}/>
-                    </div>
-                    <div onClick={doSort} className={styles.icon}>
-                        <Icon name={'setting'} size={'24'}/>
-                    </div>
-                    <Button adaptiveIcon={<Icon  name={'plus'} size={8}/>} name={'Добавить клиента'}/>
-                </div>
+                {tableActions && <TitleButtons actions={actions} titleButton={actions?.add?.title??''} isSmallButton={smallTable} doSort={doSort} isSortDecrease={isSortDecrease}/>}
             </div>}
         </>
     );
 };
 
-export default Index;
+export default Title;

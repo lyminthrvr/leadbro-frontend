@@ -5,6 +5,7 @@ import styles from "./Page.module.sass";
 import Sidebar from "../Sidebar";
 import Header from "../Header";
 import '../../styles/app.sass'
+import {Outlet} from "react-router";
 
 const Page = ({ wide, children, title, titleAfter }) => {
     const [visible, setVisible] = useState(false);
@@ -34,6 +35,7 @@ const Page = ({ wide, children, title, titleAfter }) => {
                     </div>
                 </div>
             </div>
+
         </>
     );
 };

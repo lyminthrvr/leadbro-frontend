@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import {AppRender} from "./routes/routes.render";
 import React, {useEffect} from "react";
-import {BrowserRouter} from "react-router-dom";
-import StoreProvider from "./providers/StoreProvider";
 import rootApi from './root.api.js'
 import useStore from "./hooks/useStore";
+import {prepareRoutes, routes} from "./routes/routes";
+import {RouterProvider} from "react-router";
+import {createBrowserRouter} from "react-router-dom";
 
 function App() {
     const {notificationsStore} = useStore()
@@ -15,9 +14,7 @@ function App() {
         })
     }, []);
 
-    return (
-        <AppRender/>
-    );
+    return React.useMemo(() => (<RouterProvider router={createBrowserRouter(prepareRoutes())}/>), [])
 }
 
 export default App;

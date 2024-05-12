@@ -1,21 +1,53 @@
 @import ../../styles/helpers
 .card
+    padding-top: 12px !important
     display: block
     +x
         display: none
+    &_smallTable
+        padding-top: 24px !important
 .wrapper
     //background-color: $n
     height: calc(100vh - 96px - 12rem)
-    margin: 0 -12px
+    margin: 0 -22px
+    thead
+        border-collapse: separate
+        border-spacing: 0 1rem
+    td
+        >*
+            padding-left: 0.8rem
+            //padding-right: 0.5rem
     th
+
         vertical-align: middle
         color: $shades2
     th,td
         text-align: left
-        padding: 0.5rem 2rem 0.5rem 2rem
+        padding: 0.5rem 2rem 0.8rem 2rem
+    tbody
+        tr
+            border-top: 1px $n3 solid
+            border-bottom: 1px $n3 solid
+.smallTable
+    height: 100%
+    th,td
+        text-align: left
+        padding: 0.5rem 2rem 0.8rem 1rem
+    padding-top: 24px !important
+    tbody
+        tr
+            border-top: 1px $n3 solid
+            border-bottom: none
     +t
         margin: 0
 .headerCol
+    &:first-child
+
+        padding-top: 12px
+        padding-bottom: 12px
+    &_wrapper
+        padding-left: 0.8rem
+        padding-right: 0.5rem
     display: flex
     flex-direction: row
     justify-content: space-between
@@ -75,3 +107,29 @@
         .loader
             transform: scale(.8)
             margin: 0 18px 0 8px
+.disable_header
+    display: contents
+
+    &:not(:first-child)
+        tr
+            &:nth-child(1)
+                td
+                    padding-top: 2rem
+
+    tr
+        &:last-child
+            border-bottom: 1px $n3 solid
+        &:nth-child(1)
+            td
+                padding-bottom: 0
+            border-top: none
+            border-bottom: none
+        &:nth-child(2)
+            border-top: none
+
+    &:last-of-type
+        tr
+            &:last-child
+                border-bottom: none
+
+
