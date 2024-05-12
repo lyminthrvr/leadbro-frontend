@@ -18,6 +18,20 @@ const createClients = () => {
                 role:
                     'Директор'
             },
+            contactPersons:[{
+                person:{
+                    id:0,
+                    role:'Руководитель',
+                    fio:'Шилов Александр Александрович',
+                    tel:'+7 987 654-32-10',
+                    email:'example@mail.ru',
+                    messengers:[{
+                        telegram:'',
+                        whatsApp:''
+                    }]
+                }
+            }],
+            contactData:[],
             activities:[{
                 date:new Date(2024, 1, 11),
                 time:new Date(),
@@ -100,6 +114,19 @@ const createClients = () => {
                 role:
                     'Директор'
             },
+            contactPersons:[{
+                person:{
+                    id:0,
+                    role:'Руководитель',
+                    fio:'Шилов Александр Александрович',
+                    tel:'+7 987 654-32-10',
+                    email:'example@mail.ru',
+                    messengers:[{
+                        telegram:'',
+                        whatsApp:''
+                    }]
+                }
+            }],
             activities:[{
                 date:new Date(2024, 1, 11),
                 time:new Date(),

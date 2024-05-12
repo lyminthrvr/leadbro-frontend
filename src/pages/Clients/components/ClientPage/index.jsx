@@ -12,6 +12,7 @@ import ClientDeals from "./Deals";
 import ClientActivities from "./Activities";
 import ClientDescription from "./Description";
 import useClientsApi from "../../clients.api";
+import ClientPersons from "./Persons";
 
 const ClientPage = observer(() => {
     let {id} = useParams()
@@ -42,6 +43,7 @@ const ClientPage = observer(() => {
                 </div>
                 <div className={styles.col}>
                     <ClientDescription onChange={handleChange} onReset={handleReset} onSubmit={handleSubmit} description={clients.getDraft(client?.id)?.description ?? client?.description} />
+                    <ClientPersons onChange={handleChange} onReset={handleReset} onSubmit={handleSubmit} persons={clients.getDraft(client?.id)?.contactPersons ?? client?.contactPersons} />
                 </div>
             </div>
         </>
