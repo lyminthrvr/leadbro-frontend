@@ -31,14 +31,6 @@ const ClientActivities = ({activities}) => {
                         }
 
                     },
-                    {
-                        'Header': ()=>null,
-                        id:`${index}_m`,
-                        Cell:({ row }) => {
-                            return <div>{row.original.description}</div>
-                        }
-
-                    }
                 ]
             }),[])
     }, [activities])

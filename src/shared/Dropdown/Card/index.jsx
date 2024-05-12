@@ -15,7 +15,7 @@ const CardDropdown = ({text}) => {
                     <Icon viewBox={10} size={10} name={'chevron'} className={cn(styles.chevron, {[styles.chevron_active]: isOpen})}/>
                 </div>
             </div>
-            { isOpen && 
+            { isOpen &&
                 <div ref={bodyRef}>
                     1234
                 </div>
