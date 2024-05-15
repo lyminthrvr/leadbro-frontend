@@ -1,38 +1,41 @@
-import {makeAutoObservable} from "mobx";
+import { makeAutoObservable, action, observable } from "mobx";
+import { isId } from "../../../utils/is.type";
+import {
+    changeDraft,
+    removeDraft,
+    resetDraft,
+    updateDraftObject,
+    updateObjectRecursively
+} from "../../../utils/store.utils";
 
 export class ClientsStore {
-    clients = []
-    drafts = {}
-
+     clients = [];
+     drafts = {};
 
     constructor(root) {
-        this.root = root
-        makeAutoObservable(this)
+        this.root = root;
+        makeAutoObservable(this);
     }
 
-    getClients(){
-        return this.clients
+    getClients() {
+        return this.clients.map(client => {
+            const draft = this.drafts[client.id];
+            return draft ? { ...client, ...draft } : client;
+        });
     }
 
-    getById(id){
-        return this.clients.find(x=>x.id===Number(id))
+    getById(id,isReset=false) {
+        const client = this.clients.find(x => x.id === Number(id));
+        const draft = this.drafts[id];
+        return isReset ? client :  draft ? { ...client, ...draft } : client;
     }
 
     resetDraft(id, path) {
         if (!this.drafts[id]) return;
+        let client = this.getById(id,true   );
 
-        const pathParts = path.split('.');
-        let currentDraft = this.drafts[id];
+        resetDraft(this,id,client,path)
 
-        // Обновляем вложенные объекты в черновике
-        for (let i = 0; i < pathParts.length - 1; i++) {
-            const part = pathParts[i];
-            if (!currentDraft[part]) return; // Если свойство не существует, выходим
-            currentDraft = currentDraft[part];
-        }
-
-        // Удаляем значение последнего свойства из черновика
-        delete currentDraft[pathParts[pathParts.length - 1]];
     }
 
     submitDraft(id) {
@@ -41,13 +44,10 @@ export class ClientsStore {
         const client = this.getById(id);
         if (!client) return;
 
-        // Копируем данные из черновика в оригинальный объект
-        Object.assign(client, this.drafts[id]);
-
-        // Удаляем черновик
-        this.drafts = {}
+        const updatedClient = { ...client };
+        this.clients = this.clients.map(c => (c.id === id ? updatedClient : c));
+        delete this.drafts[id];
     }
-
 
     createDraft(id) {
         const client = this.getById(id);
@@ -56,33 +56,23 @@ export class ClientsStore {
         this.drafts[id] = { ...client };
     }
 
-    changeById(id, path, value) {
+    changeById(id, path, value,withId) {
+        if (!this.drafts[id]) {
+            this.createDraft(id);
+        }
+        let draft = this.drafts[id];
+        changeDraft(this,id,draft,path,value,withId)
+    }
+
+    removeById(id, path) {
         if (!this.drafts[id]) {
             this.createDraft(id);
         }
 
-        const pathParts = path.split('.');
-        let currentDraft = this.drafts[id];
-
-        // Обновляем вложенные объекты в черновике
-        for (let i = 0; i < pathParts.length - 1; i++) {
-            const part = pathParts[i];
-            if (!currentDraft[part]) currentDraft[part] = {};
-            currentDraft = currentDraft[part];
-        }
-
-        // Обновляем значение последнего свойства в черновике
-        currentDraft[pathParts[pathParts.length - 1]] = value;
+        removeDraft(this, id, path);
     }
 
-    getDraft(id){
-        return this.drafts[id] ?? null
+    setClients(result) {
+        this.clients = result;
     }
-
-    setClients(result){
-        this.clients = result
-    }
-
-
-
 }

@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import {useEffect, useLayoutEffect} from "react";
 
 const useAutosizeTextArea = (
     textAreaRef,
     value
 ) => {
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (textAreaRef.current) {
+            debugger
             textAreaRef.current.style.height = "0px";
             const scrollHeight = textAreaRef.current.scrollHeight;
 

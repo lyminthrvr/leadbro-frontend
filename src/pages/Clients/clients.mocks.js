@@ -1,12 +1,22 @@
 import {mockHttp} from "../../shared/http";
 import {statusTypes} from "./clients.types";
 
+export const createRequisites = ({INN = '', KPP = '', OGRN = '', RS = '', BIK = '', BankName = ''}) => {
+    return {
+        INN,
+        KPP,
+        OGRN,
+        RS,
+        BIK,
+        BankName
+    }
+}
 
 const createClients = () => {
     return [
         {
             id: 0,
-            description:'Лакокрасочный завод XYZ специализируется на производстве качественных лакокрасочных материалов и покрытий для различных отраслей промышленности с 2004 года. Мы постоянно совершенствуем наши технологии и материалы, чтобы отвечать высоким требованиям наших клиентов. ',
+            description: 'Лакокрасочный завод XYZ специализируется на производстве качественных лакокрасочных материалов и покрытий для различных отраслей промышленности с 2004 года. Мы постоянно совершенствуем наши технологии и материалы, чтобы отвечать высоким требованиям наших клиентов. ',
             title: 'a ООО ПКФ «Катав-Ивановский лакокрасочный завод»',
             status: statusTypes.inProgress,
             manager: {
@@ -18,25 +28,57 @@ const createClients = () => {
                 role:
                     'Директор'
             },
-            contactPersons:[{
-                person:{
-                    id:0,
-                    role:'Руководитель',
-                    fio:'Шилов Александр Александрович',
-                    tel:'+7 987 654-32-10',
-                    email:'example@mail.ru',
-                    messengers:[{
-                        telegram:'',
-                        whatsApp:''
+            contactPersons: [{
+                id: 0,
+                role: 'Руководитель',
+                fio: 'Шилов Александр Александрович',
+                tel: '+7 987 654-32-10',
+                email: 'example@mail.ru',
+                messengers: [{
+                    telegram: '',
+                }, {
+                    whatsapp: ''
+                }]
+            },
+                {
+                    id: 0,
+                    role: 'Руководитель',
+                    fio: 'Шилов Александр Александрович',
+                    tel: '+7 987 654-32-10',
+                    email: 'example@mail.ru',
+                    messengers: [{
+                        telegram: '',
+                    }, {
+                        whatsapp: ''
                     }]
                 }
-            }],
-            contactData:[],
-            activities:[{
-                date:new Date(2024, 1, 11),
-                time:new Date(),
-                description:'Звонок клиенту для отчетности за март',
-                assignee:{
+            ],
+            contactData: {
+                address: {
+                    0: '620131, г. Екатеринбург, ул. Крауля, д. 182, оф...'
+                },
+                tel: {
+                    0: '+7 987 654-32-10',
+                    1: '1'
+                },
+                email: {0: 'example@mail.ru'},
+                site: {0: 'example.ru'},
+                requisites: {
+                    0: createRequisites({
+                        INN: '1234567890',
+                        BankName: 'ФИЛИАЛ "ЕКАТЕРИНБУРГСКИЙ" АО "АЛЬФА-БАНК"',
+                        KPP: '1234567890',
+                        OGRN: '620131, г. Екатеринбург, ул. Крауля, д. 182, офис 201',
+                        RS: '4002402400000020400',
+                        BIK: '046577964'
+                    })
+                }
+            },
+            activities: [{
+                date: new Date(2024, 1, 11),
+                time: new Date(),
+                description: 'Звонок клиенту для отчетности за март',
+                assignee: {
                     image: createBlob(),
                     name:
                         'Александр',
@@ -47,10 +89,10 @@ const createClients = () => {
                 }
             },
                 {
-                    date:new Date(2024, 9, 20),
-                    time:new Date(),
-                    description:'Звонок клиенту для отчетности за март',
-                    assignee:{
+                    date: new Date(2024, 9, 20),
+                    time: new Date(),
+                    description: 'Звонок клиенту для отчетности за март',
+                    assignee: {
                         image: createBlob(),
                         name:
                             'Александр',
@@ -84,8 +126,8 @@ const createClients = () => {
                 deadline: new Date()
             }],
             deals: [{
-                status:'Догоовр подписан',
-                sum:'39000',
+                status: 'Догоовр подписан',
+                sum: '39000',
                 description: 'Связаться с клиентом',
                 deadline: new Date(),
                 responsible: {
@@ -102,7 +144,7 @@ const createClients = () => {
         },
         {
             id: 1,
-            description:'Лакокрасочный завод XYZ специализируется на производстве качественных лакокрасочных материалов и покрытий для различных отраслей промышленности с 2004 года. Мы постоянно совершенствуем наши технологии и материалы, чтобы отвечать высоким требованиям наших клиентов. ',
+            description: 'Лакокрасочный завод XYZ специализируется на производстве качественных лакокрасочных материалов и покрытий для различных отраслей промышленности с 2004 года. Мы постоянно совершенствуем наши технологии и материалы, чтобы отвечать высоким требованиям наших клиентов. ',
             title: 'в ООО ПКФ «Катав-Ивановский лакокрасочный завод»',
             status: statusTypes.notInProgress,
             manager: {
@@ -114,24 +156,45 @@ const createClients = () => {
                 role:
                     'Директор'
             },
-            contactPersons:[{
-                person:{
-                    id:0,
-                    role:'Руководитель',
-                    fio:'Шилов Александр Александрович',
-                    tel:'+7 987 654-32-10',
-                    email:'example@mail.ru',
-                    messengers:[{
-                        telegram:'',
-                        whatsApp:''
+            contactData: {
+                address: {
+                    0: '620131, г. Екатеринбург, ул. Крауля, д. 182, оф...'
+                },
+                tel: {
+                    0: '+7 987 654-32-10',
+                    1: '1'
+                },
+                email: {0: 'example@mail.ru'},
+                site: {0: 'example.ru'},
+                requisites: {
+                    0: createRequisites({
+                        INN: '1234567890',
+                        BankName: 'ФИЛИАЛ "ЕКАТЕРИНБУРГСКИЙ" АО "АЛЬФА-БАНК"',
+                        KPP: '1234567890',
+                        OGRN: '620131, г. Екатеринбург, ул. Крауля, д. 182, офис 201',
+                        RS: '4002402400000020400',
+                        BIK: '046577964'
+                    })
+                }
+            },
+            contactPersons: [{
+                0: {
+                    id: 0,
+                    role: 'Руководитель',
+                    fio: 'Шилов Александр Александрович',
+                    tel: '+7 987 654-32-10',
+                    email: 'example@mail.ru',
+                    messengers: [{
+                        telegram: '',
+                        whatsApp: ''
                     }]
                 }
             }],
-            activities:[{
-                date:new Date(2024, 1, 11),
-                time:new Date(),
-                description:'Звонок клиенту для отчетности за март',
-                assignee:{
+            activities: [{
+                date: new Date(2024, 1, 11),
+                time: new Date(),
+                description: 'Звонок клиенту для отчетности за март',
+                assignee: {
                     image: createBlob(),
                     name:
                         'Александр',
@@ -142,10 +205,10 @@ const createClients = () => {
                 }
             },
                 {
-                    date:new Date(2024, 1, 11),
-                    time:new Date(),
-                    description:'Звонок клиенту для отчетности за март',
-                    assignee:{
+                    date: new Date(2024, 1, 11),
+                    time: new Date(),
+                    description: 'Звонок клиенту для отчетности за март',
+                    assignee: {
                         image: createBlob(),
                         name:
                             'Александр',
@@ -178,7 +241,7 @@ const createClients = () => {
                         'Директор',
                 },
                 deadline: new Date()
-            },{
+            }, {
                 description: 'SEO',
                 creator: {
                     image: createBlob(),
@@ -204,7 +267,7 @@ const createClients = () => {
             deals: [{
                 description: 'Связаться с клиентом',
                 deadline: new Date(),
-                status:'Догоовр подписан',
+                status: 'Догоовр подписан',
                 responsible: {
                     image: createBlob(),
                     name:

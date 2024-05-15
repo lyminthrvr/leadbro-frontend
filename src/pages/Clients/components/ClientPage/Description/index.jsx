@@ -9,13 +9,13 @@ import Button from "../../../../../shared/Button ";
 const ClientDescription = ({description, onChange,onSubmit,onReset}) => {
     const [isEdit, setIsEdit] = useState(false)
     return (
-        <Card classTitle={styles.title} className={styles.card}
+        <Card classTitle={styles.title} classCardHead={'h4'} className={cn(styles.card)}
               title={<div className={styles.title}><p>Описание клиента</p>
                   <div onClick={() => setIsEdit(!isEdit)}>
                       {!isEdit && <Icon className={cn(styles.edit)} name={'edit'}/>}
                       {isEdit && <div>
-                          <Icon onClick={onSubmit} name={'check-circle'}/>
-                          <Icon onClick={()=>onReset('description')} name={'close'}/>
+                          <Icon fill={'#FF6A55'} size={24} onClick={onSubmit} name={'check-circle'}/>
+                          <Icon  size={24} onClick={()=>onReset('description')} name={'close'}/>
                       </div>}
                   </div>
               </div>}>

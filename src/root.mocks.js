@@ -1,6 +1,7 @@
 const createNotifications = () =>{
     return [
         {
+            id:0,
             title: "Domenica",
             login: "@domenica",
             time: "1h",

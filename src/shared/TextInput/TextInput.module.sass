@@ -125,7 +125,8 @@
     svg
         fill: $n4
 
-.copy
+.copy_actions
+    cursor: pointer
     right: 0
     svg
         fill: $n4
@@ -150,3 +151,39 @@
     +dark
         background: $n6
         color: $n4
+
+.trash
+    cursor: pointer
+    right: 0
+    svg
+        fill: $n4
+        transition: fill .2s
+    &:hover
+        svg
+            fill: $p3
+
+
+.edit
+    cursor: pointer
+    right: 0
+    svg
+        fill: $n4
+        transition: fill .2s
+    &:hover
+        svg
+            fill: $p1
+.edit_active
+    svg
+        fill: $p1
+        transition: fill .2s
+.close
+    cursor: pointer
+    right: 0
+    svg
+        fill: $n4
+        transition: fill .2s
+    &:hover
+        svg
+            fill: $n8
+.wrap_hovered
+    background: #F4F4F4

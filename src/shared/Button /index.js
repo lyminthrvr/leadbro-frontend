@@ -8,7 +8,7 @@ import cn from "classnames";
 const Button = ({name, after, before, onClick, adaptiveIcon,...rest}) => {
     return (
         <>
-        {!rest.isSmallButton && <div className={styles.control} onClick={onClick}>
+        {!rest.isSmallButton && <div className={styles.control} >
                 {before}
                 <Link className={cn("button", styles.button)} to={rest.to}>
                     <span>{name}</span>
@@ -16,7 +16,7 @@ const Button = ({name, after, before, onClick, adaptiveIcon,...rest}) => {
                 {after}
             </div>}
             {!rest.isSmallButton && <div className={styles.adaptive}>{adaptiveIcon}</div>}
-            {rest.isSmallButton && <div className={styles.smallButton}>{adaptiveIcon}</div>}
+            {rest.isSmallButton && <div onClick={onClick} className={styles.smallButton}>{adaptiveIcon}</div>}
         </>
 )
     ;

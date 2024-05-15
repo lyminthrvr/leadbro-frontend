@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1e52c1f-c89d-4973-9f6d-d2eb0111f5d5" name="Changes" comment="" />
+    <list default="true" id="e1e52c1f-c89d-4973-9f6d-d2eb0111f5d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Clients/clients.mocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Clients/clients.mocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/Description/Description.module.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/Description/Description.module.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/Description/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/Description/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/Persons/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/Persons/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Clients/components/ClientPage/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Clients/hooks/useClients.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Clients/hooks/useClients.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Clients/stores/clients.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Clients/stores/clients.store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/root.mocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/root.mocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Button /button.module.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Button /button.module.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Dropdown/Card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Dropdown/Card/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Page/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Page/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/TextInput/TextInput.module.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/TextInput/TextInput.module.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/TextInput/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/TextInput/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/Title/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/Title/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/blocks/headers.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/blocks/headers.sass" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2g3NlATH0nnGoK55dayUhuo51DZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,6 +44,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/kseniasonina/WebstormProjects/leadbro-frontend",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
@@ -36,6 +59,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714922449540</updated>
       <workItem from="1714922450592" duration="17000" />
+      <workItem from="1715682022466" duration="3000" />
     </task>
     <servers />
   </component>

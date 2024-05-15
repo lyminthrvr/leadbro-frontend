@@ -11,7 +11,7 @@ const useClients = () => {
                 api.getClients()
         }
         getClients().catch(console.error)
-    }, [clientsStore]);
+    }, [clientsStore,api]);
     return clientsStore;
 };
 

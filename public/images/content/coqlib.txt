@@ -1,0 +1,284 @@
+Require Import List.
+Import ListNotations.
+
+Inductive Maybe A:=
+  | Nothing
+  | Just (a:A).
+Arguments Nothing {A}.
+Arguments Just {A} a.
+
+
+Class Monoid (A:Type) :=
+{
+  mempty: A;  (* identity element *)
+  mappend: A->A->A;  (* operation *)
+  mUnitLeft: forall x, mappend mempty x = x; 
+  mUnitRight: forall x, mappend x mempty = x;
+  mAssoc: forall x y z,
+    mappend (mappend x y) z = mappend x (mappend y z);
+(*  (x ++ y) ++ z =  x ++ (y ++ z) *)
+}.
+Notation "x ++ y" := (mappend x y) (at level 60, y at level 60).
+
+#[export, refine]
+Instance list_Monoid A: Monoid (list A):=
+{
+  mappend x y:= app x y;
+  mempty := nil;
+}.
+- reflexivity.
+- induction x.
+reflexivity.
+simpl.
+rewrite IHx.
+reflexivity.
+- induction x.
+simpl. reflexivity.
+intros y z.
+simpl.
+rewrite IHx.
+reflexivity.
+Defined.
+
+
+
+
+Class Functor (F:Type->Type):=
+{
+  fmap (A B:Type) (f:A->B): F A -> F B;
+  functorId: forall A x, fmap A A id x = x;
+  functorComp: forall A B C (f:A->B) (g:B->C) x,
+    fmap _ _ g (fmap _ _ f x) = fmap _ _ (fun x=> g (f x)) x;
+}.
+
+Notation "f <$> x" := (fmap _ _ f x) (at level 24, left associativity).
+
+#[export, refine]
+Instance list_Functor: Functor list:=
+{
+  fmap A B f l:=map f l;
+}.
+apply map_id.
+apply map_map.
+Defined.
+
+Class Applicative (F:Type->Type) (fu:Functor F):=
+{
+  pure {A}: A -> F A;
+  apply A B: F (A->B) -> F A -> F B;
+  aIdentity: forall A (v:F A), apply A A (pure id) v = v;
+  aComposition A B C u v w:
+       apply _ _ (apply _ _ (apply _ _(pure (fun g f a => g (f a))) u) v) w =
+               apply B C u (apply A B  v w);
+  aHomomorphism A B f x: apply A B (pure f) (pure x) = pure (f x);
+  aInterchange A B u y: apply A B u (pure y) =
+               apply _ _ (pure (fun f => f y)) u;
+  aFmap A B f u: f <$> u = apply A B (pure f) u;
+}.
+
+Notation "f <*> x" := (apply _ _ f x) (at level 24, left associativity).
+
+
+Class Foldable (F:Type->Type):=
+{
+  foldMap (M:Type) (mo:Monoid M) (A:Type) (f:A->M): F A -> M;
+  fold (M:Type) (mo:Monoid M): F M -> M;
+  foldr A B: (A->B->B) -> B -> F A -> B;
+  foldl A B: (B->A->B) -> B -> F A -> B;
+  toList A: F A -> list A; 
+  isEmpty A: F A -> bool;   (*called null in haskell*)
+  size A: F A -> nat;       (*called length in haskell*)
+  all A: (A->bool) -> F A -> bool;
+  any A: (A->bool) -> F A -> bool;
+  find A: (A->bool) -> F A -> Maybe A;
+(*There are other functions in Foldable, but we ignore them.*)
+}.
+
+#[export, refine]
+Instance list_Foldable: Foldable list:=
+{
+  foldMap M mo A f:= fix F l:=
+    match l with
+      | [] => mempty
+      | h::t => (f h) ++ (F t)
+    end;
+  fold M mo := fix F l:=
+    match l with
+      | [] => mempty
+      | h::t => h ++ (F t)
+    end;
+  foldr A B f:= fix F b l:=
+    match l with
+      | [] => b
+      | h::t => f h (F b t)
+    end; 
+  foldl A B f:=  fix F b l:=
+    match l with
+      | [] => b
+      | h::t => F (f b h) t
+    end; 
+  toList A l:=l;
+  isEmpty A l:= match l with [] => true | h::t => false end;
+  size A l := length l;
+  all A f:= fix F l:=
+    match l with
+      | []  => true
+      | h::t => andb (f h) (F t)
+   end;
+  any A f:= fix F l:=
+    match l with
+      | []  => false
+      | h::t => orb (f h) (F t)
+    end;
+  find A f:= fix F l:=
+    match l with
+      | []  => Nothing
+      | h::t => if f h then Just h else F t
+    end;
+}.
+Defined.
+
+Class TotalOrder (A:Type) :=
+{
+  comp: A->A->comparison;
+  isEq: A->A->bool;
+  isLt: A->A->bool;
+  isLe: A->A->bool;
+  isGt: A->A->bool;
+  isGe: A->A->bool;
+  compRefl:
+    forall x, comp x x = Eq;
+  compTrans:
+    forall x y z, comp x y = Lt ->
+      comp y z = Lt ->
+      comp x z = Lt;
+  compAntisym1:
+    forall x y, comp x y = Lt ->
+          comp y x = Gt;
+  compAntisym2:
+    forall x y, comp x y = Eq -> x = y;
+  isEqCorrect: forall x y, isEq x y = true <-> comp x y = Eq;
+  isLtCorrect: forall x y, isLt x y = true <-> comp x y = Lt;
+  isLeCorrect: forall x y,
+    isLe x y = true <-> comp x y = Lt \/ comp x y = Eq;
+  isGtCorrect: forall x y, isGt x y = true <-> comp x y = Gt;
+  isGeCorrect: forall x y,
+    isGe x y = true <-> comp x y = Gt \/ comp x y = Eq;
+}.
+Notation "x <?=?> y" := (comp x y) (at level 70).
+Notation "x =? y" := (isEq x y) (at level 70).
+Notation "x <? y" := (isLt x y) (at level 70).
+Notation "x <=? y" := (isLe x y) (at level 70).
+Notation "x >? y" := (isGt x y) (at level 70).
+Notation "x >=? y" := (isGe x y) (at level 70).
+
+Require Import Arith.
+Require Import Lia.
+
+#[export, refine]
+Instance nat_TotalOrder: TotalOrder nat:=
+{
+  comp:= Nat.compare;
+  isEq:= Nat.eqb;
+  isLt:= Nat.ltb;
+  isLe:= Nat.leb;
+  isGt:= fun x y => Nat.ltb y x;
+  isGe:= fun x y => Nat.leb y x;
+}.
+
+(*Some magic:*)
+all: intros.
+all: try rewrite Nat.compare_eq_iff in *.
+all: try rewrite Nat.compare_lt_iff in *.
+all: try rewrite Nat.compare_gt_iff in *.
+all: try rewrite Nat.eqb_eq in *.
+all: try rewrite Nat.ltb_lt in *.
+all: try rewrite Nat.leb_le in *.
+all: try lia.
+Defined.
+
+
+(* *)
+Class Dictionary (K V: Type) (to:TotalOrder K):=
+{
+  dictType: Type;
+  emptyDict: dictType;
+  lookup: dictType->K->Maybe V;
+  insert: dictType->K->V->dictType;
+  delete: dictType->K->dictType;
+  lookupEmpty: forall k:K, lookup emptyDict k = Nothing;
+  lookupInsert: forall d k p, lookup (insert d k p) k = Just p;
+  lookupDelete: forall d k, lookup (delete d k) k = Nothing;
+  lookupOther: forall d k1 k2 p1 p2, lookup d k1 = p1 ->
+         k1 <> k2 -> lookup (insert d k2 p2) k1 = p1;
+}.
+
+
+
+Inductive btree (A: Type): Type :=
+  | btLeaf: btree A  (* Traditionally called leaf
+                       but it is an empty tree*)
+  | btNode           (* A node has some data in it and at most
+                        two children *)
+      (data: A)
+      (leftChild: btree A)
+      (rightChild: btree A): btree A.
+
+Arguments btNode {A} data leftChild rightChild.
+Arguments btLeaf {A}.
+
+
+(*A useful function to get the nth element of a list
+  or a default value if the list is too short.
+  It should be a Foldable function. *)
+Definition nthDefault A d: list A->nat->A:=
+    fix F l n :=
+    match l, n with
+    | nil, _ => d
+    | cons h t, 0 => h
+    | cons h t, S k => F t k
+    end.
+
+
+Class Graph (N E:Type):=
+(*Nodes and edges may contain some data, N and E
+are the types of these data. If there is no data,
+just use unit*)
+{
+  gNodeNum: nat; (*nodes are numbered from 0 to gNodeNum-1*)
+  gAreNeighbours: nat->nat->bool;
+  gNeighbourList: nat->list nat; (*returns the list of nodes
+          that this node is connected*)
+  gGetNodeData: nat->N; (*retuns the data on a Node.
+               If the index is too large, returns some default value *)
+  gGetEdgeData: nat->nat->Maybe E;
+}.
+(*Usually we want to give the graph explicitly*)
+Arguments gNodeNum {N E} Graph.
+Arguments gAreNeighbours {N E} Graph _ _.
+Arguments gNeighbourList {N E} Graph _.
+Arguments gGetNodeData {N E} Graph _.
+Arguments gGetEdgeData {N E} Graph _ _.
+
+Notation "g [< i , j >]" := (gAreNeighbours g i j) (at level 50).
+Notation "g [< i >]" := (gNeighbourList g i) (at level 50).
+Notation "g [? i , j ?]" := (gGetNodeData g i j) (at level 50).
+Notation "g [? i ?]" := (gGetEdgeData g i) (at level 50).
+
+
+
+
+
+
+
+(*If you cannot prove something in a typeclass, you can skip it
+with "apply joker", and the rest will still work. *)
+Definition joker: forall (P:Prop), P.
+Admitted.
+
+
+
+
+
+
+

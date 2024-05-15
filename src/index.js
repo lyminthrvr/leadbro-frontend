@@ -5,14 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import StoreProvider from "./providers/StoreProvider";
 import {BrowserRouter} from "react-router-dom";
+import {ToastContainer} from "react-toastify";
+import {SnackbarProvider} from "notistack";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
             <StoreProvider>
+                <SnackbarProvider
+                    autoHideDuration={3000}
+                    anchorOrigin={{vertical:'top',horizontal:'right'}}
+                />
                 <App/>
             </StoreProvider>
-    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

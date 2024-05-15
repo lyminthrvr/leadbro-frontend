@@ -28,7 +28,7 @@ const Title = ({title,...rest}) => {
         <>
             {<div className={cn("h4", styles.title,{[styles.format_margin]:rest.smallTable})}>
                 {title}
-                {tableActions && <TitleButtons actions={actions} titleButton={actions?.add?.title??''} isSmallButton={smallTable} doSort={doSort} isSortDecrease={isSortDecrease}/>}
+                {actions && <TitleButtons actions={actions} titleButton={actions?.add?.title??''} isSmallButton={smallTable} doSort={doSort} isSortDecrease={isSortDecrease}/>}
             </div>}
         </>
     );

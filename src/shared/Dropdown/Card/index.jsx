@@ -4,12 +4,12 @@ import styles from './CardDropdown.module.sass'
 import cn from "classnames";
 import {CSSTransition} from "react-transition-group";
 
-const CardDropdown = ({text}) => {
+const CardDropdown = ({children,text,className}) => {
     const [isOpen,setIsOpen] = useState(true)
     const bodyRef = useRef(null)
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
+            <div className={cn(styles.header,className)}>
                 <div>{text}</div>
                 <div onClick={()=>setIsOpen(!isOpen)}>
                     <Icon viewBox={10} size={10} name={'chevron'} className={cn(styles.chevron, {[styles.chevron_active]: isOpen})}/>
@@ -17,7 +17,7 @@ const CardDropdown = ({text}) => {
             </div>
             { isOpen &&
                 <div ref={bodyRef}>
-                    1234
+                    {children}
                 </div>
             }
 
