@@ -7,6 +7,8 @@ import TextInput from "../../TextInput";
 const CardInput = ({label, value, actions, type, name, ...props}) => {
     const [isHovered, setIsHovered] = useState(false)
     const [isEdited, setIsEdited] = useState(false)
+    const [isClicked,setIsClicked] = useState(false)
+
 
     const getInputClass = () => {
         return {
@@ -20,7 +22,8 @@ const CardInput = ({label, value, actions, type, name, ...props}) => {
                         hovered={isHovered}
                         onHover={() => setIsHovered(!isHovered)} onChange={({target}) => {
         actions.edit(target)
-    }}
+    }}                  seen={isClicked}
+                        onSee={()=>setIsClicked(!isClicked)}
                         classNameActions={styles.actions}
                         classLabel={props.multiple ? styles.label_multiple : styles.label} classWrap={styles.wrap}
                         className={props?.multiple && props?.labeled ? styles.container_labeled : styles.container} classInput={cn(styles.input, getInputClass())} label={ props?.multiple ? props?.labeled ? label:null : label}

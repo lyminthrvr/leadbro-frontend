@@ -16,6 +16,7 @@ import ClientPersons from "./Persons";
 import {deepObserve} from "mobx-utils";
 import {reaction} from "mobx";
 import ClientsContacts from "./Contacts";
+import ClientPasswords from "./Passwords";
 
 const ClientPage = observer(() => {
     let { id } = useParams();
@@ -31,6 +32,7 @@ const ClientPage = observer(() => {
 
     console.log(client,'draft')
     const handleChange = (name,payload,withId=true) => {
+        debugger
         clients.changeById(client?.id ?? +id,name,payload,withId)
     }
     const handleReset = (path) =>{
@@ -59,6 +61,7 @@ const ClientPage = observer(() => {
                     <ClientDescription onChange={handleChange} onReset={handleReset} onSubmit={handleSubmit} description={client?.description} />
                     <ClientPersons onChange={handleChange} onReset={handleReset} onSubmit={handleSubmit} persons={client?.contactPersons} />
                     {client?.contactData && <ClientsContacts onAdd={(name,payload)=>handleChange(name,payload ?? '')} onRemove={handleRemove} onChange={handleChange} onReset={handleReset} onSubmit={handleSubmit} contactData={client?.contactData} />}
+                    <ClientPasswords onAdd={(name,payload)=>handleChange(name,payload ?? '')} onRemove={handleRemove} onChange={handleChange} onReset={handleReset} onSubmit={handleSubmit} passwordsData={client?.passwords} />
                 </div>
             </div>
         </>

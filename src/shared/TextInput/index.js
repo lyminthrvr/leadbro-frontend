@@ -24,6 +24,12 @@ const TextInput = ({
                        ...props
                    }) => {
     const inputRef = useRef(null)
+    const makeInputVisible = () => {
+        inputRef.current.type = 'text'
+    }
+    const makeInputPassword = () => {
+        inputRef.current.type = 'password'
+    }
     return (
         <div
             className={cn(
@@ -72,6 +78,13 @@ const TextInput = ({
                 )}
                 {currency && <div className={styles.currency}>{currency}</div>}
                 {props?.hovered && <div className={cn(styles.actions, classNameActions)}>
+                    {actions.see && !props?.edited && <div onClick={() => {
+                        makeInputVisible()
+                        props?.onSee()
+                    }} className={cn(styles.see, {[styles.see_active]: props.seen})}>
+                        <Icon name={'edit'} size="24"/>{" "}
+                    </div>
+                    }
                     {actions.edit && !props?.edited && <div onClick={() => {
                         props?.onEdit()
                         props?.onHover()
