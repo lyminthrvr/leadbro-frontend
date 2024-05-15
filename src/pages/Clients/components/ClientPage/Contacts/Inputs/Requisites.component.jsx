@@ -36,7 +36,7 @@ const RequisitesComponent = ({label,contactData,onActions,onAdd}) => {
             {Object.entries(contactData?.requisites ?? {}).map(([key, value], index) => {
 
                 return Object.entries(value).map(([keyRequisites,valueRequisites],index)=>{
-                    const actions = {...onActions( `contactData.requisites.${key}.${keyRequisites}`,RequisitesOnSave[keyRequisites],RequisitesOnClose[keyRequisites])}
+                    const actions = onActions( `contactData.requisites.${key}.${keyRequisites}`,RequisitesOnSave[keyRequisites],RequisitesOnClose[keyRequisites])
                     return <CardInput placeholder={`${RequisitesToValues[keyRequisites]}...`} multiple={true} labeled={true}
                                       label={RequisitesToValues[keyRequisites]} name={`contactData.requisites.${key}.${keyRequisites}`}
                                       type={'textarea'} value={valueRequisites}
