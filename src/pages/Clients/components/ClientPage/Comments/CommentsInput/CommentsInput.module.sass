@@ -1,0 +1,36 @@
+@import ../../../../../../styles/helpers
+
+.container
+  display: flex
+  flex-direction: column
+  gap: 12px
+
+.input
+  &_attach
+    margin-bottom: 4px
+    align-self: flex-end
+    padding-right: 1rem
+  &_send
+    margin-bottom: 4px
+    padding-left: 1rem
+    align-self: flex-end
+  display: flex
+  &_field
+    flex-grow: 5
+
+  //align-items: center
+  flex-grow: 5
+  //height: 48px
+  border-radius: 12px
+  //padding: 12px
+.send
+  align-self: center
+  &:hover
+    path
+      fill: darken($p3,0.05)
+.files
+  margin-left: 2.5rem
+  margin-top: 0.75rem
+  display: flex
+  flex-direction: row
+  gap: 14px

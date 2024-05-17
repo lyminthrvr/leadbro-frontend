@@ -6,6 +6,8 @@ import uuid from "draft-js/lib/uuid";
 import styles from './Activities.module.sass'
 import DealCell from "./ActivityCell";
 import ManagerCell from "../../ClientsTable/Cells/ManagerCell";
+import ActivityType from "./Type";
+import EmptyCell from "../../../../../shared/Table/EmptyCell";
 
 const ClientActivities = ({activities}) => {
 
@@ -25,9 +27,26 @@ const ClientActivities = ({activities}) => {
                     },
                     {
                         'Header': ()=>null,
-                        id:`${index}_t`,
+                        id:`${index}_empty`,
+                        Cell:({ row }) => {
+                            return <EmptyCell/>
+                        }
+
+                    },
+
+                    {
+                        'Header': ()=>null,
+                        id:`${index}_manager`,
                         Cell:({ row }) => {
                             return <ManagerCell className={styles.cell_manager} manager={row.original.assignee}/>
+                        }
+
+                    },
+                    {
+                        'Header': ()=>null,
+                        id:`${index}_type`,
+                        Cell:({ row }) => {
+                            return <ActivityType className={styles.cell_manager} type={row.original.type} membersCount={row.original.members}/>
                         }
 
                     },

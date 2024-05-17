@@ -65,6 +65,7 @@ export const changeDraft = (store,id,object, path, value,withId) => {
     // Обновляем вложенные объекты в черновике
     for (let i = 0; i < pathParts.length - 1; i++) {
         const part = pathParts[i];
+        debugger
         if (Array.isArray(currentDraft) && isId(part)) {
             const index = Number(part);
             const nextDraft = currentDraft.find(x => x.id === index);

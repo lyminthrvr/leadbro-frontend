@@ -7,7 +7,7 @@ const MultiInputLabeled = ({label,onAdd,children}) => {
             <>
             <div className={styles.label_multiple}>
                 <div >
-                    {label}
+                    <div>{label}</div>
                     <Icon onClick={onAdd} fill={'#6F767E'} size={10} name={'plus'}/>
                 </div>
             </div>

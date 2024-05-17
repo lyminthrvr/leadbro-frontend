@@ -79,10 +79,10 @@ const TextInput = ({
                 {currency && <div className={styles.currency}>{currency}</div>}
                 {props?.hovered && <div className={cn(styles.actions, classNameActions)}>
                     {actions.see && !props?.edited && <div onClick={() => {
-                        makeInputVisible()
                         props?.onSee()
-                    }} className={cn(styles.see, {[styles.see_active]: props.seen})}>
-                        <Icon name={'edit'} size="24"/>{" "}
+                        props?.seen ? makeInputPassword() : makeInputVisible()
+                    }} className={cn(styles.see, {[styles.see_active]: props?.seen})}>
+                        <Icon name={'show'}  size="24"/>{" "}
                     </div>
                     }
                     {actions.edit && !props?.edited && <div onClick={() => {
