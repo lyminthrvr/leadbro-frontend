@@ -74,14 +74,19 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, ...
                         {// Loop over the table rows
                             rest.disableHeader ? headerGroups.map((group)=>{
                                 return group.headers.filter(col=>col.columns && !col.parent).map(col=>{
-
+                                    console.log(group,col,123)
+                                    const colJsx = col.render('Header')
+                                    debugger
                                     return <div className={styles.disable_header}>
-                                        <tr><td>{col.render('Header')}</td></tr>
-                                    {rows.map(row=>{
+                                        {Object.keys(colJsx.props).length?<tr><td>{colJsx}</td></tr>:<></>}
+                                    {rows.filter(el=>{
+                                    return el.id===col.originalId.split('_')[1]
+                                    }).map(row=>{
                                         prepareRow(row)
                                         return <React.Fragment {...row.getRowProps()}>
                                             <tr>
-                                                {row.allCells.filter(cell=>cell.column.parent.id===col.originalId).map(cell => {
+                                                {row.cells.filter(cell=>{
+                                                    return cell.column.parent.id === col.originalId}).map(cell => {
                                                     return (<td {...cell.getCellProps()}>{cell.render('Cell')}</td>)
                                                 })}
                                             </tr>

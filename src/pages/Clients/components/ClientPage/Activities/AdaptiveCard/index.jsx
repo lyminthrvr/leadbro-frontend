@@ -13,6 +13,8 @@ const AdaptiveCard = ({data, onPagination}) => {
     const groupByDate = (items) => {
         return items?.reduce((acc, item) => {
             const date = new Date(item.date);
+            //TODO - убрать когда добавят бек
+            date.setDate(date.getDate()+1)
             const dateString = date.toISOString().split('T')[0]; // Извлекаем YYYY-MM-DD
 
             if (!acc[dateString]) {
@@ -30,12 +32,12 @@ const AdaptiveCard = ({data, onPagination}) => {
             {Object.keys(groupedItems).map((date) => {
                 return <div className={styles.card}>
                     <div key={date}>
-                        <p>{formatDateWithoutHours(new Date(date))}</p>
+                        <p className={styles.date}>{formatDateWithoutHours(new Date(date))}</p>
                         {groupedItems[date].map((item, index) => (
                             <div className={styles.body} key={index}>
                                 <div>
                                     <div>{item.description}</div>
-                                    <div>{formatHours(item.time)}</div>
+                                    <div className={styles.time}>{formatHours(item.time)}</div>
                                 </div>
                                 <div>
                                     <Tooltip title={`123`}>
@@ -51,7 +53,7 @@ const AdaptiveCard = ({data, onPagination}) => {
                     </div>
                 </div>
             })}
-            {onPagination && <Button isSmallButton={false} name={'Показать еще(10)'}/>}
+            {onPagination && <Button classname={styles.button} isSmallButton={false} name={'Показать еще(10)'}/>}
 
         </Card>
     );

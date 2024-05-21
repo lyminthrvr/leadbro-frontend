@@ -8,10 +8,10 @@ import Button from "../../../../../../shared/Button ";
 const AdaptiveCard = ({data, onPagination}) => {
     return (
         <div className={styles.container}>
-            {data.map((original) => {
-                console.log(original,'original')
-                return <Card className={styles.card}>
-                    <div className={styles.header}>
+
+                 <Card className={styles.card}>
+                     {data.map((original) => {
+                    return <div className={styles.card_inner}><div className={styles.header}>
                         <div className={styles.name}>{original?.description}</div>
                     </div>
                     <div className={styles.body}>
@@ -27,9 +27,10 @@ const AdaptiveCard = ({data, onPagination}) => {
                     <div className={styles.footer}>
                         <div className={styles.avatar}><Avatar imageSrc={original?.responsible?.image}/></div>
                     </div>
-                    {onPagination && <Button isSmallButton={false} name={'Показать еще(10)'}/>}
+                     </div>})}
+
+                    {onPagination && <Button classname={styles.button} isSmallButton={false} name={'Показать еще(10)'}/>}
                 </Card>
-            })}
         </div>
     );
 };

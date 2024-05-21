@@ -8,10 +8,9 @@ const AdaptiveCard = ({data, statusType}) => {
     return (
         <div className={styles.container}>
             {data.map((original)=> {
-                console.log(original,'1234')
                 return <Card onLink={()=>`${original.id}` } className={styles.card} >
                     <div className={styles.header}>
-                        <div className={styles.name}>{original.name}</div>
+                        <div className={styles.name}>{original.title}</div>
                     </div>
                     <div className={styles.footer}>
                         <div className={styles.status}><Badge classname={styles.status_adaptiveStatus}

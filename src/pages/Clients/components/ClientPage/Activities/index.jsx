@@ -8,13 +8,32 @@ import ManagerCell from "../../ClientsTable/Cells/ManagerCell";
 import ActivityType from "./Type";
 import EmptyCell from "../../../../../shared/Table/EmptyCell";
 import AdaptiveCard from "./AdaptiveCard";
+import cn from "classnames";
 
 const ClientActivities = ({activities}) => {
+    const groupByDate = (items) => {
+        return items?.reduce((acc, item) => {
+            const date = new Date(item.date);
+            date.setDate(date.getDate()+1)
+            const dateString = date.toISOString().split('T')[0]; // Извлекаем YYYY-MM-DD
+
+            if (!acc[dateString]) {
+                acc[dateString] = [];
+            }
+            acc[dateString].push(item);
+
+            return acc;
+        }, {});
+    };
+    const groupedActivities = useMemo(()=>{
+
+    },[activities])
 
     const columns = useMemo(() => {
         return activities?.map((el,index) => (
             {
-                'Header': <div className={styles.header}>{formatDateWithoutHours(el.time)}</div>,
+                Header: index === 0 || activities[index - 1].date !== el.date ?
+                    <div className={cn(styles.header,{[styles.header_first]:index===0})}>{formatDateWithoutHours(el.date)}</div> :  <></>,
                 id:`activities_${index}`,
                 columns:[
                     {
@@ -51,7 +70,7 @@ const ClientActivities = ({activities}) => {
 
                     },
                 ]
-            }),[])
+            }))
     }, [activities])
     const data = useMemo(() => activities ?? [], activities)
     return (

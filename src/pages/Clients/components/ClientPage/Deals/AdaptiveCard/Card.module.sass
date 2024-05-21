@@ -1,7 +1,7 @@
 @import ../../../../../../styles/helpers
 .container
   display: none
-  +x
+  +m
     display: flex
     flex-direction: column
     width: 100%
@@ -12,6 +12,9 @@
   width: 100%
   border-top-right-radius: 0px
   border-top-left-radius: 0px
+  &_inner
+    border-bottom: 1px $n3 solid
+    margin-bottom: 12px
 .header
   font-weight: 600
   line-height: 24px
@@ -40,3 +43,6 @@
   display: flex
   justify-content: space-between
   align-items: center
+.button
+  +m
+    display: block

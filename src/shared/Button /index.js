@@ -5,10 +5,10 @@ import styles from './button.module.sass'
 import cn from "classnames";
 
 
-const Button = ({name, after, before, onClick, adaptiveIcon,...rest}) => {
+const Button = ({name, after, before, onClick, adaptiveIcon,classname,...rest}) => {
     return (
         <>
-        {!rest.isSmallButton && <div className={styles.control} >
+        {!rest.isSmallButton && <div className={cn(styles.control,classname,{[styles.isNotSmallTable]:!rest.isSmallButton})} >
                 {before}
                 <Link className={cn("button", styles.button)} to={rest.to}>
                     <span>{name}</span>

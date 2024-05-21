@@ -113,7 +113,7 @@ const createClients = () => {
             activities: [{
                 date: new Date(2024, 1, 11),
                 time: new Date(),
-                description: 'Звонок клиенту для отчетности за март',
+                description: 'Звонок',
                 type:'call',
                 members:2,
                 assignee: {
@@ -127,9 +127,28 @@ const createClients = () => {
                 }
             },
                 {
+                    date: new Date(2024, 1, 11),
+                    time: new Date(),
+                    description: 'Звонок12',
+                    type:'call',
+                    members:2,
+                    assignee: {
+                        image: createBlob(),
+                        name:
+                            'Александр',
+                        surname:
+                            'Шилов',
+                        role:
+                            'Директор'
+                    }
+                },
+
+
+
+                {
                     date: new Date(2024, 9, 20),
                     time: new Date(),
-                    description: 'Звонок клиенту для отчетности за март',
+                    description: 'Звонок клиенту Звонок клиенту Звонок клиенту Звонок клиенту Звонок клиенту Звонок клиенту Звонок клиенту ',
                     type:'call',
                     members:2,
                     assignee: {
@@ -164,7 +183,29 @@ const createClients = () => {
                         'Директор',
                 },
                 deadline: new Date()
-            }],
+            },
+                {
+                    description: 'SEONeo',
+                    creator: {
+                        image: createBlob(),
+                        name:
+                            'Александр',
+                        surname:
+                            'Шилов',
+                        role:
+                            'Директор'
+                    },
+                    responsible: {
+                        image: createBlob(),
+                        name:
+                            'Александр',
+                        surname:
+                            'Шилов',
+                        role:
+                            'Директор',
+                    },
+                    deadline: new Date()
+                }],
             deals: [{
                 status: 'Догоовр подписан',
                 sum: '39000',
