@@ -105,7 +105,7 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, ...
                     </table>
                 </div>
             </Card>
-            {cardComponent && <AdaptiveCards cardComponent={cardComponent} rows={rows}/>}
+            {cardComponent && <AdaptiveCards onPagination={rest?.onPagination ?? null} cardComponent={cardComponent} rows={rows}/>}
         </div>)
 });
 

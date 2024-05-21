@@ -8,6 +8,7 @@ import clients from "../../../index";
 import Table from "../../../../../shared/Table";
 import AdaptiveCard from "./AdaptiveCard";
 import {formatDate} from "../../../../../utils/formate.date";
+import styles from './Services.module.sass'
 
 const ClientService = ({services}) => {
     const cols = React.useMemo(() => [
@@ -57,7 +58,7 @@ const ClientService = ({services}) => {
     const data = useMemo(()=>services??[],services)
     return (
         <div>
-            <Table smallTable={true} headerInCard={true} cardComponent={(data)=>(<AdaptiveCard data={data} />)}  headerActions={{
+            <Table onPagination={true} smallTable={true} headerInCard={true} cardComponent={(data,onPagination)=>(<AdaptiveCard onPagination={onPagination} className={styles.card_adaptive} data={data} />)}  headerActions={{
                 sorting:true,
                 add: {
                     action:()=>console.log('1234'),

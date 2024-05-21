@@ -5,6 +5,7 @@ import styles from './CommentsInput.module.sass'
 import FileElement from "../../../../../../shared/File/Element";
 import TextInput from "../../../../../../shared/TextInput";
 import Icon from "../../../../../../shared/Icon";
+import Tooltip from "../../../../../../shared/Tooltip";
 
 const CommentsInput = ({ onSendMessage,currentUser, commentsLength }) => {
     const [text, setText] = useState('');
@@ -44,7 +45,9 @@ const CommentsInput = ({ onSendMessage,currentUser, commentsLength }) => {
         <div className={styles.container}>
             <div className={styles.input}>
                 <div className={styles.input_attach}>
-                    <FileUpload onFileUpload={handleFileUpload}/>
+                    <Tooltip title={'Вставить файлы'}>
+                        <FileUpload onFileUpload={handleFileUpload}/>
+                    </Tooltip>
                 </div>
                 <div className={styles.input_field}>
                     <TextInput

@@ -9,7 +9,7 @@ const Comment = ({ sender, text, files,hours }) => {
             </div>
             <div className={styles.comment}>
                 <span>{sender.name}</span>
-                <p>{text}</p>
+                <div>{text}</div>
                 <div className={styles.files}>
                     {files.map((file) => (
                         <FileElement key={file.id} file={file}/>

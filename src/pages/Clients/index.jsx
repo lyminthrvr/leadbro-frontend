@@ -6,16 +6,23 @@ import useStore from "../../hooks/useStore";
 import useClientsApi from "./clients.api";
 import {Outlet} from "react-router";
 import ClientActivities from "./components/ClientPage/Deals";
+import {motion} from "framer-motion";
+import {opacityTransition} from "../../utils/motion.variants";
+
 const Clients = observer(() => {
+
     const api = useClientsApi()
     useEffect(()=> {
         api.getClients()
     },[])
 
     return (
-        <div className={styles.container}>
+        <motion.div
+            variants={opacityTransition}
+            initial="hidden"
+            animate="show" className={styles.container}>
             <ClientsTable/>
-        </div>
+        </motion.div>
     );
 });
 

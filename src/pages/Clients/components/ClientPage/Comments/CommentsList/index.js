@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import Comment from "./Comment";
 import {
     formatDateOnlyHours,
@@ -7,33 +7,26 @@ import {
     formatHours
 } from "../../../../../../utils/formate.date"
 import styles from './CommentList.module.sass'
+import {sortByDate} from "../../../../../../utils/sort";
+
 const CommentsList = ({comments}) => {
-    // const groupCommentsByDate = (messages) => {
-    //     const groupedComment = {};
-    //     Object.entries(messages??{})?.forEach(([key,value]) => {
-    //         const date = formatDateWithDateAndYear(value.date);
-    //         if (!groupedComment[date]) {
-    //             groupedComment[date] = [];
-    //         }
-    //         groupedComment[date].push(value);
-    //     });
-    //
-    //     return groupedComment;
-    // };
-    // const groupedComments = groupCommentsByDate(comments);
+    const sortedArray = useMemo(() => Object.entries(comments ?? {})
+        .sort((a, b) => sortByDate(a[1]?.date, b[1]?.date)),
+        [comments])
+
 
     return (
         <div>
-            {Object.entries(comments??{}).map(([key, value]) => (
+            {sortedArray.map(([key, value]) => (
                 <div className={styles.container} key={key}>
                     <p>{formatDateWithDateAndYear(value?.date)}</p>
-                        <Comment
-                            hours={formatDateOnlyHours(value?.date)}
-                            key={value.id}
-                            sender={value.sender}
-                            text={value.value.text}
-                            files={value.value.files}
-                        />
+                    <Comment
+                        hours={formatDateOnlyHours(value?.date)}
+                        key={value.id}
+                        sender={value.sender}
+                        text={value.value.text}
+                        files={value.value.files}
+                    />
                 </div>
             ))}
         </div>

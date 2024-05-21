@@ -1,7 +1,7 @@
 import React from 'react';
 import {handleError, handleInfo, handleSubmit} from "../../../../../utils/snackbar";
 import Card from "../../../../../shared/Card";
-import styles from "../Contacts/Contacts.module.sass";
+import styles from "./Passwords.module.sass";
 import Title from "../../../../../shared/Title";
 import MultiInputPasswords from "./Inputs/MultiInput.component";
 import useMappedObj from "../../../../../hooks/useMappedObj";

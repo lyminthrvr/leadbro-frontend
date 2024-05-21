@@ -7,8 +7,11 @@ import Header from "../Header";
 import '../../styles/app.sass'
 import {Outlet} from "react-router";
 import {ToastContainer} from "react-toastify";
+import {motion} from 'framer-motion'
 
 const Page = ({ wide, children, title, titleAfter }) => {
+
+
     const [visible, setVisible] = useState(false);
     return (
         <>
@@ -32,7 +35,8 @@ const Page = ({ wide, children, title, titleAfter }) => {
                             {title}
                             {titleAfter}
                         </div>}
-                        {children}
+
+                            {children}
                     </div>
                 </div>
 

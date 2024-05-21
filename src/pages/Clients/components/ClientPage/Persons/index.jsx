@@ -8,6 +8,9 @@ import CardDropdown from "../../../../../shared/Dropdown/Card";
 import Title from "../../../../../shared/Title";
 import CardInput from "../../../../../shared/Input/Card";
 import {handleError, handleInfo, handleSubmit} from "../../../../../utils/snackbar";
+import {motion} from "framer-motion";
+import {TranslateYTransition} from "../../../../../utils/motion.variants";
+
 
 const ClientPersons = ({persons,onChange,onSubmit,onReset}) => {
 
@@ -38,17 +41,19 @@ const ClientPersons = ({persons,onChange,onSubmit,onReset}) => {
             {persons?.map((el) =>{
                 const values = el
                 return <CardDropdown className={styles.dropdown}  text={<b>{values.fio}</b>}>
-                    <CardInput name={`contactPersons.${values.id}.role`} type={'text'} value={values.role} actions={defaultActions(`contactPersons.${values.id}.role`,'Роль сохранена','Роль восстановлена')}/>
-                    <CardInput label={'Телефон'} name={`contactPersons.${values.id}.tel`} type={'tel'} value={values.tel} actions={defaultActions(`contactPersons.${values.id}.tel`,'Телефон сохранен','Телефон восстановлен')}/>
-                    <CardInput label={'Почта'} name={`contactPersons.${values.id}.email`} type={'email'} value={values.email} actions={defaultActions(`contactPersons.${values.id}.email`,'Почта сохранена','Почта восстановлена')}/>
-                    {values.messengers.length && <div className={styles.messengers_container} >
-                        <p>Мессенджеры</p>
-                        <div className={styles.messengers}>
-                            {values.messengers.map((messenger)=>{
-                                return <img src={`/leadbro/${Object.keys(messenger)[0]}.svg`} alt={`${Object.keys(messenger)[0]}`}/>
-                            })}
-                        </div>
-                    </div>}
+                    <motion.div >
+                        <CardInput name={`contactPersons.${values.id}.role`} type={'text'} value={values.role} actions={defaultActions(`contactPersons.${values.id}.role`,'Роль сохранена','Роль восстановлена')}/>
+                        <CardInput label={'Телефон'} name={`contactPersons.${values.id}.tel`} type={'tel'} value={values.tel} actions={defaultActions(`contactPersons.${values.id}.tel`,'Телефон сохранен','Телефон восстановлен')}/>
+                        <CardInput label={'Почта'} name={`contactPersons.${values.id}.email`} type={'email'} value={values.email} actions={defaultActions(`contactPersons.${values.id}.email`,'Почта сохранена','Почта восстановлена')}/>
+                        {values.messengers.length && <div className={styles.messengers_container} >
+                            <p>Мессенджеры</p>
+                            <div className={styles.messengers}>
+                                {values.messengers.map((messenger)=>{
+                                    return <img src={`/leadbro/${Object.keys(messenger)[0]}.svg`} alt={`${Object.keys(messenger)[0]}`}/>
+                                })}
+                            </div>
+                        </div>}
+                    </motion.div>
                     {/*<CardInput label={'Почта'} name={`contactPersons.${values.id}.email`} type={'email'} value={values.email} actions={defaultActions(`contactPersons.${values.id}.email`,'Почта сохранена','Почта восстановлена')}/>*/}
             </CardDropdown>})}
         </Card>

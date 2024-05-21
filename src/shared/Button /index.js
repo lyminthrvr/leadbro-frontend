@@ -15,7 +15,7 @@ const Button = ({name, after, before, onClick, adaptiveIcon,...rest}) => {
                 </Link>
                 {after}
             </div>}
-            {!rest.isSmallButton && <div className={styles.adaptive}>{adaptiveIcon}</div>}
+            {!rest.isSmallButton && adaptiveIcon && <div className={styles.adaptive}>{adaptiveIcon}</div>}
             {rest.isSmallButton && <div onClick={onClick} className={styles.smallButton}>{adaptiveIcon}</div>}
         </>
 )

@@ -3,6 +3,7 @@ import ManagerCell from "../../ClientsTable/Cells/ManagerCell";
 import {formatDate} from "../../../../../utils/formate.date";
 import Table from "../../../../../shared/Table";
 import {formatSum} from "../../../../../utils/format.number";
+import AdaptiveCard from "./AdaptiveCard";
 
 const ClientDeals = ({deals}) => {
     const cols = React.useMemo(() => [
@@ -53,13 +54,13 @@ const ClientDeals = ({deals}) => {
     const data = useMemo(()=>deals??[],deals)
     return (
         <div>
-            <Table smallTable={true} headerInCard={true} headerActions={{
+            <Table smallTable={true} headerInCard={true} cardComponent={(data,onPagination)=><AdaptiveCard data={data} onPagination={onPagination} />} headerActions={{
                 sorting:true,
                 add: {
                     action:()=>console.log('1234'),
                     title:''
                 }
-            }} title={'Cделки'} data={data} columns={cols}/>
+            }} onPagination={true} title={'Cделки'} data={data} columns={cols}/>
         </div>
     );
 };

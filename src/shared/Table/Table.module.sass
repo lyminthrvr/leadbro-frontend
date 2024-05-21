@@ -2,11 +2,20 @@
 .card
     padding-top: 12px !important
     display: block
-    +x
+    +d
         display: none
     &_smallTable
+        +m
+            border-bottom-right-radius: 0px !important
+            border-bottom-left-radius: 0px !important
+        +x
+            display: block
         padding-top: 24px !important
 .wrapper
+
+    &.smallTable
+        +m
+            display: none
     //background-color: $n
     height: calc(100vh - 96px - 12rem)
     margin: 0 -22px

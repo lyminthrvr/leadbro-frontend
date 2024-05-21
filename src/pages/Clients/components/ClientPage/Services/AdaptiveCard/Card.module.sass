@@ -2,6 +2,7 @@
 .container
   display: none
   +x
+
     display: flex
     flex-direction: column
     width: 100%
@@ -10,6 +11,8 @@
   padding: 16px
   margin-bottom: 12px
   width: 100%
+  border-top-right-radius: 0px
+  border-top-left-radius: 0px
 
 .name
 
@@ -23,6 +26,8 @@
 .footer
   margin-top: 2.5rem
   margin-bottom: 16px
-  display: flex
-  justify-content: space-between
-  align-items: center
+  position: relative
+  display: inline-flex
+  &>div:last-of-type
+    position: absolute
+    left: 20px

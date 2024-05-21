@@ -8,13 +8,27 @@ import cn from "classnames";
 const ClientStatus = ({client,className}) => {
     return (
         <Card className={cn(styles.card, className)}>
+            <div className={styles.adaptive}>
+                <div className={styles.container_adaptive}>
+                    <ManagerCell manager={client?.manager}/>
+                    <div className={cn(styles.clientId,styles.clientId_adaptive)}>
+                        <span>{client?.id}</span>
+                        <span>ID клиента</span>
+                    </div>
+                </div>
+                <div className={styles.adaptive_badge}>
+                <Badge status={client?.status} statusType={statusTypes?.clients}/>
+
+
+                </div>
+            </div>
             <div className={styles.container}>
                 <ManagerCell manager={client?.manager}/>
-                <Badge status={client?.status} statusType={statusTypes?.clients} />
+                <Badge status={client?.status} statusType={statusTypes?.clients}/>
             </div>
             <div className={styles.clientId}>
-                    <span>{client?.id}</span>
-                    <span>ID клиента</span>
+                <span>{client?.id}</span>
+                <span>ID клиента</span>
             </div>
         </Card>
     );

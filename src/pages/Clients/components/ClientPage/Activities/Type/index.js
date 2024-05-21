@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from "../../../../../../shared/Icon";
 import cn from "classnames";
 import styles from './Type.module.sass'
+import Tooltip from "../../../../../../shared/Tooltip";
 
 const MapActivityTypesToIcons = {
     'call':'phone'
@@ -9,10 +10,10 @@ const MapActivityTypesToIcons = {
 
 const ActivityType = ({membersCount,type,className}) => {
 
-    const getCurrentFill = () => {
+    const getCurrentFilLAndTooltip = () => {
         switch (type){
             case 'call':
-                return '#83BF6E'
+                return {fill:'#83BF6E',tooltip:'Тип мероприятия: звонок'}
         }
     }
 
@@ -23,7 +24,9 @@ const ActivityType = ({membersCount,type,className}) => {
                 <p>{membersCount}</p>
             </div>
             <div>
-                <Icon viewBox={'0 0 20 20'} size={24} name={MapActivityTypesToIcons[type]} fill={getCurrentFill()}/>
+                <Tooltip place={'top'} title={getCurrentFilLAndTooltip().tooltip} >
+                    <Icon viewBox={'0 0 20 20'} size={24} name={MapActivityTypesToIcons[type]} fill={getCurrentFilLAndTooltip().fill}/>
+                </Tooltip>
             </div>
         </div>
     );
