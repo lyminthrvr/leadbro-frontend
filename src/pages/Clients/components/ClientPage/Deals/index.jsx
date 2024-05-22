@@ -4,6 +4,7 @@ import {formatDate} from "../../../../../utils/formate.date";
 import Table from "../../../../../shared/Table";
 import {formatSum} from "../../../../../utils/format.number";
 import AdaptiveCard from "./AdaptiveCard";
+import TextLink from "../../../../../shared/Table/TextLink";
 
 const ClientDeals = ({deals}) => {
     const cols = React.useMemo(() => [
@@ -14,8 +15,7 @@ const ClientDeals = ({deals}) => {
             accessor: 'description',
             Cell: ({row}) => {
                 const data = row?.original
-                console.log(data,'descr')
-                return <p>{data.description}</p>
+                return <TextLink>{data.description}</TextLink>
             },
 
         },

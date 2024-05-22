@@ -1,5 +1,10 @@
 @import ../../../../../../styles/helpers
 .container
+  &:hover
+    .fioContainer
+      &>div:first-of-type
+          +link
+  //width: 9rem
   align-self: center
   +inter
   display: flex
@@ -12,6 +17,8 @@
     font-size: 14px
     align-content: center
     line-height: 18px
+    >:first-of-type
+      margin-bottom: 4px
     >:last-child
-      font-weight: 500
+      +caption2-m
       color: $shades2

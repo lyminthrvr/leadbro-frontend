@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ManagerCell.module.sass'
 import Avatar from "../../../../../../shared/Avatar";
 import cn from "classnames";
+import {Link} from "react-router-dom";
 
 const ManagerCell = ({manager,...rest}) => {
     const imageSrc = manager?.image
@@ -9,7 +10,7 @@ const ManagerCell = ({manager,...rest}) => {
         <div className={cn(styles.container,rest.className)}>
             <Avatar imageSrc={imageSrc}/>
             <div className={styles.fioContainer}>
-                <div>{manager?.name} {manager?.surname}</div>
+                <div><Link>{manager?.name} {manager?.surname}</Link></div>
                 <div>{manager?.role}</div>
             </div>
         </div>

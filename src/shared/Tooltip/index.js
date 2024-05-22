@@ -27,7 +27,7 @@ const Tooltip = ({ className, title, place, children, id=uuid() }) => {
     return (
         <>
         {childrenWithProps}
-        <ReactTooltip id = {id}>
+        <ReactTooltip className={styles.tooltip_container} id = {id}>
         <div
             className={cn(styles.tooltip, className)}
         >

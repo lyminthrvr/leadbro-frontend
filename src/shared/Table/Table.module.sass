@@ -31,6 +31,7 @@
         vertical-align: middle
         color: $shades2
     th,td
+        vertical-align: middle
         text-align: left
         padding: 0.5rem 2rem 0.8rem 2rem
     tbody
@@ -55,6 +56,11 @@
         padding-top: 12px
         padding-bottom: 12px
     &_wrapper
+        &:hover
+            transition-duration: 0.3s
+            border-radius: 8px
+            background-color: $n2
+        user-select: none
         padding-left: 0.8rem
         padding-right: 0.5rem
     display: flex
@@ -118,6 +124,12 @@
             margin: 0 18px 0 8px
 .disable_header
     display: contents
+    &:first-of-type
+        tr:nth-of-type(2)
+            td
+                padding-top: 14px
+                padding-bottom: 10px
+                vertical-align: bottom
 
     &:not(:first-child)
         tr
@@ -130,9 +142,10 @@
             border-bottom: 1px $n3 solid
         &:nth-child(1)
             td
+                padding-top: 0
                 padding-bottom: 0
             border-top: none
-            border-bottom: none
+            //border-bottom: none
         &:nth-child(2)
             border-top: none
 

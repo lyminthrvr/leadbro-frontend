@@ -31,7 +31,7 @@ const ClientsTable = observer(({}) => {
             id: 'status',
             Cell: ({row}) => {
                 const data = row?.original
-                return <Badge status={data.status} statusType={statusTypes.clients} />
+                return <Badge classname={styles.badge} status={data.status} statusType={statusTypes.clients} />
             },
 
         },
@@ -49,6 +49,7 @@ const ClientsTable = observer(({}) => {
         {
             Header: 'Активные услуги',
             id: 'services',
+            disableResizing:false,
             Cell: ({row}) => {
                 const data = row?.original
                 return <ServicesCell services={data.services} />

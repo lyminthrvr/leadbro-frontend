@@ -9,7 +9,6 @@ export const statusTypes = {
 
 
 const Badge = ({statusType, status, classname}) => {
-    console.log(statusTypes[status], 'badge')
     return (
         <div className={styles.container}>
             <div className={cn(`${statusType[status]?.class}`, styles.status, classname)}>

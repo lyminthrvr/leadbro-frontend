@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from "../ActivitiesCell/ActivitieslCell.module.sass";
+import styles from "./ServicesCell.module.sass";
 import {formatDate} from "../../../../../../utils/formate.date";
+import {Link} from "react-router-dom";
 
 const ServicesCell = ({services}) => {
     console.log(services,0)
@@ -9,7 +10,7 @@ const ServicesCell = ({services}) => {
             {services.length && services.map((el) => (
                 <div className={styles.services}>
                     <div className={styles.name}>
-                        {el?.description}
+                        <Link>{el?.description}</Link>
                     </div>
                 </div>
             ))}

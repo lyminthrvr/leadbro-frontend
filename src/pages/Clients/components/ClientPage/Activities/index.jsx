@@ -25,9 +25,7 @@ const ClientActivities = ({activities}) => {
             return acc;
         }, {});
     };
-    const groupedActivities = useMemo(()=>{
 
-    },[activities])
 
     const columns = useMemo(() => {
         return activities?.map((el,index) => (
@@ -65,7 +63,7 @@ const ClientActivities = ({activities}) => {
                         'Header': ()=>null,
                         id:`${index}_type`,
                         Cell:({ row }) => {
-                            return <ActivityType className={styles.cell_manager} type={row.original.type} membersCount={row.original.members}/>
+                            return <ActivityType className={styles.types} type={row.original.type} membersCount={row.original.members}/>
                         }
 
                     },

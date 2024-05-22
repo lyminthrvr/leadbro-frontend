@@ -14,7 +14,7 @@ export const statusTypesRu = {
 
 export const colorStatusTypes = {
     inProgress:{status:statusTypesRu.inProgress,class:'status-green'},
-    notInProgress:{status:statusTypesRu.notInProgress,class:'status-red'},
+    notInProgress:{status:statusTypesRu.notInProgress,class:'status-red-dark'},
     partner:{status:statusTypesRu.partner,class:'status-purple'},
     concurrent:{status:statusTypesRu.concurrent,class:'status-yellow'},
 }

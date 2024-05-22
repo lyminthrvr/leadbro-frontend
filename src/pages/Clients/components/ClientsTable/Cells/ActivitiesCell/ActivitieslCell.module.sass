@@ -1,7 +1,19 @@
 @import ../../../../../../styles/helpers
 
+.name
+  text-overflow: ellipsis
+  width: 19rem
+  overflow: hidden
+  white-space: nowrap
+
 .deadline
   color: $shades2
   line-height: 12px
   font-weight: 600
   font-size: 12px
+.activity
+  margin-bottom: 1rem
+  &:hover
+    cursor: pointer
+    .name
+      +link

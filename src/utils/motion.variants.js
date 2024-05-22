@@ -10,6 +10,23 @@ export const opacityTransition = {
     }
 }
 
+export const hoverTransition = {
+    hover:{
+        background:'red'
+    }
+}
+
+export const hoverTable = {
+    // initial:{
+    //     background:'initial'
+    // },
+    // hover:{
+    //     backgroundColor: '#F4F4F4',
+    //     borderRadius:'8px',
+    //     transition:{duration:0.3, ease}
+    // }
+}
+
 export const TranslateYTransition = {
     hidden:{
         display:'none',

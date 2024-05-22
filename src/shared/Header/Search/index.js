@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import cn from "classnames";
 import styles from "./Search.module.sass";
 import Icon from "../../Icon";
 import Item from "./Item";
 import Suggestion from "./Suggestion";
+import OutsideClickLayout from "../../Layouts/outsideClickLayout";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 const result = [
   {
@@ -36,10 +38,14 @@ const suggestions = [
 const Search = ({ className }) => {
   const [visible, setVisible] = useState(false);
   const [visibleModalProduct, setVisibleModalProduct] = useState(false);
-
+  const ref=useRef(null)
+  const [text,setText] = useState('')
+  useOutsideClick(ref,()=>setVisible(false))
+  const inputRef = useRef(null)
   return (
     <>
       <div
+          ref={ref}
         className={cn(styles.search, className, { [styles.active]: visible })}
       >
         <div className={styles.head}>
@@ -50,13 +56,25 @@ const Search = ({ className }) => {
             <Icon name="arrow-left" size="24" />
           </button>
           <input
+              ref={inputRef}
+              value={text}
             className={styles.input}
             type="text"
             placeholder="Поиск"
-            onChange={() => setVisible(true)}
+            onChange={({target}) => {
+              setText(target.value)
+              setVisible(true)
+
+            }
+            }
           />
           {/*<button className={styles.result}>⌘ F</button>*/}
-          <button className={styles.close} onClick={() => setVisible(false)}>
+          <button className={styles.close} onClick={() => {
+            setText('')
+            inputRef.current.focus()
+            setVisible(false)
+
+          }}>
             <Icon name="close-circle" size="24" />
           </button>
         </div>

@@ -13,11 +13,16 @@ import AdaptiveCards from "./AdaptiveCards";
 import Title from "../Title";
 import {observer} from "mobx-react";
 import {useGroupBy} from "react-table";
+import {motion} from 'framer-motion'
+import {hoverTable} from "../../utils/motion.variants";
+import {useResizeColumns} from "react-table";
+import {useFlexLayout} from "react-table";
+import {useBlockLayout} from "react-table";
 
 const Table = observer(({columns, data, title, headerActions, cardComponent, ...rest}) => {
     const {grouping}=rest
 
-    const tableInstance = useTable({columns, data},useGroupBy, useSortBy)
+    const tableInstance = useTable({columns, data},useGroupBy, useSortBy, useResizeColumns)
     const {
         getTableProps, getTableBodyProps, headerGroups, rows, prepareRow
     } = tableInstance
@@ -42,10 +47,10 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, ...
                                 <tr  {...headerGroup.getHeaderGroupProps()}>
                                     {// Loop over the headers in each row
                                         headerGroup.headers.map(column => {// Apply the header cell props
-                                            return <th
+                                            return <motion.th
                                                 {...column.getHeaderProps(column.getSortByToggleProps())}>
                                                 <div
-                                                    className={cn(styles.headerCol_wrapper, {[styles.activeSorting]: column.isSorted})}>
+                                                    className={cn(styles.headerCol_wrapper)}>
                                                     <div className={cn(styles.headerCol)} onClick={(e) => {
                                                         if (column.canSort && !column.isSortedDesc)
                                                             clickRecursive(e.target)
@@ -65,7 +70,7 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, ...
                                                 </span>
                                                     </div>
                                                 </div>
-                                            </th>
+                                            </motion.th>
                                         })}
                                 </tr>))}
                         </thead>
@@ -74,9 +79,7 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, ...
                         {// Loop over the table rows
                             rest.disableHeader ? headerGroups.map((group)=>{
                                 return group.headers.filter(col=>col.columns && !col.parent).map(col=>{
-                                    console.log(group,col,123)
                                     const colJsx = col.render('Header')
-                                    debugger
                                     return <div className={styles.disable_header}>
                                         {Object.keys(colJsx.props).length?<tr><td>{colJsx}</td></tr>:<></>}
                                     {rows.filter(el=>{

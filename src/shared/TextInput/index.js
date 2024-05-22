@@ -30,6 +30,7 @@ const TextInput = ({
     const makeInputPassword = () => {
         inputRef.current.type = 'password'
     }
+
     return (
         <div
             className={cn(
@@ -64,7 +65,7 @@ const TextInput = ({
             }
             } className={cn(styles.wrap, classWrap,{[styles.wrap_hovered]:props?.hovered})}>
                 {props.type === 'textarea' ?
-                    <TextArea ref={inputRef} className={cn(classInput, styles.input, styles.textarea)} {...props} /> :
+                    <TextArea autoFocus={props?.makeFocused} ref={inputRef} className={cn(classInput, styles.input, styles.textarea)} {...props} /> :
                     <input ref={inputRef} disabled={!props?.edited ?? false} className={cn(classInput, styles.input)} {...props} />}
                 {icon && (
                     <div className={styles.icon}>

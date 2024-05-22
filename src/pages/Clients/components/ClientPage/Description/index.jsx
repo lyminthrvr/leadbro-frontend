@@ -13,13 +13,14 @@ const ClientDescription = ({description, onChange,onSubmit,onReset}) => {
               title={<div className={styles.title}><p>Описание клиента</p>
                   <div onClick={() => setIsEdit(!isEdit)}>
                       {!isEdit && <Icon className={cn(styles.edit)} name={'edit'}/>}
-                      {isEdit && <div>
+                      {isEdit && <div className={styles.edit_container}>
                           <Icon fill={'#FF6A55'} size={24} onClick={onSubmit} name={'check-circle'}/>
                           <Icon  size={24} onClick={()=>onReset('description')} name={'close'}/>
                       </div>}
                   </div>
               </div>}>
             {isEdit ? <TextInput
+                makeFocused={true}
                 type={'textarea'}
                 data-name={'Описание'}
                 // label="New password"

@@ -8,12 +8,11 @@
         border: none
         background: none
 
-    h3
+    p
         margin: 0
-        padding: 0.75rem 1rem
+        padding: 0.5rem 1rem
         border-radius: 8px
-        &:hover
-            background: $n3
+        cursor: pointer
 
 
 
@@ -39,6 +38,8 @@
         background: $n7
         box-shadow: inset 1px 0px 0px $n8, inset 0 -1px 0px $n8
     .links
+        +base1-s
+        //+title2
         color: $shades2
         margin: 0 3rem
         width: 100%
@@ -93,6 +94,7 @@
 .button
 
     &.active
+        background: $n3
         color: $n6
 
 .buttonSearch
@@ -113,7 +115,8 @@
 .control .button
     +t
         display: none
-
+.visible
+    //visibility: visible !important
 .search
     +m
         visibility: hidden

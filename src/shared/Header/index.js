@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import cn from "classnames";
 import styles from "./Header.module.sass";
 import { Link } from "react-router-dom";
@@ -11,6 +11,9 @@ import Image from "../Image";
 import Logo from "../Logo";
 import notification from "./Notification";
 import {navigation} from "../nav";
+import useOutsideClick from "../../hooks/useOutsideClick";
+import {motion} from 'framer-motion'
+
 
 
 const Header = ({ onOpen }) => {
@@ -19,12 +22,17 @@ const Header = ({ onOpen }) => {
     onOpen();
     setVisible(false);
   };
+  const ref = useRef(null)
+    useOutsideClick(ref,()=>setVisible(false))
+
 
   return (
     <header className={styles.header}>
       <button className={styles.burger} onClick={() => handleClick()}></button>
         <Logo/>
-        <Search className={cn(styles.search, { [styles.visible]: visible })} />
+        <div style={{display:'contents'}} ref={ref}>
+            <Search className={cn(styles.search, { [styles.visible]: visible })} />
+        </div>
       <button
         className={cn(styles.buttonSearch, { [styles.active]: visible })}
         onClick={() => setVisible(!visible)}
@@ -58,13 +66,12 @@ const HeadersList = () => {
 
     const [activeIndex,setActiveIndex] = useState(0)
     const handleClick = (x, index) => {
-        console.log(index, x,activeIndex,999)
         setActiveIndex(index);
         x.action();
     };
     return <div className={styles.links}>
         {navigation.map((x, index) => (
-            <h3
+            <motion.p whileHover={{scale:1.1}}
                 className={cn(styles.button, {
                     [styles.active]: activeIndex === index,
                 })}
@@ -72,7 +79,7 @@ const HeadersList = () => {
                 onClick={() => handleClick(x, index)}
             >
                 {x.title}
-            </h3>
+            </motion.p>
         ))}
     </div>
 }

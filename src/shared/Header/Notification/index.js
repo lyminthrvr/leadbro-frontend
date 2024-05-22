@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import { Link } from "react-router-dom";
 import cn from "classnames";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -9,6 +9,8 @@ import Item from "./Item";
 import useStore from "../../../hooks/useStore";
 import OutsideClickLayout from "../../Layouts/outsideClickLayout";
 import {observer} from "mobx-react";
+import Button from "../../Button ";
+import useOutsideClick from "../../../hooks/useOutsideClick";
 
 // data
 
@@ -27,10 +29,12 @@ const actions = [
 
 const Notification = ({ className }) => {
   const [visible, setVisible] = useState(false);
-
+  const ref = useRef(null)
+  useOutsideClick(ref,()=>setVisible(false))
   return (
-    <OutsideClickLayout>
+    <>
       <div
+          ref={ref}
         className={cn(styles.notification, className, {
           [styles.active]: visible,
         })}
@@ -52,16 +56,16 @@ const Notification = ({ className }) => {
             />
           </div>
           <NotificationList className={className}/>
-          <Link
-            className={cn("button", styles.button)}
+          <Button
+            classname={cn("button", styles.button)}
             to="/notification"
             onClick={() => setVisible(false)}
-          >
-            Посмотреть уведомления
-          </Link>
+            name={'Посмотреть уведомления'}
+          />
+
         </div>
       </div>
-    </OutsideClickLayout>
+    </>
   );
 };
 

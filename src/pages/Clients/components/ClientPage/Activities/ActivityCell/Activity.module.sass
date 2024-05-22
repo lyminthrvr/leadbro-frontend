@@ -1,10 +1,11 @@
 @import ../../../../../../styles/helpers
 
 .container
-  font-size: 13px
-  line-height: 24px
+  +caption1
+  &:hover
+    +link
+  >:first-of-type
+    margin-bottom: 4px
   >:nth-child(2)
-    font-size: 13px
-    line-height: 16px
-    font-weight: 500
+    +caption2-m
     color: $shades2

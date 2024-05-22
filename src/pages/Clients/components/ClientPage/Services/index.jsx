@@ -9,6 +9,8 @@ import Table from "../../../../../shared/Table";
 import AdaptiveCard from "./AdaptiveCard";
 import {formatDate} from "../../../../../utils/formate.date";
 import styles from './Services.module.sass'
+import {Link} from "react-router-dom";
+import TextLink from "../../../../../shared/Table/TextLink";
 
 const ClientService = ({services}) => {
     const cols = React.useMemo(() => [
@@ -17,8 +19,7 @@ const ClientService = ({services}) => {
             id: 'service',
             Cell: ({row}) => {
                 const data = row?.original
-                console.log(data,'1234')
-                return <p>{data.description}</p>
+                return <TextLink className={styles.link}>{data?.description}</TextLink>
             },
 
         },
@@ -30,7 +31,7 @@ const ClientService = ({services}) => {
             accessor: 'creator.name',
             Cell: ({row}) => {
                 const data = row?.original
-                return <ManagerCell manager={data.creator}/>
+                return <ManagerCell className={styles.manager} manager={data.creator}/>
             },
 
         },

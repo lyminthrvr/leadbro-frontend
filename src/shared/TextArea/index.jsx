@@ -6,7 +6,7 @@ const TextArea = forwardRef((props,ref) => {
     const textAreaRef = useRef(  null);
     useAutosizeTextArea(ref ?? textAreaRef,props.value)
     return (
-        <textarea value={props.value} ref={ref ?? textAreaRef} rows={1} {...props}/>
+        <textarea  value={props.value} ref={ref ?? textAreaRef} rows={1} {...props}/>
 
     );
 });
