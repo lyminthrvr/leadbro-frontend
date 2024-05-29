@@ -18,7 +18,7 @@ const CardInput = ({label, value, actions, type, name, ...props}) => {
     }
 
     return <>
-        <TextInput name={name} value={value} type={type} edited={isEdited} onEdit={() => setIsEdited(!isEdited)}
+        <TextInput haveDots={true} name={name} value={value} type={type} edited={isEdited} onEdit={() => setIsEdited(!isEdited)}
                         hovered={isHovered}
                         onHover={() => setIsHovered(!isHovered)} onChange={({target}) => {
         actions.edit(target)

@@ -202,3 +202,54 @@
             fill: $n8
 .wrap_hovered
     background: #F4F4F4
+
+.actions
+    +m
+        display: none!important
+
+.dots_loader
+    display: none
+    justify-content: center
+    align-items: center
+    margin-right: 1.25rem
+    +m
+        display: ruby
+    //height: 100px // Можно настроить по необходимости
+
+    .dot
+        width: 5px
+        height: 5px
+        margin: 0 2px
+        background-color: #6F767E // Цвет точек (серый)
+        border-radius: 50%
+        //animation: bounce 1.4s infinite both
+
+        &:nth-child(1)
+            animation-delay: -0.32s
+
+        &:nth-child(2)
+            animation-delay: -0.16s
+
+.dots_container
+    margin-top: auto
+    margin-bottom: auto
+    padding: 5px
+    [class*='react-tooltip']
+        background: #FFFFFF
+        opacity: 1
+        .actions
+            .edit,.see,.submit,.close,.delete,.copy_actions,.trash
+                display: flex
+
+            p
+                +body1-s
+                margin-left: 4px
+                color: $n7
+
+            display: flex
+            flex-direction: column
+            align-items: start
+
+    .actions
+        display: flex !important
+

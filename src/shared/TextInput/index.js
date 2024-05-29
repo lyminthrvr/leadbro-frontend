@@ -7,6 +7,14 @@ import TextArea from "../TextArea";
 import {toast} from "react-toastify";
 import {enqueueSnackbar} from "notistack";
 import {handleSubmit} from "../../utils/snackbar";
+import Dots from "./Dots";
+import Copy from "./Actions/Copy";
+import Delete from "./Actions/Delete";
+import Close from "./Actions/Close";
+import Submit from "./Actions/Submit";
+import Edit from "./Actions/Edit";
+import See from "./Actions/See";
+import ActionList from "./Actions/ActionList";
 
 const TextInput = ({
                        className,
@@ -24,12 +32,7 @@ const TextInput = ({
                        ...props
                    }) => {
     const inputRef = useRef(null)
-    const makeInputVisible = () => {
-        inputRef.current.type = 'text'
-    }
-    const makeInputPassword = () => {
-        inputRef.current.type = 'password'
-    }
+
 
     return (
         <div
@@ -56,17 +59,19 @@ const TextInput = ({
             )}
             <div onMouseLeave={() => {
                 if (!props?.edited && props?.onHover)
-                     props?.onHover()
+                    props?.onHover()
             }
             } onMouseEnter={() => {
-                if ((props?.edited && props?.hovered )|| !props?.onHover)
+                if ((props?.edited && props?.hovered) || !props?.onHover)
                     return
-                 props?.onHover()
+                props?.onHover()
             }
-            } className={cn(styles.wrap, classWrap,{[styles.wrap_hovered]:props?.hovered})}>
+            } className={cn(styles.wrap, classWrap, {[styles.wrap_hovered]: props?.hovered})}>
                 {props.type === 'textarea' ?
-                    <TextArea autoFocus={props?.makeFocused} ref={inputRef} className={cn(classInput, styles.input, styles.textarea)} {...props} /> :
-                    <input ref={inputRef} disabled={!props?.edited ?? false} className={cn(classInput, styles.input)} {...props} />}
+                    <TextArea disabled={!props?.edited ?? false} autoFocus={props?.makeFocused} ref={inputRef}
+                              className={cn(classInput, styles.input, styles.textarea)} {...props} /> :
+                    <input ref={inputRef} disabled={!props?.edited ?? false}
+                           className={cn(classInput, styles.input)} {...props} />}
                 {icon && (
                     <div className={styles.icon}>
                         <Icon name={icon} size="24"/>{" "}
@@ -78,47 +83,8 @@ const TextInput = ({
                     </button>
                 )}
                 {currency && <div className={styles.currency}>{currency}</div>}
-                {props?.hovered && <div className={cn(styles.actions, classNameActions)}>
-                    {actions.see && !props?.edited && <div onClick={() => {
-                        props?.onSee()
-                        props?.seen ? makeInputPassword() : makeInputVisible()
-                    }} className={cn(styles.see, {[styles.see_active]: props?.seen})}>
-                        <Icon name={'show'}  size="24"/>{" "}
-                    </div>
-                    }
-                    {actions.edit && !props?.edited && <div onClick={() => {
-                        props?.onEdit()
-                        props?.onHover()
-                    }} className={cn(styles.edit, {[styles.edit_active]: props.edited})}>
-                        <Icon name={'edit'} size="24"/>{" "}
-                    </div>
-                    }
-                    {actions.edit && props?.edited && <div className={styles.submit} onClick={() => {
-                        actions.submit()
-                        props?.onEdit()
-                        props?.onHover()
-                    }}><Icon fill={'#FF6A55'} size={24} name={'check-circle'}/></div>}
-                    {actions.edit && props.edited &&
-                        <div className={styles.close} onClick={()=>{
-                            actions.reset()
-                            props.onEdit()
-                            props?.onHover()
-                        }}><Icon size={24} name={'close'}/></div>}
-                    {actions.delete && <div onClick={(e)=>{
-                        actions.delete(inputRef.current)
-                        props?.onEdit()
-                        props?.onHover()
-                    }} className={styles.trash}>
-                        <Icon name={'trash'} size="24"/>{" "}
-                    </div>}
-                    {actions.copy &&
-                        <div onClick={()=>{
-                            // console.log(inputRef.current,'curr')
-                            actions.copy(inputRef.current.value)
-                        }} className={styles.copy_actions}>
-                            <Icon name={'copy'} size="24"/>{" "}
-                        </div>}
-                </div>}
+                {props?.haveDots  && <Dots classNameDotsContainer={styles.dots_container} classNameActions={classNameActions} inputRef={inputRef} props={props} actions={actions} className={styles.dots_loader} classNameDot={styles.dot}/>}
+                {props?.hovered && <ActionList props={props} actions={actions} inputRef={inputRef} classNameActions={classNameActions}/> }
             </div>
         </div>
     );
