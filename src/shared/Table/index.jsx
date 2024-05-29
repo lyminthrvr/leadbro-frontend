@@ -18,6 +18,7 @@ import {hoverTable} from "../../utils/motion.variants";
 import {useResizeColumns} from "react-table";
 import {useFlexLayout} from "react-table";
 import {useBlockLayout} from "react-table";
+import SortingArrow from "./SortingArrow";
 
 const Table = observer(({columns, data, title, headerActions, cardComponent, ...rest}) => {
     const {grouping}=rest
@@ -60,14 +61,21 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, ...
                                                     }} ref={headerSortingRef}
                                                     >
                                                         <span>{column.render('Header')}</span>
-                                                        <span>
+                                                        {/*<span>*/}
                                                     {column.canSort &&
-                                                        <div>
-                                                            <Icon fill={'#6F767E'}
-                                                                  className={cn(styles.sortingArrow, {[styles.down]: column.isSortedDesc})}
-                                                                  name={'arrow-top'}/>
-                                                        </div>}
-                                                </span>
+                                                        <span className={styles.margin}>
+        <div className={styles.flex}>
+            <Icon fill={'#6F767E'}
+                  name={'sort-arrow'} viewBox={'0 0 8 17'} size={20}/>
+            <div className={cn(styles.component, {[styles.active]: column.isSortedDesc})}>
+
+                <span/>
+                <span/>
+                <span/>
+            </div>
+        </div>
+            </span>}
+                                                        {/*</span>*/}
                                                     </div>
                                                 </div>
                                             </motion.th>
@@ -104,7 +112,7 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, ...
                                     <React.Fragment {...row.getRowProps()}>
                                         <tr>
                                             {row.cells.map(cell => {
-                                                return (<td {...cell.getCellProps()}>{cell.render('Cell')}</td>)
+                                                return (<td className={cell.column.flexCol && styles.flexCol} {...cell.getCellProps()}>{cell.render('Cell')}</td>)
                                             })}
                                         </tr>
                                     </React.Fragment>)

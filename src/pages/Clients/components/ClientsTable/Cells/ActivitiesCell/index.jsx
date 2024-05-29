@@ -16,7 +16,7 @@ const ActivitiesCell = ({ activities }) => {
         <div className={styles.activitiesCell}>
             {activities.map((el, index) => (
                 <React.Fragment key={index}>
-                    {(showAll || index === 0) && (
+                    {(
                         <div className={styles.activity}>
                             <div className={styles.name}>
                                 <Link>{el.description}</Link>
@@ -28,11 +28,7 @@ const ActivitiesCell = ({ activities }) => {
                     )}
                 </React.Fragment>
             ))}
-            {activities.length > 1 && (
-                <button onClick={toggleShowAll}>
-                    {showAll ? 'Свернуть' : 'Раскрыть все'}
-                </button>
-            )}
+
         </div>
     );
 };

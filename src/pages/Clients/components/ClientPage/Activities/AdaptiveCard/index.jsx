@@ -40,8 +40,10 @@ const AdaptiveCard = ({data, onPagination}) => {
                                     <div className={styles.time}>{formatHours(item.time)}</div>
                                 </div>
                                 <div>
-                                    <Tooltip title={`123`}>
-                                        <Avatar imageSrc={item?.assignee.image}/>
+                                    <Tooltip title={item?.assignee.name}>
+                                        <div>
+                                            <Avatar className={styles.avatar} imageSrc={item?.assignee.image}/>
+                                        </div>
                                     </Tooltip>
                                 </div>
                                 <div>

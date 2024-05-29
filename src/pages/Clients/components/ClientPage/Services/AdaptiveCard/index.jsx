@@ -6,6 +6,7 @@ import Avatar from "../../../../../../shared/Avatar";
 import cn from "classnames";
 import {formatDate, formatDateWithoutHours} from "../../../../../../utils/formate.date";
 import Button from "../../../../../../shared/Button ";
+import Tooltip from "../../../../../../shared/Tooltip";
 
 const AdaptiveCard = ({data, className, onPagination}) => {
     return (
@@ -19,8 +20,12 @@ const AdaptiveCard = ({data, className, onPagination}) => {
                             <div className={styles.deadline}>{formatDate(original?.deadline)}</div>
                         </div>
                         <div className={styles.footer}>
-                            <div className={styles.avatar}><Avatar imageSrc={original?.creator?.image}/></div>
-                            <div className={styles.avatar}><Avatar imageSrc={original?.responsible?.image}/></div>
+                            <Tooltip title={original?.creator?.name}>
+                                <div className={cn(styles.avatar)}><Avatar imageSrc={original?.creator?.image}/></div>
+                            </Tooltip>
+                            <Tooltip title={original?.responsible?.name}>
+                                <div className={cn(styles.avatar,styles.posLeft)}><Avatar imageSrc={original?.responsible?.image}/></div>
+                            </Tooltip>
                         </div>
                     </div>
                 })}

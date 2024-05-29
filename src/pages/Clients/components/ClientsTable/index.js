@@ -49,7 +49,8 @@ const ClientsTable = observer(({}) => {
         {
             Header: 'Активные услуги',
             id: 'services',
-            disableResizing:false,
+            // flexCol:true,
+            // disableResizing:false,
             Cell: ({row}) => {
                 const data = row?.original
                 return <ServicesCell services={data.services} />
@@ -61,7 +62,6 @@ const ClientsTable = observer(({}) => {
             id: 'activities',
             Cell: ({row}) => {
                 const data = row?.original
-                console.log('activities',data.activities)
                 return <ActivitiesCell activities={data.activities} />
             },
 

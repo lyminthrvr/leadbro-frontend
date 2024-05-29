@@ -4,7 +4,6 @@ import {formatDate} from "../../../../../../utils/formate.date";
 import {Link} from "react-router-dom";
 
 const ServicesCell = ({services}) => {
-    console.log(services,0)
     return (
         <div className={styles.servicesCell}>
             {services.length && services.map((el) => (

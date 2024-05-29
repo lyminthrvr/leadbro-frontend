@@ -60,6 +60,13 @@
             transition-duration: 0.3s
             border-radius: 8px
             background-color: $n2
+            .flex
+                svg
+                    fill: #a7abaf
+                .component
+                    span
+                        background-color: #a7abaf
+
         user-select: none
         padding-left: 0.8rem
         padding-right: 0.5rem
@@ -73,10 +80,28 @@
     display: table
     width: 100%
 .sortingArrow
-    transform: rotate(0deg)
-    transition-duration: .3s
-.down
-    transform: rotate(-180deg)
+    &::before,&::after
+        content: ""
+        position: absolute
+        top: 50%
+        right: 0
+        width: 20px
+        height: 2px
+        background-color: #333
+        transform-origin: right center
+        transition: transform 0.3s
+    &::before
+        transform: translateY(-6px)
+    &::after
+        transform: translateY(6px)
+
+    //transform: rotate(0deg)
+    //transition-duration: .3s
+.down::before
+    transform: translateY(0) rotate(45deg)
+.down::after
+    transform: translateY(0) rotate(-45deg)
+    //transform: rotate(-180deg)
 
     +t
         display: block
@@ -155,3 +180,60 @@
                 border-bottom: none
 
 
+.flexCol
+    display: flex
+
+
+.component
+    position: relative
+    width: 18px
+    height: 20px
+
+
+
+    span
+        position: absolute
+        width: 10px
+        height: 2px
+        background-color: #6F767E
+        border-radius: 24px
+        transition: transform 0.3s, width 0.3s
+
+        &:nth-child(1)
+            top: 15%
+            width: 33%
+
+
+        &:nth-child(2)
+            top: 45%
+            width: 66%
+
+
+        &:nth-child(3)
+            width: 99%
+            top: 75%
+
+
+
+
+    &.active
+        span
+            &:nth-child(1)
+                width: 99%
+
+
+            &:nth-child(2)
+                width: 66%
+
+
+            &:nth-child(3)
+                width: 33%
+.flex
+    display: flex
+    svg
+        width: 17px !important
+
+
+.margin
+    margin-bottom: auto
+    margin-top: auto

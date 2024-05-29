@@ -4,6 +4,8 @@ import Card from "../../../../../../shared/Card";
 import Badge from "../../../../../../shared/Badge";
 import Avatar from "../../../../../../shared/Avatar";
 import Button from "../../../../../../shared/Button ";
+import Tooltip from "../../../../../../shared/Tooltip";
+import cn from "classnames";
 
 const AdaptiveCard = ({data, onPagination}) => {
     return (
@@ -25,7 +27,9 @@ const AdaptiveCard = ({data, onPagination}) => {
                         </div>
                     </div>
                     <div className={styles.footer}>
-                        <div className={styles.avatar}><Avatar imageSrc={original?.responsible?.image}/></div>
+                        <Tooltip title={original?.responsible?.name}>
+                            <div className={cn(styles.avatar)}><Avatar imageSrc={original?.responsible?.image}/></div>
+                        </Tooltip>
                     </div>
                      </div>})}
 
