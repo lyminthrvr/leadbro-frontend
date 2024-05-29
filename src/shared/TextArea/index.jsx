@@ -7,7 +7,7 @@ const TextArea = forwardRef((props,ref) => {
     const textAreaRef = useRef(  null);
     const [rendered,setRendered] = useState(false)
     useEffect(() => {
-        setTimeout(()=>setRendered(true),100)
+        setTimeout(()=>setRendered(true),50)
     }, []);
     useAutosizeTextArea(ref ?? textAreaRef,props.value,rendered)
     return (
