@@ -11,7 +11,6 @@ const Index = ({className,classNameDot,actions,props,inputRef,classNameActions,c
     return (
         <div ref={ref}   className={classNameDotsContainer}>
             <Tooltip setClose={setCloseState} place={'bottom-start'} close={close}  event={'click'} title={<ActionList setClose={()=>{
-                debugger
                 setCloseState(true)
             }} withLabels={true} actions={actions} props={props} inputRef={inputRef} classNameActions={classNameActions}/>}>
                 <div className={className}>

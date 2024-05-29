@@ -2,16 +2,20 @@ import {useEffect, useLayoutEffect} from "react";
 
 const useAutosizeTextArea = (
     textAreaRef,
-    value
+    value,isRendered
 ) => {
-    useLayoutEffect(() => {
-        if (textAreaRef.current) {
-            textAreaRef.current.style.height = "0px";
+
+
+    useEffect(() => {
+        if (textAreaRef.current && isRendered) {
+            debugger
+            textAreaRef.current.style.height = "inherit";
             const scrollHeight = textAreaRef.current.scrollHeight;
 
             textAreaRef.current.style.height = scrollHeight + "px";
+
         }
-    }, [textAreaRef.current, value]);
+    }, [textAreaRef.current, value,isRendered]);
 };
 
 export default useAutosizeTextArea;

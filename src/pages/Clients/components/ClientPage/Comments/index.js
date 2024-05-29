@@ -12,7 +12,6 @@ const ClientComments = ({comments,onChange}) => {
     const [isFilterComments,setCommentFiles] = useState(false)
 
     function countComments() {
-        debugger
         return Object.keys(comments??{}).length;
     }
 

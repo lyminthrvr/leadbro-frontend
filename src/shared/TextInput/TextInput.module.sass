@@ -25,6 +25,7 @@
             svg
                 fill: $p3
         .wrap
+
             &:after
                 content: ""
                 position: absolute
@@ -103,13 +104,17 @@
             border-color: $n5
             background: $n8
 .textarea
+    //display: flex
     padding: 1rem
     display: block
     width: 100%
     overflow: hidden
-    min-height: 40px
+    min-height: 37px
     line-height: 20px
     resize: none
+    +d
+        //min-height: 40px
+
 .icon,
 .copy
     position: absolute

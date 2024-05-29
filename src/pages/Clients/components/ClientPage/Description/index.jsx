@@ -20,6 +20,7 @@ const ClientDescription = ({description, onChange,onSubmit,onReset}) => {
                   </div>
               </div>}>
             {isEdit ? <TextInput
+                edited={true}
                 makeFocused={true}
                 type={'textarea'}
                 data-name={'Описание'}

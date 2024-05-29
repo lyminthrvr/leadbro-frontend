@@ -28,9 +28,13 @@ const Header = ({ onOpen }) => {
 
   return (
     <header className={styles.header}>
-      <button className={styles.burger} onClick={() => handleClick()}></button>
+        <button className={styles.burger} onClick={() => handleClick()}>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+            <span className={styles.bar}></span>
+        </button>
         <Logo/>
-        <div style={{display:'contents'}} ref={ref}>
+        <div style={{display: 'contents'}} ref={ref}>
             <Search className={cn(styles.search, { [styles.visible]: visible })} />
         </div>
       <button

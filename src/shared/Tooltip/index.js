@@ -13,7 +13,7 @@ interface IProps{
     place?:string,
     children:React.ReactNode
 }
-const Tooltip = ({ className, setClose, title, place='top', children, id=uuid(),event='hover',close }) => {
+const Tooltip = ({ className, setClose, title, place='top', children, id=uuid(),event='hover',close=false }) => {
     const hasChildren = !!React.Children.count(children);
     const ref = useRef(null)
     const childrenWithProps = hasChildren &&  React.Children?.map(children, (child) => {
@@ -24,7 +24,6 @@ const Tooltip = ({ className, setClose, title, place='top', children, id=uuid(),
         }
         return child;
     });
-    debugger
     if(close === true){
 
         ref?.current?.close()

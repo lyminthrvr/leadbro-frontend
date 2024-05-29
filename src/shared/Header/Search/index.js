@@ -71,7 +71,7 @@ const Search = ({ className }) => {
           {/*<button className={styles.result}>⌘ F</button>*/}
           <button className={styles.close} onClick={() => {
             setText('')
-            inputRef.current.focus()
+            inputRef.current.blur()
             setVisible(false)
 
           }}>

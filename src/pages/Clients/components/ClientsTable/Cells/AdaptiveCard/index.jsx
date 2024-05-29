@@ -3,6 +3,7 @@ import styles from "./Card.module.sass";
 import Badge from "../../../../../../shared/Badge";
 import Avatar from "../../../../../../shared/Avatar";
 import Card from "../../../../../../shared/Card";
+import Tooltip from "../../../../../../shared/Tooltip";
 
 const AdaptiveCard = ({data, statusType}) => {
     return (
@@ -15,7 +16,10 @@ const AdaptiveCard = ({data, statusType}) => {
                     <div className={styles.footer}>
                         <div className={styles.status}><Badge classname={styles.status_adaptiveStatus}
                                                               status={original.status} statusType={statusType}/></div>
+                        <Tooltip  title={`${original.manager.name} ${original.manager.surname}`}>
+
                         <div className={styles.avatar}><Avatar imageSrc={original.manager.image}/></div>
+                        </Tooltip>
                     </div>
 
                 </Card>
