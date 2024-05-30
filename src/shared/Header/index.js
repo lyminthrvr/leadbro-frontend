@@ -75,7 +75,7 @@ const HeadersList = () => {
     };
     return <div className={styles.links}>
         {navigation.map((x, index) => (
-            <motion.p whileHover={{scale:1.1}}
+            <motion.p whileHover={{scale:1.0}}
                 className={cn(styles.button, {
                     [styles.active]: activeIndex === index,
                 })}
