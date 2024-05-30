@@ -108,8 +108,8 @@
     padding: 1rem
     display: block
     width: 100%
-    overflow: hidden
-    min-height: 37px
+    //overflow: hidden
+    //min-height: 37px
     line-height: 20px
     resize: none
     +d
@@ -169,13 +169,15 @@
             fill: $p3
 
 .see
-    align-self: flex-end
+    align-self: baseline
     padding-top: 6px
     cursor: pointer
     right: 0
     &:hover
 
     svg
+        +m
+            margin-top: 4px
         fill: $n4
         transition: fill .2s
 .see_active
@@ -229,11 +231,11 @@
         border-radius: 50%
         //animation: bounce 1.4s infinite both
 
-        &:nth-child(1)
-            animation-delay: -0.32s
-
-        &:nth-child(2)
-            animation-delay: -0.16s
+        //&:nth-child(1)
+        //    animation-delay: -0.32s
+        //
+        //&:nth-child(2)
+        //    animation-delay: -0.16s
 
 .dots_container
     margin-top: auto
@@ -245,7 +247,7 @@
         .actions
             .edit,.see,.submit,.close,.delete,.copy_actions,.trash
                 display: flex
-
+                flex-basis: 0
             p
                 +body1-s
                 margin-left: 4px
@@ -258,3 +260,9 @@
     .actions
         display: flex !important
 
+.add
+    display: flex
+    svg
+        margin-right: 6px
+    +m
+        margin-left: 6px

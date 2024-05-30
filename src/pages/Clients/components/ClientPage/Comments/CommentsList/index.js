@@ -7,7 +7,7 @@ import {
     formatHours
 } from "../../../../../../utils/formate.date"
 import styles from './CommentList.module.sass'
-import {sortByDate} from "../../../../../../utils/sort";
+import {sortByDate} from "../../../../../../utils/sort.by";
 
 const CommentsList = ({comments,filterComments,filterFiles}) => {
     const sortedArray = useMemo(() => Object.entries(comments ?? {})

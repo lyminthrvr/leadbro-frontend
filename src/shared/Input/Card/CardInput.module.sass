@@ -17,15 +17,18 @@
       font-weight: 500
       padding-right: 0px
       margin-bottom: 0px
-      &:hover
-        background: none
-      flex-basis: 125px
+      flex-basis: 120px
+      //&:hover
+      //  background: none
+
 
 .input
   background: none
   padding: 0px 24px
   border: none
   height: 30px
+  //overflow: hidden
+  //min-height: 20px
   &:focus
     background: none
     color: $n7
@@ -53,6 +56,8 @@
     margin-right: 8px
 
 .label_multiple
+  &_override
+    padding-right: 0px
   //display: none
   svg
     display: none
@@ -66,3 +71,9 @@
     svg
       display: block
     background: $n2
+.flex
+  flex-basis: 100%
+
+.classInput_override
+  font-weight: 600 !important
+  padding-left: 0

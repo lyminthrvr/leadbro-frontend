@@ -11,18 +11,24 @@ const ClientPasswords = ({passwordsData, onRemove, onChange, onSubmit, onReset, 
     const createNewPass = (prevId) => {
         return {
             id:prevId,
-            name:' ',
+            name:'',
             values:[]
         }
     }
-    const defaultActions = (path, success, info, copy = 'Элемент скопирован') => {
+    const defaultActions = (path, success, info,parentId='',copy = 'Элемент скопирован') => {
         // console.log(properties,'smile')
         return {
             copy: (text) => {
                 navigator.clipboard.writeText(text).then(r => handleInfo(copy))
             },
             delete:  ({name}) => {
-                onRemove(name)
+                debugger
+                if(parentId){
+                    onRemove(parentId)
+                    return
+                }
+                else
+                    onRemove(name)
                 // setLength((prev) => ({...prev,[middleProp]:prev[middleProp]-1}))
                 handleError('Элемент удален')
             },
@@ -48,7 +54,7 @@ const ClientPasswords = ({passwordsData, onRemove, onChange, onSubmit, onReset, 
                 }
             }} title={'Пароли клиента'}/>
             {mappedPasswords?.map(([key,password],index) => {
-                return <MultiInputPasswords index={password.id} param={'values'} onAdd={onAdd} passwordData={password} label={password.name} onActions={(path)=>defaultActions(path,'Пароль сохранен','Пароль восстановлен')}  />
+                return <MultiInputPasswords index={password.id} param={'values'} onAdd={onAdd} passwordData={password} label={password.name} onActions={(path,parentId)=>defaultActions(path,'Пароль сохранен','Пароль восстановлен',parentId)}  />
             })}
             {/*<MultiInputPasswords onAdd={onAdd} contactData={contactData} label={'Телефон'} param={'tel'} type={'tel'} onActions={(path)=>defaultActions(path,'Телефон сохранен','Телефон восстановлен')}/>*/}
             {/*<MultiInputPasswords onAdd={onAdd} contactData={contactData} label={'Адрес'} param={'address'} type={'address'} onActions={(path)=>defaultActions(path,'Адрес сохранен','Адрес восстановлен')}/>*/}

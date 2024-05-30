@@ -32,7 +32,7 @@ const RequisitesComponent = ({label,contactData,onActions,onAdd}) => {
     const length = useMemo(()=>Object.keys(contactData?.requisites ?? {}).length,[contactData.requisites])
 
     return (
-        <MultiInputLabeled label={label} onAdd={()=>onAdd(`contactData.requisites.${length}`,createRequisites({}))}>
+        <MultiInputLabeled label={label}>
             {Object.entries(contactData?.requisites ?? {}).map(([key, value], index) => {
 
                 return Object.entries(value).map(([keyRequisites,valueRequisites],index)=>{

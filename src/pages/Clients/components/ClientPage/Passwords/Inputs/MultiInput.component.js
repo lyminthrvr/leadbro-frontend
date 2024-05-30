@@ -7,7 +7,9 @@ const MultiInputPasswords = ({onAdd,passwordData,label,onActions,param,index}) =
     const length = useMemo(()=>Object.keys(passwordData?.values??{}).length,[passwordData])
 
     return (
-        <MultiInputLabeled label={label} onAdd={()=>onAdd(`passwords.${index}.${param}.${length}`,'')}>
+        <MultiInputLabeled actions={{...onActions( `passwords.${index}.name`,`passwords.${index}`),copy:null}} isInput={true} name={`passwords.${index}.name`} label={label} onAdd={()=>{
+            debugger
+            onAdd(`passwords.${index}.${param}.${length}`,'')}}>
             {Object.entries(passwordData[param] ?? {}).map(([key,value], i) => {
                 const actions = onActions( `passwords.${index}.${param}.${key}`)
                 return <CardInput className={styles.maxHeight} placeholder={'Пароль...'} multiple={true}

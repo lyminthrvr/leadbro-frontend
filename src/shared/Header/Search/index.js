@@ -52,9 +52,9 @@ const Search = ({ className }) => {
           <button className={styles.start}>
             <Icon className={styles.searchIcon} name="search" size="24" />
           </button>
-          <button className={styles.direction}>
-            <Icon name="arrow-left" size="24" />
-          </button>
+          {/*<button className={styles.direction}>*/}
+          {/*  <Icon name="arrow-left" size="24" />*/}
+          {/*</button>*/}
           <input
               ref={inputRef}
               value={text}

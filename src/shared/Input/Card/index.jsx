@@ -26,7 +26,7 @@ const CardInput = ({label, value, actions, type, name, ...props}) => {
                         onSee={()=>setIsClicked(!isClicked)}
                         classNameActions={styles.actions}
                         classLabel={props.multiple ? styles.label_multiple : styles.label} classWrap={styles.wrap}
-                        className={props?.multiple && props?.labeled ? styles.container_labeled : styles.container} classInput={cn(styles.input, getInputClass())} label={ props?.multiple ? props?.labeled ? label:null : label}
+                        className={props?.multiple && props?.labeled ? styles.container_labeled : styles.container} classInput={cn(styles.input, getInputClass(),props?.classInput)} label={ props?.multiple ? props?.labeled ? label:null : label}
                         actions={actions} {...props} />
     </>
     // return (

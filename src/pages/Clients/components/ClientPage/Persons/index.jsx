@@ -10,6 +10,9 @@ import CardInput from "../../../../../shared/Input/Card";
 import {handleError, handleInfo, handleSubmit} from "../../../../../utils/snackbar";
 import {motion} from "framer-motion";
 import {TranslateYTransition} from "../../../../../utils/motion.variants";
+import Image from "../../../../../shared/Image";
+import {Link} from "react-router-dom";
+import {createBaseMessengerLinksByName} from "../../../../../utils/create.utils";
 
 
 const ClientPersons = ({persons,onChange,onSubmit,onReset}) => {
@@ -30,6 +33,8 @@ const ClientPersons = ({persons,onChange,onSubmit,onReset}) => {
         }
     })
 
+
+
     return (
         <Card classTitle={styles.title} className={styles.card}>
             <Title smallTable={true} actions={{
@@ -48,8 +53,10 @@ const ClientPersons = ({persons,onChange,onSubmit,onReset}) => {
                         {values.messengers.length && <div className={styles.messengers_container} >
                             <p>Мессенджеры</p>
                             <div className={styles.messengers}>
-                                {values.messengers.map((messenger)=>{
-                                    return <img src={`/leadbro/${Object.keys(messenger)[0]}.svg`} alt={`${Object.keys(messenger)[0]}`}/>
+                                {values.messengers.map((messenger,index)=>{
+                                    return <Link target="_blank" to={createBaseMessengerLinksByName(Object.keys(messenger)[0])}>
+                                        <Image className={styles.messengers_icon} src={`/leadbro/${Object.keys(messenger)[0]}.svg`} alt={`${Object.keys(messenger)[0]}`}/>
+                                    </Link>
                                 })}
                             </div>
                         </div>}
