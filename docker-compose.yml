@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: leadbro_frontend
+    ports:
+      - '3000:3002'
+    volumes:
+      - .:/usr/src/leadbro_frontend
+      - /usr/src/leadbro_frontend/node_modules
+    stdin_open: true
+    tty: true

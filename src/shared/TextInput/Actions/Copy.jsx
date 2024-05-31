@@ -8,9 +8,8 @@ const Copy = ({inputRef,actions,label,setClose,props}) => {
             // console.log(inputRef.current,'curr')
             setClose && setClose()
             actions.copy(inputRef.current.value)
-            props?.onHover()
         }} className={styles.copy_actions}>
-            <Icon name={'copy'} size="24"/>{" "}
+            <Icon name={'copy'} size="20"/>{" "}
             <p>{label}</p>
         </div>
     );

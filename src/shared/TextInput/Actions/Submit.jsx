@@ -9,8 +9,7 @@ const Submit = ({props,actions,label,setClose}) => {
 
             actions.submit()
             props?.onEdit()
-            props?.onHover()
-        }}><Icon fill={'#FF6A55'} size={24} name={'check-circle'}/>
+        }}><Icon fill={'#FF6A55'} size={20} name={'check-circle'}/>
             <p>{label}</p>
         </div>
     );

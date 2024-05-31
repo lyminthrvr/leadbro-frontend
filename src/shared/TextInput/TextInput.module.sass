@@ -170,14 +170,15 @@
 
 .see
     align-self: baseline
-    padding-top: 6px
     cursor: pointer
     right: 0
     &:hover
 
     svg
+        margin-top: 8px
+
         +m
-            margin-top: 4px
+            margin-top: 6px
         fill: $n4
         transition: fill .2s
 .see_active
@@ -212,7 +213,7 @@
 
 .actions
     +m
-        display: none!important
+        display: none !important
 
 .dots_loader
     display: none
@@ -245,6 +246,7 @@
         background: #FFFFFF
         opacity: 1
         .actions
+            display: flex !important
             .edit,.see,.submit,.close,.delete,.copy_actions,.trash
                 display: flex
                 flex-basis: 0
@@ -253,16 +255,21 @@
                 margin-left: 4px
                 color: $n7
 
-            display: flex
             flex-direction: column
             align-items: start
 
     .actions
-        display: flex !important
+        display: none
+        //display: flex !important
 
 .add
+    cursor: pointer
+    &:hover
+        svg
+            fill: $n5
     display: flex
     svg
+        margin-top: 6px
         margin-right: 6px
     +m
         margin-left: 6px

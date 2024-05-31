@@ -8,9 +8,8 @@ const Close = ({actions,props,label,setClose}) => {
             setClose && setClose()
             actions.reset()
             props.onEdit()
-            props?.onHover()
 
-        }}><Icon size={24} name={'close'}/>
+        }}><Icon size={20} name={'close'}/>
             <p>{label}</p>
         </div>
     );

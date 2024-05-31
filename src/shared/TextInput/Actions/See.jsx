@@ -15,7 +15,7 @@ const See = ({props,inputRef,label}) => {
             props?.onSee()
             props?.seen ? makeInputPassword() : makeInputVisible()
         }} className={cn(styles.see, {[styles.see_active]: props?.seen})}>
-            <Icon name={'show'} size="24"/>{" "}
+            <Icon name={'show'} viewBox={'0 0 18 18'} size="20"/>{" "}
             <p>{label}</p>
         </div>
     );

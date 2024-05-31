@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import cn from "classnames";
 import styles from "./TextInput.module.sass";
 import Icon from "../Icon";
@@ -16,6 +16,17 @@ import Edit from "./Actions/Edit";
 import See from "./Actions/See";
 import ActionList from "./Actions/ActionList";
 
+// onMouseLeave={() => {
+//     if (!props?.edited && props?.onHover)
+//         props?.onHover()
+// }
+// } onMouseEnter={() => {
+//     debugger
+//     if ((props?.edited && props?.hovered) || !props?.onHover)
+//         return
+//     props?.onHover()
+// }
+// }
 const TextInput = ({
                        className,
                        classLabel,
@@ -32,6 +43,8 @@ const TextInput = ({
                        ...props
                    }) => {
     const inputRef = useRef(null)
+    const wrapRef = useRef(null)
+
 
 
     return (
@@ -57,16 +70,7 @@ const TextInput = ({
                     )}
                 </div>
             )}
-            <div onMouseLeave={() => {
-                if (!props?.edited && props?.onHover)
-                    props?.onHover()
-            }
-            } onMouseEnter={() => {
-                if ((props?.edited && props?.hovered) || !props?.onHover)
-                    return
-                props?.onHover()
-            }
-            } className={cn(styles.wrap, classWrap, {[styles.wrap_hovered]: props?.hovered})}>
+            <div ref={wrapRef} id={'input_wrap'} on className={cn(styles.wrap, classWrap)}>
                 {props.type === 'textarea' ?
                     <TextArea disabled={!props?.edited ?? false} autoFocus={props?.makeFocused} ref={inputRef}
                               className={cn(classInput, styles.input, styles.textarea)} {...props} /> :
@@ -84,7 +88,7 @@ const TextInput = ({
                 )}
                 {currency && <div className={styles.currency}>{currency}</div>}
                 {props?.haveDots  && <Dots classNameDotsContainer={styles.dots_container} classNameActions={classNameActions} inputRef={inputRef} props={props} actions={actions} className={styles.dots_loader} classNameDot={styles.dot}/>}
-                {props?.hovered && <ActionList props={props} actions={actions} inputRef={inputRef} classNameActions={classNameActions}/> }
+                {true && <ActionList props={props} actions={actions} inputRef={inputRef} classNameActions={classNameActions}/> }
             </div>
         </div>
     );

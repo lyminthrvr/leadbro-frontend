@@ -9,7 +9,7 @@ const MultiInputLabeled = ({label,onAdd,children,...props}) => {
             <>
             <div className={cn(styles.label_multiple,{[styles.label_multiple_override]:props?.isInput})}>
                 <div style={{display:props.isInput ? 'flex' : 'block'}}>
-                    {/*<div>{label?? '1234'}</div>*/}
+                    {!props?.isInput && <div>{label?? '1234'}</div>}
                     {props.isInput && <CardInput classInput={cn(styles.classInput_override,styles.input)} className={styles.flex}  name={props.name} placeholder={'Название...'}  value={label} actions={{...props.actions,add:onAdd}} />}
                 </div>
             </div>

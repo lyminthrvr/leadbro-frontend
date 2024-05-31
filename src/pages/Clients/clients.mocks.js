@@ -58,8 +58,10 @@ const createClients = () => {
                     id: 0,
                     name: 'Хостинг',
                     values: {
-                        0: '12345678',
-                        1: '12345678'
+                        0:{
+                            login:'12345678',
+                            password:'12345678'
+                        }
                     }
                 }
             },

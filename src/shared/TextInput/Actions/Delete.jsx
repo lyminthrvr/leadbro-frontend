@@ -9,9 +9,8 @@ const Delete = ({actions,props,inputRef,label,setClose}) => {
 
             actions.delete(inputRef.current)
             props?.onEdit()
-            props?.onHover()
         }} className={styles.trash}>
-            <Icon name={'trash'} size="24"/>{" "}
+            <Icon name={'trash'} size="20"/>{" "}
             <p>{label}</p>
         </div>
     );

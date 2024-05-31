@@ -5,7 +5,6 @@ import Icon from "../../Icon";
 import TextInput from "../../TextInput";
 
 const CardInput = ({label, value, actions, type, name, ...props}) => {
-    const [isHovered, setIsHovered] = useState(false)
     const [isEdited, setIsEdited] = useState(false)
     const [isClicked,setIsClicked] = useState(false)
 
@@ -19,8 +18,7 @@ const CardInput = ({label, value, actions, type, name, ...props}) => {
 
     return <>
         <TextInput haveDots={true} name={name} value={value} type={type} edited={isEdited} onEdit={() => setIsEdited(!isEdited)}
-                        hovered={isHovered}
-                        onHover={() => setIsHovered(!isHovered)} onChange={({target}) => {
+                         onChange={({target}) => {
         actions.edit(target)
     }}                  seen={isClicked}
                         onSee={()=>setIsClicked(!isClicked)}

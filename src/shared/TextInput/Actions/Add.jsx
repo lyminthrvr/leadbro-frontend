@@ -9,9 +9,8 @@ const Add = ({inputRef,actions,label,setClose,props}) => {
                 // console.log(inputRef.current,'curr')
                 setClose && setClose()
                 actions?.add()
-                props?.onHover()
             }} className={styles.add}>
-            <Icon fill={'#6F767E'} size={11} name={'plus'}/>
+            <Icon fill={'#6F767E'} size={12} name={'plus'}/>
             <p>{label}</p>
         </div>
     );
