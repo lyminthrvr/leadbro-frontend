@@ -26,8 +26,8 @@ const MultiInputPasswords = ({onAdd,passwordData,label,onActions,param,index}) =
                     return <CardInput placeholder={`${credentialsLabels[keyCredential]}...`} multiple={true}
                                       label={credentialsLabels[keyCredential]} name={`passwords.${index}.${param}.${key}.${keyCredential}`}
                                       labeled={true}
-                                      type={'password'} value={valueCredential}
-                                      actions={{...actions,see:true}}/>
+                                      type={keyCredential === 'password'? 'password' : "text"} value={valueCredential}
+                                      actions={{...actions,see:keyCredential === 'password'}}/>
                 })
             })}
         </MultiInputLabeled>
