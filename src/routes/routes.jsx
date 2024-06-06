@@ -4,10 +4,13 @@ import ClientPage from "../pages/Clients/components/ClientPage";
 import Page from "../shared/Page";
 import React from "react";
 import {Outlet} from "react-router";
+import Services from "../pages/Services";
 
 export const paths = {
     CLIENTS:'/',
-    CLIENTS_ID:'/:id'
+    CLIENTS_ID:'/:id',
+    SERVICES:'/services',
+    SERVICES_ID:'/services/:id'
 }
 
 const routes = [
@@ -15,7 +18,8 @@ const routes = [
         path: paths.CLIENTS, element:  <Page><Clients/></Page>,
     },
     {path: paths.CLIENTS_ID, element: <Page ><ClientPage/></Page>},
-    {path: 'project', element: <div/>,},
+    {path: paths.SERVICES, element: <Page><Services/></Page>,},
+    // {path: paths.SERVICES, element: <Page><Services/></Page>,},
     {path: 'editing', element: <div/>,},
     {path: 'play', element: <div/>,},
     {

@@ -2,11 +2,10 @@ FROM node:14-alpine AS development
 ENV NODE_ENV development
 
 # Add a work directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Cache and Install dependencies
-COPY package-lock.json /app/package-lock.json
-COPY package.json /app/package.json
+COPY package*.json ./
 
 #RUN yarn install
 RUN npm i

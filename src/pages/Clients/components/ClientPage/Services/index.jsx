@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import TableLink from "../../../../../shared/Table/Row/Link";
 import Badge, {statusTypes} from "../../../../../shared/Badge";
-import ManagerCell from "../../ClientsTable/Cells/ManagerCell";
+import ManagerCell from "../../../../../components/ManagerCell";
 import ServicesCell from "../../ClientsTable/Cells/ServicesCell";
 import ActivitiesCell from "../../ClientsTable/Cells/ActivitiesCell";
 import clients from "../../../index";

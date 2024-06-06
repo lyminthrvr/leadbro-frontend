@@ -4,7 +4,7 @@ import {formatDate, formatDateWithoutHours, formatHours} from "../../../../../ut
 import uuid from "draft-js/lib/uuid";
 import styles from './Activities.module.sass'
 import DealCell from "./ActivityCell";
-import ManagerCell from "../../ClientsTable/Cells/ManagerCell";
+import ManagerCell from "../../../../../components/ManagerCell";
 import ActivityType from "./Type";
 import EmptyCell from "../../../../../shared/Table/EmptyCell";
 import AdaptiveCard from "./AdaptiveCard";

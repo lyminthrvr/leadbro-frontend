@@ -6,14 +6,14 @@ import useStore from "../../../../hooks/useStore";
 import {Link} from "react-router-dom";
 import TableLink from "../../../../shared/Table/Row/Link";
 import Badge, {statusTypes} from "../../../../shared/Badge";
-import ManagerCell from "./Cells/ManagerCell";
+import ManagerCell from "../../../../components/ManagerCell";
 import ServicesCell from "./Cells/ServicesCell";
 import ActivitiesCell from "./Cells/ActivitiesCell";
 import logo from "../../../../shared/Logo";
 import AdaptiveCard from "./Cells/AdaptiveCard";
 
 
-const ClientsTable = observer(({}) => {
+const ClientsTable = observer(() => {
     const {clientsStore} = useStore()
     const cols = React.useMemo(() => [
         {

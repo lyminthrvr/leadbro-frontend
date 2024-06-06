@@ -58,6 +58,8 @@ export const handleHttpError = (error) => {
   return { status: 'error', message: error?.message, code }
 }
 
+export const resetApiProvider = () => mockHttp.restore()
+
 const handleSetToken = async (response) => {
    await setToken(response.data.accessToken)
 }

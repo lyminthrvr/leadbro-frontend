@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Status.module.sass'
-import ManagerCell from "../../ClientsTable/Cells/ManagerCell";
+import ManagerCell from "../../../../../components/ManagerCell";
 import Badge, {statusTypes} from "../../../../../shared/Badge";
 import Card from "../../../../../shared/Card";
 import cn from "classnames";

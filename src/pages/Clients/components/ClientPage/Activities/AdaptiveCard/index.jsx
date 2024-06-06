@@ -6,7 +6,7 @@ import Avatar from "../../../../../../shared/Avatar";
 import Button from "../../../../../../shared/Button ";
 import {formatDateWithoutHours, formatHours} from "../../../../../../utils/formate.date";
 import Tooltip from "../../../../../../shared/Tooltip";
-import ManagerCell from "../../../ClientsTable/Cells/ManagerCell";
+import ManagerCell from "../../../../../../components/ManagerCell";
 import ActivityType from "../Type";
 
 const AdaptiveCard = ({data, onPagination}) => {

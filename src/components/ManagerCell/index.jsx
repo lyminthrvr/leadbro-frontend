@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './ManagerCell.module.sass'
-import Avatar from "../../../../../../shared/Avatar";
+import Avatar from "../../shared/Avatar";
 import cn from "classnames";
 import {Link} from "react-router-dom";
-import Tooltip from "../../../../../../shared/Tooltip";
+import Tooltip from "../../shared/Tooltip";
 
 const ManagerCell = ({manager,...rest}) => {
     const imageSrc = manager?.image

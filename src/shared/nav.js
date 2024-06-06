@@ -13,7 +13,7 @@ export const navigation = [
     {
         title: "Услуги",
         action: () =>{},
-        url: "/",
+        url: "/services",
     },
     {
         title: "Задачи",

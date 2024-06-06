@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import ManagerCell from "../../ClientsTable/Cells/ManagerCell";
+import ManagerCell from "../../../../../components/ManagerCell";
 import {formatDate} from "../../../../../utils/formate.date";
 import Table from "../../../../../shared/Table";
 import {formatSum} from "../../../../../utils/format.number";

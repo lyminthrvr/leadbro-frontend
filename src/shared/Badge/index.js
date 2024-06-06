@@ -2,9 +2,11 @@ import React from 'react';
 import styles from './Badge.module.sass'
 import cn from "classnames";
 import {colorStatusTypes as clientStatuses} from "../../pages/Clients/clients.types";
+import {colorStatusTypes as servicesStatuses } from "../../pages/Services/services.types";
 
 export const statusTypes = {
-    clients: clientStatuses
+    clients: clientStatuses,
+    services: servicesStatuses
 }
 
 

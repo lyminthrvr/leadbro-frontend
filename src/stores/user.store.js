@@ -1,5 +1,5 @@
 import {makeAutoObservable} from "mobx";
-import {createBlob} from "../pages/Clients/clients.mocks";
+import {createBlob} from "../utils/create.utils";
 
 export class UserStore {
     user= {
