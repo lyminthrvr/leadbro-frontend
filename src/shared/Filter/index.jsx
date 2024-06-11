@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import cn from "classnames";
 import styles from "./Filters.module.sass";
 import Icon from "../Icon";
+import useOutsideClick from "../../hooks/useOutsideClick";
 
 const Filters = ({ className, children, title }) => {
     const [visible, setVisible] = useState(false);
+    const ref = useRef(null)
+    useOutsideClick(ref,()=>setVisible(false))
 
     return (
         <div
+            ref={ref}
             className={cn(styles.filters, className, { [styles.active]: visible })}
         >
             <button

@@ -13,14 +13,20 @@ import Tooltip from "../../../../shared/Tooltip";
 import StagesCell from "./components/StagesCell";
 import {getCorrectWordForm} from "../../../../utils/format.string";
 import FormFilter from "./components/FormFilter";
+import useTableFilters from "../../../../hooks/useTableFilters";
 
 const ServicesTable = observer(() => {
     const servicesStore = useServices()
+    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.services])
+    const {filteredData, setFilterValue,filters} = useTableFilters(data, {
+        manager: {id: 'all', name: 'Все',filterKey:'id'},
+        title: 'Все'
+    })
     const cols = React.useMemo(() => [
         {
             Header: 'ID',
             id: 'id',
-            width:10,
+            width: 10,
             Cell: ({row}) => {
 
                 const data = row?.original
@@ -93,26 +99,28 @@ const ServicesTable = observer(() => {
             Cell: ({row}) => {
                 const data = row?.original
                 const maxCellLength = Math.floor(800 / 18);
-                // return <p>SEO продвижение: февраль 2024 12312321 13131312 312123121 32131</p>
                 return <StagesCell stages={data.stages} maxCellLength={maxCellLength}/>
             },
 
         },
     ], [])
-    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.services])
     return (
         <div className={styles.table}>
-            <Table  cardComponent={(data) => (<AdaptiveCard data={data} statusType={statusTypes.services}/>)}
+            <Table cardComponent={(data) => (<AdaptiveCard data={data} statusType={statusTypes.services}/>)}
                    headerActions={{
                        filter: {
-                           title:'Фильтр',
-                           children:(<FormFilter data={servicesStore.services}/>)
+                           title: 'Фильтр',
+                           children: (<FormFilter selectedService={filters?.title}
+                                                  selectedManager={filters?.manager}
+                                                  onServiceChange={(service) => setFilterValue('title', service)}
+                                                  onManagerChange={(manager) => setFilterValue('manager', {...manager,filterKey:'id'})}
+                                                  data={servicesStore.services}/>)
                        },
                        add: {
                            action: () => console.log('1234'),
                            title: 'Добавить услугу'
                        }
-                   }} title={'Услуги'} data={data} columns={cols}/>
+                   }} title={'Услуги'} data={filteredData} columns={cols}/>
         </div>
     );
 });

@@ -1,35 +1,35 @@
-import React, {useMemo, useState} from 'react';
+import React, { useMemo } from 'react';
 import Dropdown from "../../../../../../shared/Dropdown/Default";
-import styles from './filter.module.sass'
+import styles from './filter.module.sass';
 
-const Index = ({data}) => {
-    const [selectedService, setSelectedService] = useState('Все');
-    const [selectedManager, setSelectedManager] = useState('Все');
-
+const Index = ({ data, selectedService, selectedManager, onServiceChange, onManagerChange }) => {
     const serviceOptions = useMemo(() => {
-        const services = new Set(['Все']);
+        const services = ['Все'];
         data.forEach((item) => {
-            services.add(item.title);
+            services.push(item.title);
         });
-        return Array.from(services);
+        return services;
     }, [data]);
+
 
     const managerOptions = useMemo(() => {
-        const managers = new Set(['Все']);
+        const managers = [{ id: 'all', name: 'Все' }];
         data.forEach((item) => {
-            managers.add(`${item.manager.name} ${item.manager.surname}`);
+            managers.push({ id: item.manager.id, name: `${item.manager.name} ${item.manager.surname}` });
         });
-        return Array.from(managers);
+        return managers;
     }, [data]);
 
+    console.log(selectedService,selectedManager,serviceOptions,managerOptions,'opt')
+
     const handleServiceChange = (service) => {
-        setSelectedService(service);
+        onServiceChange(service);
     };
 
     const handleManagerChange = (manager) => {
-        setSelectedManager(manager);
+        onManagerChange(manager);
     };
-
+    console.log(selectedService,'service')
     return (
         <div>
             <div className={styles.item}>
@@ -38,6 +38,8 @@ const Index = ({data}) => {
                     setValue={handleServiceChange}
                     options={serviceOptions}
                     label="Услуга"
+                    // renderOption={(option) => option?.name}
+                    // renderValue={(value) => value?.name}
                 />
             </div>
             <div>
@@ -46,6 +48,8 @@ const Index = ({data}) => {
                     setValue={handleManagerChange}
                     options={managerOptions}
                     label="Ответственный"
+                    renderOption={(option) => option?.name}
+                    renderValue={(value) => value?.name}
                 />
             </div>
         </div>

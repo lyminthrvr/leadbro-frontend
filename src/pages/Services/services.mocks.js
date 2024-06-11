@@ -11,6 +11,7 @@ const createServices = () => {
             title:'SEO продвижение сайта KILZ.RU',
             contractNumber:'44444',
             manager: {
+                id:0,
                 image: createBlob(),
                 name:
                     'Александр',
@@ -95,6 +96,7 @@ const createServices = () => {
             title:'SEO продвижение сайта KILZ2.RU',
             contractNumber:'44444',
             manager: {
+                id:0,
                 image: createBlob(),
                 name:
                     'Александр',
