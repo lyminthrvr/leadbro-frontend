@@ -26,26 +26,31 @@ const ServicesTable = observer(() => {
         {
             Header: 'ID',
             id: 'id',
+            accessor: 'id',
             width: 10,
             Cell: ({row}) => {
 
                 const data = row?.original
-                return <TableLink to={`/${data.id}`} name={data.id}/>
+                return <TableLink to={`/services/${data?.id}`} name={data.id}/>
             }
         },
         {
             Header: 'Услуга',
             id: 'title',
+            editing: true,
+            accessor: 'title',
             width: 450,
             Cell: ({row}) => {
                 const data = row?.original
-                return <TableLink to={`/${data.id}`} name={data.title}/>
+                return <TableLink to={`/services/${data.id}`} name={data.title}/>
             },
 
         },
         {
             Header: '№ договора',
             id: 'contractNumber',
+            accessor: 'contractNumber',
+            editing: true,
             width: 200,
             Cell: ({row}) => {
                 const data = row?.original
@@ -68,6 +73,8 @@ const ServicesTable = observer(() => {
         {
             Header: 'Команда',
             id: 'command',
+
+            // accessor: 'conmmand',
             width: 200,
             Cell: ({row}) => {
                 const data = row?.original
@@ -81,7 +88,6 @@ const ServicesTable = observer(() => {
         {
             Header: 'Статус',
             id: 'status',
-
             Cell: ({row}) => {
                 const data = row?.original
                 return <Badge classname={styles.badge} status={data.status} statusType={statusTypes.services}/>
@@ -91,11 +97,9 @@ const ServicesTable = observer(() => {
         {
             Header: 'Этапы',
             id: 'stages',
+            editing:false,
+
             width: 800,
-
-
-            // flexCol:true,
-            // disableResizing:false,
             Cell: ({row}) => {
                 const data = row?.original
                 const maxCellLength = Math.floor(800 / 18);
@@ -106,7 +110,7 @@ const ServicesTable = observer(() => {
     ], [])
     return (
         <div className={styles.table}>
-            <Table cardComponent={(data) => (<AdaptiveCard data={data} statusType={statusTypes.services}/>)}
+            <Table editComponent={true} cardComponent={(data) => (<AdaptiveCard data={data} statusType={statusTypes.services}/>)}
                    headerActions={{
                        filter: {
                            title: 'Фильтр',

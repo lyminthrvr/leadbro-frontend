@@ -10,7 +10,7 @@ const StagesCell = ({stages,maxCellLength=-1}) => {
             {stages?.length && stages.map((el) => (
                 <div className={styles.services}>
                     <div className={styles.name}>
-                        <Link>{truncateString(el?.title,maxCellLength)}</Link>
+                        <Link >{truncateString(el?.title,maxCellLength)}</Link>
                     </div>
                 </div>
             ))}

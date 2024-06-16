@@ -26,7 +26,7 @@ export const statusTaskTypesRu = {
 
 
 export const colorStatusTaskTypes = {
-    inProgress:{status:statusTaskTypesRu.inProgress,class:'status-green'},
+    inProgress:{status:statusTaskTypesRu.inProgress,class:'status-disabled'},
 }
 
 
@@ -42,7 +42,7 @@ export const statusActTypesRu = {
 }
 
 
-export const colorЫtatusActTypes = {
+export const colorStatusActTypes = {
     notAssignedScan:{status:statusActTypesRu.notAssignedScan,class:'status-green'},
     notAssignedOriginal:{status:statusActTypesRu.notAssignedOriginal,class:'status-green'},
 }

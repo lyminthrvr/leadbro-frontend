@@ -12,7 +12,9 @@ export const formatDate = (date) => {
 export const formatDateWithoutHours = (date) => {
     if(!date)
         return ''
-    let formatDate = format(date, 'cccccc, dd LLL', { locale: ru });
+    const stringDate = date instanceof Date ? date.toISOString() : date
+    debugger
+    let formatDate = format(stringDate, 'cccccc, dd LLL', { locale: ru });
     formatDate = formatDate.charAt(0).toUpperCase() + formatDate.slice(1);
     return formatDate
 }
@@ -29,6 +31,12 @@ export const formatDateOnlyHours = (date) => {
     const stringDate = date instanceof Date ? date.toISOString() : date
     const time = stringDate.split('T')[1].slice(0,-1)
     return format(parse(time.split(":", 2).join(":"), "HH:mm", new Date()), "HH:mm ")
+}
+
+export const formatDateWithOnlyDigits = (date) => {
+    let formatDate = format(date, 'dd.mm.yyyy', { locale: ru });
+    formatDate = formatDate.charAt(0).toUpperCase() + formatDate.slice(1);
+    return formatDate
 }
 
 

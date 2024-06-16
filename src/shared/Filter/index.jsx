@@ -14,12 +14,12 @@ const Filters = ({ className, children, title }) => {
             ref={ref}
             className={cn(styles.filters, className, { [styles.active]: visible })}
         >
-            <button
+            <div
                 className={cn("", styles.head)}
                 onClick={() => setVisible(true)}
             >
                 <Icon name="filter" size="24"  />
-            </button>
+            </div>
             <div className={styles.body}>
                 <div className={styles.top}>
                     <div className={cn("title-red", styles.title)}>{title}</div>

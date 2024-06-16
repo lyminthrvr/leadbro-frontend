@@ -38,7 +38,6 @@ const ClientPage = observer(() => {
 
 
     const handleChange = (name,payload,withId=true) => {
-        debugger
         clients.changeById(client?.id ?? +id,name,payload,withId)
     }
     const handleReset = (path) =>{

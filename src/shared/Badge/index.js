@@ -7,6 +7,7 @@ import {colorStatusTypes as servicesStatuses } from "../../pages/Services/servic
 export const statusTypes = {
     clients: clientStatuses,
     services: servicesStatuses
+
 }
 
 

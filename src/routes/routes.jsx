@@ -5,6 +5,7 @@ import Page from "../shared/Page";
 import React from "react";
 import {Outlet} from "react-router";
 import Services from "../pages/Services";
+import ServicePage from "../pages/Services/components/ServicePage";
 
 export const paths = {
     CLIENTS:'/',
@@ -19,8 +20,8 @@ const routes = [
     },
     {path: paths.CLIENTS_ID, element: <Page ><ClientPage/></Page>},
     {path: paths.SERVICES, element: <Page><Services/></Page>,},
-    // {path: paths.SERVICES, element: <Page><Services/></Page>,},
-    {path: 'editing', element: <div/>,},
+    {path: paths.SERVICES, element: <Page><Services/></Page>,},
+    {path: paths.SERVICES_ID, element: <Page><ServicePage/></Page>,},
     {path: 'play', element: <div/>,},
     {
         path: 'profile',
