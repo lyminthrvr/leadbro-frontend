@@ -17,7 +17,7 @@ export class ServicesStore {
         makeAutoObservable(this);
     }
 
-    getClients() {
+    getServices() {
         return this.services.map(client => {
             const draft = this.drafts[client.id];
             return draft ? { ...client, ...draft } : client;
@@ -25,6 +25,7 @@ export class ServicesStore {
     }
 
     getById(id,isReset=false) {
+        debugger
         const client = this.services.find(x => x.id === Number(id));
         const draft = this.drafts[id];
         return isReset ? client :  draft ? { ...client, ...draft } : client;
@@ -72,7 +73,8 @@ export class ServicesStore {
         removeDraft(this, id, path);
     }
 
-    setClients(result) {
+    setServices(result) {
+        debugger
         this.services = result;
     }
 }

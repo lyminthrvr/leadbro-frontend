@@ -8,11 +8,12 @@ const UseServices = () => {
     const api = useServiceApi()
     useEffect(() => {
         async function getServices(){
-            if(!servicesStore.clients.length)
-                api.getClients()
+            if(!servicesStore.services.length)
+                return api.getServices()
         }
         getServices().catch(console.error)
-    }, [servicesStore,api]);
+    }, [servicesStore.services,api]);
+
     return servicesStore;
 };
 

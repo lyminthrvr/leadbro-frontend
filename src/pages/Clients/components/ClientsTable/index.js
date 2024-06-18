@@ -23,7 +23,7 @@ const ClientsTable = observer(() => {
             accessor:'name',
             Cell: ({row}) => {
                 const data = row?.original
-                return <TableLink to={`/${data.id}`} name={data.title}/>
+                return <TableLink to={`${data.id}`} name={data.title}/>
             }
         },
         {

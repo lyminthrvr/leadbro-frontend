@@ -1,0 +1,51 @@
+@import '../../../../../../styles/helpers'
+
+.button
+  display: inline-flex
+  flex-direction: row
+  span
+    font-size: 13px
+    min-width: 120px
+    text-align: start
+  padding: 0
+  height: 40px
+  a
+    padding: 0
+    height: 40px
+  svg
+    padding-right: 12px
+    fill: $n4
+  &_title
+    span
+      text-align: center
+    //padding: 8px 16px 8px 16px
+    //a
+    //  padding: 0
+    //  height: 40px
+.table_container
+  div[class*=Table_smallTable],div[class*=Table_card_smallTable]
+    padding-top: 0px !important
+  table
+    table-layout: fixed
+  th
+    padding-top: 0 !important
+  th,td
+    +d
+      padding: 0.5rem 1.5rem 1.8rem 0.75rem
+
+    padding: 0.5rem 1rem 0.8rem 0.75rem
+  div[class*=Title_title]
+    +base1-s
+    margin-top: 24px
+    margin-bottom: 0
+  div[class*=Table_card]
+    padding: 0
+  div[class*="Bills_button__"]
+    +d
+      div[class*="Act_button__"]
+        text-align: left
+        max-width: 150px
+      a
+        margin-left: 0
+      svg
+        display: none

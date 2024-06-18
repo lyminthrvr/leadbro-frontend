@@ -4,6 +4,7 @@ import {colorStatusTaskTypes as taskTypes} from "../../../../services.types";
 import {colorStatusActTypes as statusActTypes} from "../../../../services.types";
 import {colorStatusBillTypes as billTypes} from "../../../../services.types";
 import Badge from "../../../../../../shared/Badge";
+import styles from './Statuses.module.sass'
 
 export const serviceStatuses = {
     tasks: taskTypes,
@@ -12,9 +13,9 @@ export const serviceStatuses = {
 }
 
 
-const ServiceBadge = ({statusType, status, classname}) => {
+const ServiceBadge = ({statusType, status,cls}) => {
     return (
-        <Badge status={status} classname={classname} statusType={statusType}/>
+        <Badge status={status} classname={cn(styles.status,cls)} statusType={statusType}/>
     );
 };
 

@@ -43,8 +43,8 @@ export const statusActTypesRu = {
 
 
 export const colorStatusActTypes = {
-    notAssignedScan:{status:statusActTypesRu.notAssignedScan,class:'status-green'},
-    notAssignedOriginal:{status:statusActTypesRu.notAssignedOriginal,class:'status-green'},
+    notAssignedScan:{status:statusActTypesRu.notAssignedScan,class:'status-disabled'},
+    notAssignedOriginal:{status:statusActTypesRu.notAssignedOriginal,class:'status-disabled'},
 }
 
 export const statusBillTypes = {
@@ -56,7 +56,7 @@ export const statusBillTypesRu = {
 
 
 export const colorStatusBillTypes = {
-    payed:{status:statusBillTypesRu.payed,class:'status-green'},
+    payed:{status:statusBillTypesRu.payed,class:'status-disabled'},
 }
 
 

@@ -18,7 +18,7 @@ const TitleButtons = ({doSort,isSortDecrease,titleButton,isSmallButton,actions})
             {actions.settings && <div className={cn(styles.icon, styles.settings)}>
                 <Icon name={'setting'} size={'24'}/>
             </div>}
-            {actions.add && <Button onClick={()=>actions.add.action()} isSmallButton={isSmallButton} adaptiveIcon={<Icon name={'plus'} size={8}/>} name={titleButton}/>}
+            {actions.add && <Button onClick={()=>actions.add.action()} classname={actions.add.cls ?? ''} type={actions.add.type ?? 'primary'} isSmallButton={actions.add.isSmall ?? isSmallButton} adaptiveIcon={<Icon name={'plus'} size={8}/>} name={titleButton}/>}
         </div>
     );
 };

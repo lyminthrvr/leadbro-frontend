@@ -8,7 +8,7 @@ export const navigation = [
     {
         title: "Клиенты",
         action: () =>{},
-        url: "/",
+        url: "/clients",
     },
     {
         title: "Услуги",
@@ -18,26 +18,26 @@ export const navigation = [
     {
         title: "Задачи",
         action: () =>{},
-        url: "/",
+        url: "/tasks",
     },
     {
         title: "Календарь",
         action: () =>{},
-        url: "/",
+        url: "/calendar",
     },
     {
         title: "Счета",
         action: () =>{},
-        url: "/",
+        url: "/bills",
     },
     {
         title: "Отчеты",
         action: () =>{},
-        url: "/",
+        url: "/reports",
     },
     {
         title: "Настройки",
         action: () =>{},
-        url: "/",
+        url: "/settings",
     },
 ];

@@ -12,28 +12,34 @@ import Task from "./components/Task";
 import Hours from "./components/Hours";
 import Act from "./components/Act";
 import Bills from "./components/Bills";
+import Report from "./components/Report";
+import TextLink from "../../../../shared/Table/TextLink";
+import {observer} from "mobx-react";
+import AdaptiveStages from "./components/AdaptiveCard";
 
-const ServicePage = () => {
+const ServicePage = observer(() => {
     let {id} = useParams();
     const services = useServices();
     const api = useServiceApi();
 
-    const service = useMemo(() => services.getById(id), [id, services.services, services.drafts])
-    console.log(services, service, 'servicesPage')
+    const service = useMemo(() => services.getById(+id), [id, ,services,services.services, services.drafts])
     return (
         <motion.div initial={'hidden'} animate={'show'} variants={opacityTransition}>
             {service?.stages.map(el => (
-                <Card classCardHead={styles.head} classTitle={styles.card_title}
-                      head={<span className={styles.etap}>Этап №{el.number}</span>} title={el.title}>
-                    <h2>{el.title}</h2>
-                    <Task task={el.task}/>
+                <div>
+                <Card classCardHead={styles.card_title} className={styles.card} classCardHead={styles.head} classTitle={styles.card_title}
+                      head={<TextLink className={styles.etap}>Этап №{el.number}</TextLink>} title={el.title}>
+                    <Task stage={el} taskName={service.title} task={el.task}/>
                     <Hours hours={el.hours}/>
+                    <Report/>
                     <Act act={el.act}/>
                     <Bills bills={el.bills}/>
                 </Card>
+                    <AdaptiveStages data={el}/>
+                </div>
             ))}
         </motion.div>
     );
-};
+});
 
 export default ServicePage;

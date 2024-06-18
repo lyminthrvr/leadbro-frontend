@@ -11,24 +11,38 @@ import Badge from "../../../../../../shared/Badge";
 import ServiceBadge, {serviceStatuses} from "../Statuses";
 import Image from "../../../../../../shared/Image";
 import Icon from "../../../../../../shared/Icon";
+import TextLink from "../../../../../../shared/Table/TextLink";
+import Basis from "../../../../../../shared/Basis";
 
-const Task = ({ task, stageName }) => {
+const Task = ({ stage, task, taskName }) => {
     return (
         <div className={styles.task_container}>
             <div>
                 <CardField label={'ТЗ и сроки'}>
-                    <div className={styles.taskDatesAndStatus}>
+                    <Basis className={styles.taskDatesAndStatus}>
                         <Icon size={20} name={'calendar'}/>
                         <span>{formatDateWithOnlyDigits(task.startDate)} - {formatDateWithOnlyDigits(task.endDate)}</span>
                         <ServiceBadge statusType={serviceStatuses.tasks} status={task.status}/>
-                    </div>
-
+                    </Basis>
+                </CardField>
+                <CardField label={'Задача'}>
+                    <Basis className={styles.taskName}>
+                        <div>
+                            <TextLink className={styles.taskName_primary}>{taskName} </TextLink>
+                            –
+                            <span> {stage.title}</span>
+                        </div>
+                        <div className={styles.dateDeadline}>
+                            <Icon size={20} name={'calendar'}/>
+                            <span>{formatDateWithDateAndYear(task.startDate)}</span>
+                            <span className={styles.taskName_secondary}>Дедлайн</span>
+                        </div>
+                    </Basis>
                 </CardField>
             </div>
             <div>
 
             </div>
-            <span>{task.description}</span>
 
         </div>
     );

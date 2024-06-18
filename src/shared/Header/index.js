@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import cn from "classnames";
 import styles from "./Header.module.sass";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import Icon from "../Icon";
 import Search from "./Search";
 import Messages from "./Messages";
@@ -69,6 +69,8 @@ const Header = ({onOpen}) => {
 const HeadersList = () => {
 
     const navigate = useNavigate()
+    const location = useLocation();
+
 
     const [activeIndex, setActiveIndex] = useState(0)
     const handleClick = (x, index) => {
@@ -76,11 +78,19 @@ const HeadersList = () => {
         x.action();
         navigate(x.url)
     };
+
+    const isActive = (url) => {
+        // Check if the current pathname starts with the url and the url is not just '/'
+        if (url === '/') {
+            return location.pathname === '/';
+        }
+        return location.pathname.startsWith(url);
+    };
     return <div className={styles.links}>
         {navigation.map((x, index) => (
                 <motion.p whileHover={{scale: 1.0}}
                           className={cn(styles.button, {
-                              [styles.active]: activeIndex === index,
+                              [styles.active]: isActive(x.url),
                           })}
                           key={index}
                           onClick={() => handleClick(x, index)}

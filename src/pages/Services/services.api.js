@@ -19,11 +19,11 @@ const useServiceApi = () => {
 
     const {servicesStore} = useStore()
     const getServices = () => {
-        return http.get('/services').then(handleHttpResponse).then((res)=>servicesStore.setClients(res.body)).then(()=>servicesStore.getClients()).catch(handleHttpError)
+        return http.get('/services').then(handleHttpResponse).then((res)=>servicesStore.setServices(res.body)).then(()=>servicesStore.getServices()).catch(handleHttpError)
     }
 
     const setServices = (body) => {
-        return  http.post('/services',body).then(handleHttpResponse).then((res)=>servicesStore.setClients(res.body)).catch(handleHttpError)
+        return  http.post('/services',body).then(handleHttpResponse).then((res)=>servicesStore.setServices(res.body)).catch(handleHttpError)
     }
 
     const downloadFile = (id,fileName) => {

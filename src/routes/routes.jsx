@@ -8,13 +8,17 @@ import Services from "../pages/Services";
 import ServicePage from "../pages/Services/components/ServicePage";
 
 export const paths = {
-    CLIENTS:'/',
-    CLIENTS_ID:'/:id',
+    MAIN:'/',
+    CLIENTS:'/clients',
+    CLIENTS_ID:'/clients/:id',
     SERVICES:'/services',
     SERVICES_ID:'/services/:id'
 }
 
 const routes = [
+    {
+        path: paths.MAIN, element:  <Page></Page>,
+    },
     {
         path: paths.CLIENTS, element:  <Page><Clients/></Page>,
     },

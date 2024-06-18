@@ -34,7 +34,7 @@ export const formatDateOnlyHours = (date) => {
 }
 
 export const formatDateWithOnlyDigits = (date) => {
-    let formatDate = format(date, 'dd.mm.yyyy', { locale: ru });
+    let formatDate = format(date, 'dd.MM.yyyy', { locale: ru });
     formatDate = formatDate.charAt(0).toUpperCase() + formatDate.slice(1);
     return formatDate
 }
