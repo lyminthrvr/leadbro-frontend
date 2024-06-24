@@ -10,13 +10,17 @@ const createServices = () => {
 
             title:'SEO продвижение сайта KILZ.RU',
             contractNumber:'44444',
+            type:{
+                id:0,
+                title:'Название услуги 1'
+            },
             manager: {
                 id:0,
                 image: createBlob(),
                 name:
                     'Александр',
                 surname:
-                    'Шилов',
+                    'Александр1',
                 role:
                     'Директор'
             },
@@ -95,13 +99,17 @@ const createServices = () => {
 
             title:'SEO продвижение сайта KILZ2.RU',
             contractNumber:'44444',
-            manager: {
+            type:{
                 id:0,
+                title:'Название услуги 1'
+            },
+            manager: {
+                id:1,
                 image: createBlob(),
                 name:
                     'Александр',
                 surname:
-                    'Шилов',
+                    'Александр2',
                 role:
                     'Директор'
             },
@@ -178,5 +186,22 @@ const createServices = () => {
     ]
 }
 
+const createServiceTypes = () =>{
+    return [
+        {
+            id:0,
+            title:'Название услуги 1'
+        },
+        {
+            id:0,
+            title:'Название услуги 2'
+        },
+        {
+            id:0,
+            title:'Название услуги 3'
+        }
+    ]
+}
 
-export default {createServices}
+
+export default {createServices,createServiceTypes}

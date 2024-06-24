@@ -10,6 +10,7 @@ import {
 
 export class ServicesStore {
     services = [];
+    serviceTypes = [];
     drafts = {};
 
     constructor(root) {
@@ -18,43 +19,42 @@ export class ServicesStore {
     }
 
     getServices() {
-        return this.services.map(client => {
-            const draft = this.drafts[client.id];
-            return draft ? { ...client, ...draft } : client;
+        return this.services.map(service => {
+            const draft = this.drafts[service.id];
+            return draft ? { ...service, ...draft } : service;
         });
     }
 
     getById(id,isReset=false) {
-        debugger
-        const client = this.services.find(x => x.id === Number(id));
+        const service = this.services.find(x => x.id === Number(id));
         const draft = this.drafts[id];
-        return isReset ? client :  draft ? { ...client, ...draft } : client;
+        return isReset ? service :  draft ? { ...service, ...draft } : service;
     }
 
     resetDraft(id, path) {
         if (!this.drafts[id]) return;
-        let client = this.getById(id,true   );
+        let service = this.getById(id,true   );
 
-        resetDraft(this,id,client,path)
+        resetDraft(this,id,service,path)
 
     }
 
     submitDraft(id) {
         if (!this.drafts[id]) return;
 
-        const client = this.getById(id);
-        if (!client) return;
+        const service = this.getById(id);
+        if (!service) return;
 
-        const updatedClient = { ...client };
+        const updatedClient = { ...service };
         this.services = this.services.map(c => (c.id === id ? updatedClient : c));
         delete this.drafts[id];
     }
 
     createDraft(id) {
-        const client = this.getById(id);
-        if (!client) return;
+        const service = this.getById(id);
+        if (!service) return;
 
-        this.drafts[id] = { ...client };
+        this.drafts[id] = { ...service };
     }
 
     changeById(id, path, value,withId) {
@@ -74,7 +74,17 @@ export class ServicesStore {
     }
 
     setServices(result) {
-        debugger
         this.services = result;
+    }
+    
+    setServiceTypes(result){
+        this.serviceTypes = result
+    }
+
+    getServiceTypes(){
+        return this.serviceTypes.map(serviceType => {
+            const draft = this.drafts[serviceType.id];
+            return draft ? { ...serviceType, ...draft } : serviceType;
+        });
     }
 }

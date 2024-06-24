@@ -14,14 +14,32 @@ import StagesCell from "./components/StagesCell";
 import {getCorrectWordForm} from "../../../../utils/format.string";
 import FormFilter from "./components/FormFilter";
 import useTableFilters from "../../../../hooks/useTableFilters";
+import useServiceApi from "../../services.api";
+import EditModal from "./components/EditModal";
 
 const ServicesTable = observer(() => {
     const servicesStore = useServices()
-    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.services])
+
+    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.services,servicesStore?.drafts])
+    console.log(data,'123data')
     const {filteredData, setFilterValue,filters} = useTableFilters(data, {
         manager: {id: 'all', name: 'Все',filterKey:'id'},
         title: 'Все'
     })
+    const api = useServiceApi()
+
+    const handleChange = (id,name,payload) => {
+        servicesStore.changeById(id,name,payload,true)
+    }
+    const handleReset = (path) =>{
+        // servicesStore.resetDraft(client.id,path)
+    }
+
+    const handleSubmit = () => {
+        servicesStore.submitDraft()
+        api.setClients(servicesStore)
+    }
+
     const cols = React.useMemo(() => [
         {
             Header: 'ID',
@@ -37,10 +55,16 @@ const ServicesTable = observer(() => {
         {
             Header: 'Услуга',
             id: 'title',
-            editing: true,
+            // editing: true,
             accessor: 'title',
+            // onChange:(id,name,value)=>{
+            //     if(id === null)
+            //         throw new Error()
+            //     return handleChange(id,name,value)
+            // },
             width: 450,
             Cell: ({row}) => {
+                debugger
                 const data = row?.original
                 return <TableLink to={`/services/${data.id}`} name={data.title}/>
             },
@@ -50,7 +74,7 @@ const ServicesTable = observer(() => {
             Header: '№ договора',
             id: 'contractNumber',
             accessor: 'contractNumber',
-            editing: true,
+            // editing: true,
             width: 200,
             Cell: ({row}) => {
                 const data = row?.original
@@ -107,10 +131,10 @@ const ServicesTable = observer(() => {
             },
 
         },
-    ], [])
+    ], [data])
     return (
         <div className={styles.table}>
-            <Table editComponent={true} cardComponent={(data) => (<AdaptiveCard data={data} statusType={statusTypes.services}/>)}
+            <Table editComponent={(data,onClose)=><EditModal data={data}/>} cardComponent={(data) => (<AdaptiveCard data={data} statusType={statusTypes.services}/>)}
                    headerActions={{
                        filter: {
                            title: 'Фильтр',

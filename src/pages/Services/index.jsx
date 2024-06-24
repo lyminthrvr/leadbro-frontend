@@ -7,12 +7,12 @@ import useServicesApi from "./services.api";
 import {motion} from "framer-motion";
 import {opacityTransition} from "../../utils/motion.variants";
 
-const Services = () => {
+const Services = observer(() => {
 
-    const api = useServicesApi()
-    useEffect(()=> {
-        api.getServices()
-    },[])
+    // const api = useServicesApi()
+    // useEffect(()=> {
+    //     api.getServices()
+    // },[])
 
     return (
         <motion.div
@@ -22,6 +22,6 @@ const Services = () => {
             <ServicesTable/>
         </motion.div>
     );
-};
+});
 
 export default Services;

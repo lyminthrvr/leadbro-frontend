@@ -8,6 +8,7 @@ let fakeFile = blob
 
 mockHttp.onGet('/services').reply(200, mocks.createServices())
 mockHttp.onPost('/services').reply(200, mocks.createServices())
+mockHttp.onGet('/services/types').reply(200, mocks.createServiceTypes())
 mockHttp.onGet(`/download/file`).reply(config => {
     return [
         200,
@@ -26,24 +27,18 @@ const useServiceApi = () => {
         return  http.post('/services',body).then(handleHttpResponse).then((res)=>servicesStore.setServices(res.body)).catch(handleHttpError)
     }
 
-    const downloadFile = (id,fileName) => {
-        return http.get(`/download/file`).then((response)=>response.blob()).then(blob=>{
-            var url = window.URL.createObjectURL(blob)
-            var a = document.createElement('a')
-            a.href = url
-            a.download = fileName
-            a.click()
-            a.remove()
-            setTimeout(() => window.URL.revokeObjectURL(url), 100)
-        })
+    const getServiceTypes = () => {
+        return http.get('/services/types').then(handleHttpResponse).then((res)=>servicesStore.setServiceTypes(res.body)).then(()=>servicesStore.getServiceTypes()).catch(handleHttpError)
     }
+
+
 
     const postFile = (blobFile,fileName) => {
         const form = new FormData()
 
     }
 
-    return {setServices,getServices}
+    return {setServices,getServices,getServiceTypes}
 }
 
 

@@ -29,7 +29,6 @@ const Index = ({ data, selectedService, selectedManager, onServiceChange, onMana
     const handleManagerChange = (manager) => {
         onManagerChange(manager);
     };
-    console.log(selectedService,'service')
     return (
         <div>
             <div className={styles.item}>

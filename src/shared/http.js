@@ -52,7 +52,6 @@ export const handleHttpResponse = (response) => {
 }
 
 export const handleHttpError = (error) => {
-  console.log(123,error)
   const code = error?.code
 
   return { status: 'error', message: error?.message, code }

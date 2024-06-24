@@ -12,7 +12,7 @@ const UseServices = () => {
                 return api.getServices()
         }
         getServices().catch(console.error)
-    }, [servicesStore.services,api]);
+    }, [servicesStore.services,servicesStore.drafts,api]);
 
     return servicesStore;
 };

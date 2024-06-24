@@ -59,6 +59,7 @@ export const changeDraft = (store,id,object, path, value,withId) => {
     //
     // const lastPart = pathParts[pathParts.length - 1];
     // return { ...currentValue, [lastPart]: value };
+    debugger
     const pathParts = path.split('.');
     let currentDraft = store.drafts[id];
 
