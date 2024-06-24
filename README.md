@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+# Документация
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Никогда не писал доки, надеюсь будет понятно. 
 
-## Available Scripts
+Проект создан при помощи [Create React App](https://github.com/facebook/create-react-app).
 
-In the project directory, you can run:
 
-### `npm start`
+## Структура Проекта
+```
+В проекте используется модульный подход - каждая отдельная страница или функциональность - отдельно взятый модуль со своим api, хуками, компонентами и прочим
+|- public                   - Все интерактивные файлы (фото, шрифты)
+|  |- images                - Эта папка небольшое легаси, позже перенесу в leadbro
+|  |- leadbro               - Именно тут будем хранить все файлы .jpg, ,png
+|- src                      - Корневая директория
+|  |- components            - Компоненты, которые нельзя вынести из системы(высокоуровневые компоненты), но при этом дубрирующиеся в нескольких местах
+|  |- hooks                 - Хуки, которые используются в проекте повсеместно(повторяются)
+|  |- pages                 - Как раз таки модули приложения
+|  |  |-components          - Компоненты конкретного модуля, сделано для низкой связности и удобства
+|  |  |-hooks               - Хуки конкретного модуля, могут быть использованы в других модулях, например для получения клинетов
+|  |  |-stores              - Хранилище, хранящее состояние в данном модуле
+|  |  |-.api                - апи модуля, используется через hook use...Api, для возможности взаимодейтсвия со стором
+|  |  |-.mocks              - моки
+|  |  |-.types              - типы для статусов, селекторов и прочего
+|  |  |-index.jsx           - Стартовая точка модуля, используется в папке render для отображения. В ней пытаемся работать с апи (бывают исключения)
+|  |- providers             - Провайдеры и контексты, пока нужно просто для добавления контекста хранилища
+|  |- routes                - Рендер модулей, работаем с переменной paths и routes, оборачиваем компонент в <Pages><Pages/> Для отображения лейаута приложения
+|  |- shared                - Папка с низкоуровневыми компонентами(почти все можно вынести из приложения), также тут находится интерфейс работы с апи http.js
+|  |- styles                - Стили из пака, на котором основано приложение, почти во всех модулях используется helpers.sass
+|  |- utils                 - Функции для трансформирований, форматирований, проверки типов, работы анимации итп 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+## MobX
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Для ознакомления с концепцией [Mobx[1]](https://mobx.js.org/README.html) [Mobx[2]](https://habr.com/ru/articles/282578/)
 
-### `npm test`
+По сути, 95% времени создавать сторы мы будем просто копируя уже созданные ранее, так как используются внутренние функции из **utils**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Вкратце о концепции - **MobX** предоставляет функционал **изменяемого глобального состояния**, то есть состояние компонент выносится в **отдельное хранилище(store)**, что дает нам полный контроль над тем, где какое состояние использовать
+Например, пользователя, который зашел в приложение мы получаем сразу при входе, и использоваться он может в любом компоненте. Чтобы **напрямую не вызывать** хранилище используются хуки по типу **useUser()**
 
-### `npm run build`
+## React-Dom
+Не знаю, доводилось ли работать с домом реакта, но тут все +- просто
+У нас есть папка routes, в ней ведется рендеринг компонент. Там же мы настраиваем пути, переходя по которым React-Dom соотносит компоненты и url
+Также стоит упомянуть тег [Link](https://reactrouter.com/en/main/components/link), благодоря нему идет маршрутизация
+## Framer-Motion
+Также в проекте используется [framer-motion](https://www.framer.com/motion/transition/)
+Это больше для ознакомления, основные переходы уже написаны
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Компоненты системы (shared)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Table
+Наверное, самый сложный компонент, включает в себя много различной логикия.
+Вообще, компонент базируется на react-table - headless таблице, стили к которой пишешь самостоятельно.
+ - columns - колонки, посмотреть как они создаются можно в **ClientsTable** или **ServiceTable**
+ - data    - дата из хранилища **MobX**
+ - title   - думаю понятно
+ - headerActions - в зависимости от типа таблицы могут быть разные экшены, поэтому я решил просто добавить компонент в котором эти экшены все будут собраны, а в **headerActions** мы просто отмечаем какие нам надо, какие нет, меняем функциональность клика итп
+Это база, остально можно понять по примерам или из контектса.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Badge
+Компонент отображения статуса, он просто рендерит статус, сами настройки идут в компонентах модуля (например **ServiceBadge**)
 
-### `npm run eject`
+## Input
+Инпут в системе представлен **TextInput'ом**, есть еще и другие надстройки над ним, но они ситуатины (например, когда инпут представлен как макете страницы клиентов - используется **CardInput**)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Modal
+Компонент основного модального окна представлен компонентов **Modal**, саму модалку мы пишем в компонентах модуля (как в **EditModal**)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## http 
+Также наверное стоит обратить внимание на файл http.js, в нем собрана логика по работе с http клиентом [Axios](https://axios-http.com/ru/docs/intro)
+Там важные функции - это **handleHttpResponse** и  **handleHttpError**. Посмотреть как это реализовано можно в любом файле .api
+Нужно это для стандартизации ответов с бекенда (их пока нет)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Моки
+Так как ответтов с бекенда пока нет, мы используем моки - plain объекты в файлах *Модуль*.mocks.js. Стараемся задавать каждому вложенному, да и вобще любому объекту **id**, это нужно для корректного работы сторов
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Скрипты
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Самый базовый и важный скрипт
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `npm run start`
 
-### Code Splitting
+Запускает режим разработки.\
+Открывает [http://localhost:3000](http://localhost:3000) для отображения в бразуере.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Буду добавлять доку по мере появления чего-то нового, по вопросам в тг
