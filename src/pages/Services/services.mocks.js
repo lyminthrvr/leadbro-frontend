@@ -10,6 +10,10 @@ const createServices = () => {
 
             title:'SEO продвижение сайта KILZ.RU',
             contractNumber:'44444',
+            client:{
+                id:0,
+                title:'a  ООО ПКФ «Катав-Ивановский лакокрасочный завод»'
+            },
             type:{
                 id:0,
                 title:'Название услуги 1'
@@ -46,14 +50,16 @@ const createServices = () => {
                         startDate:new Date(),
                         endDate:new Date()
                     },
-                    hours:{
+                    time:{
                         planned:{
                             planned:5,
                             actual:8,
+                            type:'часов'
                         },
                         extra:{
                             planned:5,
                             actual:8,
+                            type:'часов',
                             cost:7500,
                         }
                     },
@@ -103,6 +109,10 @@ const createServices = () => {
                 id:0,
                 title:'Название услуги 1'
             },
+            client:{
+                id:1,
+                title:'в ООО ПКФ «Катав-Ивановский лакокрасочный завод»'
+            },
             manager: {
                 id:1,
                 image: createBlob(),
@@ -135,14 +145,16 @@ const createServices = () => {
                         startDate:new Date(),
                         endDate:new Date()
                     },
-                    hours:{
+                    time:{
                         planned:{
                             planned:5,
                             actual:8,
+                            type:'часов'
                         },
                         extra:{
                             planned:5,
                             actual:8,
+                            type:'часов',
                             cost:7500,
                         }
                     },

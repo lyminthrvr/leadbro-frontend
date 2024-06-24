@@ -4,7 +4,8 @@ import Icon from "../../../../../../shared/Icon";
 import Button from "../../../../../../shared/Button ";
 import Basis from "../../../../../../shared/Basis";
 import cn from "classnames";
-const Hours = ({ hours }) => {
+import {getFormattedTimeType} from "../../../../../../utils/format.time";
+const Hours = ({ time }) => {
     return (
         <div className="hours">
             {/*<div>*/}
@@ -19,14 +20,14 @@ const Hours = ({ hours }) => {
             {/*    <span>{hours.extra.cost}₽</span>*/}
             {/*</div>*/}
             <CardField labelCls={styles.labelPlanned} label={'Время по ТЗ'}>
-                    <HoursView basis={282}  hours={hours.planned.planned} label={'плановое время'}></HoursView>
-                    <HoursView basis={1230} hours={hours.planned.actual} label={'фактическое время'}></HoursView>
+                    <HoursView basis={282} type={getFormattedTimeType(time.planned.type)}  time={time.planned.planned} label={'плановое время'}></HoursView>
+                    <HoursView basis={1230} type={getFormattedTimeType(time.planned.type)} time={time.planned.actual} label={'фактическое время'}></HoursView>
             </CardField>
             <CardField labelCls={styles.labelExtra} cls={cn(styles.hoursView_container)} label={'Время сверх ТЗ'}>
-                    <HoursView basis={282} hours={hours.extra.planned} label={'плановое время'}></HoursView>
-                    <HoursView basis={400} hours={hours.extra.actual} label={'фактическое время'}></HoursView>
+                    <HoursView basis={282} type={getFormattedTimeType(time.extra.type)} time={time.extra.planned} label={'плановое время'}></HoursView>
+                    <HoursView basis={400} type={getFormattedTimeType(time.extra.type)} time={time.extra.actual} label={'фактическое время'}></HoursView>
                     <Basis basis={740} className={styles.costs}>
-                    <CostView cost={hours.extra.cost}></CostView>
+                    <CostView cost={time.extra.cost}></CostView>
                     <Button classname={styles.button} type={'secondary'} name={'Добавить счет'}/>
                     </Basis>
             </CardField>
@@ -42,11 +43,11 @@ const CostView = ({cost}) => {
 
 }
 
-const HoursView = ({hours, label, basis}) => {
+const HoursView = ({time, type, label, basis}) => {
     return (
         <Basis basis={basis} className={styles.hoursView}>
             <Icon size={20} name={'clock'}/>
-            <p className={styles.hoursView_text}><span>{hours} ч </span>{label}</p>
+            <p className={styles.hoursView_text}><span>{time} {type} </span>{label}</p>
         </Basis>
     )
 }

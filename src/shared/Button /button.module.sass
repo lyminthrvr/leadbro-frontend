@@ -3,17 +3,19 @@
 .control
   display: block
   cursor: pointer
+
   &.primary
     color: white
     &:hover
       background: darken($p3, 10%)
 
   &.secondary
-    box-sizing: content-box
+    box-sizing: border-box
     border: 2px $n3 solid
     background-color: $n1
     color: $n8
     .button
+      padding-bottom: 2px
       color: $n8
     &:hover
       background: $n2

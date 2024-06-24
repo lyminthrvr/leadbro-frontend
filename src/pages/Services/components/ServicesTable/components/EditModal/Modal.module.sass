@@ -5,9 +5,39 @@
   color: $n7
   margin-bottom: 24px
 .input
+  z-index: 3
+  input
+    background-color: white !important
+    border-color: $n3
+
   margin-bottom: 24px
   &>div
     +body1-m
     color: $n4
     font-weight: 500
     margin-bottom: 8px
+.flex
+  &__lowerGap
+    z-index: 3
+    gap: 13px
+  display: flex
+  flex-direction: row
+  gap: 25px
+  &>div
+    flex: 1
+.label
+  color: $n4
+  +body1-m
+  margin-bottom: 8px
+.buttons
+  display: flex
+  flex-direction: row
+  gap: 8px
+  & .button
+    padding: 0 8px
+    a
+      font-size: 15px
+.addZIndex
+  z-index: 4
+.lowZIndex
+  z-index: 2

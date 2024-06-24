@@ -1,13 +1,27 @@
 export const opacityTransition = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0,  },
     show: {
         opacity: 1,
         transition: {
-            duration:0.4,
+            duration:0.2,
             delayChildren: 0.5,
             when:'beforeChildren'
         }
     }
+}
+
+export const opacityForSelectTranstion = {
+    hidden: { opacity: 0, y:3  },
+    show: {
+        opacity: 1,
+        y:0,
+        transition: {
+            duration:0.2,
+            delayChildren: 0.2,
+            when:'beforeChildren'
+        }
+    }
+
 }
 
 export const hoverTransition = {

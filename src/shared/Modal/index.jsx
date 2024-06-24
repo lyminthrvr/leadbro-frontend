@@ -4,6 +4,8 @@ import styles from './Module.module.sass';
 import Icon from "../Icon";
 import cn from "classnames";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import {motion} from 'framer-motion'
+import {opacityTransition} from "../../utils/motion.variants";
 
 const Modal = ({ size = 'sm', handleClose, children, cls }) => {
     const [isVisible, setIsVisible] = useState(true);
@@ -50,7 +52,8 @@ const Modal = ({ size = 'sm', handleClose, children, cls }) => {
     }
 
     return createPortal(
-        <div
+        <motion.div
+            initial={'hidden'} animate={'show'} variants={opacityTransition}
             ref={ref}
             className={cn(styles.appModal)}
             style={size === 'sm' ? undefined : { maxHeight: '100%', display: 'flex', flexDirection: 'column' }}
@@ -61,7 +64,7 @@ const Modal = ({ size = 'sm', handleClose, children, cls }) => {
                 </div>
                 {children}
             </div>
-        </div>,
+        </motion.div>,
         document.body
     );
 };
