@@ -122,34 +122,100 @@ $datepicker__triangle-size: 8px !default;
   position: absolute;
   right: -150px;
   z-index: 29;
+  @media (max-width: 768px) {
+    //right: calc(100vw + 250px);
+    //left: 250px;
+    //left: 1%;
+    right: -46vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: 7vw;
+      height: 55px;
+    }
+
+  }
+
   @media (max-width: 640px) {
-    right: -125px;
+    right: -46vw;
     .react-datepicker__day,.react-datepicker__day-name{
       width: 35px;
     }
 
   }
   @media (max-width: 580px) {
-    right: -105px;
+    right: -46vw;
     .react-datepicker__day,.react-datepicker__day-name{
       width: 30px;
     }
 
   }
   @media (max-width: 500px) {
-    right: -95px;
+    //right: unset;
+    right: -46vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: 28px;
+      width: calc(14vw - 6px);
+      //max-width: 62px;
+      //min-width: 48px;
     }
 
   }
-  @media (max-width: 410px) {
-    right: -75px;
+  @media (max-width: 354px) {
+    //right: unset;
+    right: -49vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: 25px;
+      width: calc(14vw - 2px);
+      //max-width: 62px;
+      //min-width: 48px;
     }
 
   }
+  @media (max-width: 318px) {
+    //right: unset;
+    right: -55vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: calc(15vw - 1px);
+      //max-width: 62px;
+      //min-width: 48px;
+    }
+
+  }
+
+  @media (max-width: 296px) {
+    //right: unset;
+    right: -57vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: calc(16vw - 1px);
+      //max-width: 62px;
+      //min-width: 48px;
+    }
+
+  }
+  @media (max-width: 270px) {
+    //right: unset;
+    right: -60vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: calc(17vw - 1px);
+      //max-width: 62px;
+      //min-width: 48px;
+    }
+
+  }
+  @media (max-width: 256px) {
+    //right: unset;
+    right: -66vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: calc(18.5vw - 1px);
+      //max-width: 62px;
+      //min-width: 48px;
+    }
+
+  }
+  //@media (max-width: 410px) {
+  //  right: -75px;
+  //  .react-datepicker__day,.react-datepicker__day-name{
+  //    width: 25px;
+  //  }
+
+  //}
 
 
 }
@@ -187,7 +253,7 @@ $datepicker__triangle-size: 8px !default;
 }
 
 .react-datepicker-popper {
-  z-index: 30;
+  z-index: 1;
 
   &[data-placement^="bottom"] {
     padding-top: $datepicker__triangle-size + 2px;

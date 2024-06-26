@@ -69,7 +69,7 @@ const TextInput = ({
                     )}
                 </div>
             )}
-            <div ref={wrapRef} id={'input_wrap'} on className={cn(styles.wrap, classWrap)}>
+            <div ref={wrapRef} id={'input_wrap'} className={cn(styles.wrap, classWrap)}>
                 {props.type === 'textarea' ?
                     <TextArea disabled={!props?.edited ?? false} autoFocus={props?.makeFocused} ref={inputRef}
                               className={cn(classInput, styles.input, styles.textarea)} {...props} /> :

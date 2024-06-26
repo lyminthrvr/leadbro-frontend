@@ -70,8 +70,10 @@ const ValuesSelector = ({
                 multiValue: (base) => ({
                     ...base,
                     borderRadius:'8px',
-                })}}
+                }),
+            }}
             classNames={{
+                multiValueLabel:()=>styles.selector__container__control_values__label,
                 menu:(props)=>styles.selector__container__control_menu,
                 option:(props)=>styles.selector__container__control_menuList__option,
                 menuList:(props)=>styles.selector__container__control_menuList,

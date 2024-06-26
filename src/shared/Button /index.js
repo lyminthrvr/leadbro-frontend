@@ -13,7 +13,7 @@ const Button = ({ name, after, before, onClick, adaptiveIcon, classname, type = 
                 <div className={cn(styles.control, classname,{
                     [styles.primary]: type === 'primary',
                     [styles.secondary]: type === 'secondary'
-                }, { [styles.isNotSmallTable]: !rest.isSmallButton })}>
+                }, { [styles.isNotSmallTable]: rest?.isSmall ?? !rest.isSmallButton })}>
                     {before}
                     <Link className={cn(styles.button, 'button')} onClick={onClick} to={rest.to}>
                         <span>{name}</span>

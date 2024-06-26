@@ -8,7 +8,6 @@ import ManagerCell from "../../../../components/ManagerCell";
 import ServicesCell from "../../../Clients/components/ClientsTable/Cells/ServicesCell";
 import ActivitiesCell from "../../../Clients/components/ClientsTable/Cells/ActivitiesCell";
 import Table from "../../../../shared/Table";
-import AdaptiveCard from "../../../Clients/components/ClientsTable/Cells/AdaptiveCard";
 import Tooltip from "../../../../shared/Tooltip";
 import StagesCell from "./components/StagesCell";
 import {getCorrectWordForm} from "../../../../utils/format.string";
@@ -16,11 +15,12 @@ import FormFilter from "./components/FormFilter";
 import useTableFilters from "../../../../hooks/useTableFilters";
 import useServiceApi from "../../services.api";
 import EditModal from "./components/EditModal";
+import AdaptiveCard from "./components/AdaptiveCard";
 
 const ServicesTable = observer(() => {
     const servicesStore = useServices()
 
-    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.drafts])
+    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.services, servicesStore?.drafts])
     console.log(data,'123data')
     const {filteredData, setFilterValue,filters} = useTableFilters(data, {
         manager: {id: 'all', name: 'Все',filterKey:'id'},

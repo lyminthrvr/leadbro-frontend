@@ -42,8 +42,8 @@
     flex: 1
     &__xl
       @include modalSizing
-      width: max-content
-      max-width: 100%
+      width: inherit
+      max-width: 764px
       margin-top: 5vh
 
     &__sm
@@ -53,6 +53,8 @@
 .buttons
   display: flex
   flex-direction: row
+  +m
+    flex-direction: column
   gap: 8px
   & .button
     padding: 0 8px

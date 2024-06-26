@@ -17,7 +17,9 @@ import Button from "../../../../../../shared/Button ";
 import useServices from "../../../../hooks/useServices";
 import useServiceApi from "../../../../services.api";
 import {handleInfo, handleSubmit as handleSubmitSnackbar} from "../../../../../../utils/snackbar";
+import TextLink from "../../../../../../shared/Table/TextLink";
 const EditModal = observer(({data}) => {
+    debugger
     console.log(data,'editmodaldata')
     const serviceTypes = useServiceTypes()
     const serviceStore = useServices()
@@ -92,50 +94,50 @@ const EditModal = observer(({data}) => {
             <ValuesSelector
                 onChange={(e)=>handleChange('client',e.length? clients.find(el=>el.id===e[0]?.value) : null)}
                 isMulti={false}
-                label="Клиент"
+                label={<div className={styles.client_label}>Клиент<TextLink>Создать клиента</TextLink></div>}
                 options={clients.map(el => ({value: el.id, label: el.title}))}
                 value={service.client ? {value: service.client.id, label: service.client.title} : null}
                 // onChange={setSelectedParticipants}
             />
-            <div>
-                <div className={styles.label}>Бюджет планируемого времени</div>
-                <div className={cn(styles.flex, styles.flex__lowerGap,styles.lowZIndex)}>
+            {/*<div>*/}
+            {/*    <div className={styles.label}>Бюджет планируемого времени</div>*/}
+            {/*    <div className={cn(styles.flex, styles.flex__lowerGap,styles.lowZIndex)}>*/}
 
-                    <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.planned.planned'} value={service.stages[0].time.planned.planned} edited={true} className={styles.input}/>
-                    <Dropdown
-                        setValue={()=>console.log(1234)}
-                        classNameContainer={styles.input}
-                        value={timeSelector?.find(el => el === service.stages[0].time.planned.type)}
-                        options={timeSelector}
-                    />
-                    <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.planned.actual'}  value={service.stages[0].time.planned.actual} edited={true} className={styles.input}/>
-                    <Dropdown
-                        setValue={()=>console.log(1234)}
-                        classNameContainer={styles.input}
-                        value={timeSelector?.find(el => el === service.stages[0].time.planned.type)}
-                        options={timeSelector}
-                    />
-                </div>
-            </div>
-            <div>
-                <div  className={styles.label}>Фактическое время</div>
-                <div className={cn(styles.flex,styles.flex__lowerGap,styles.lowZIndex)}>
-                    <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.extra.planned'} value={service.stages[0].time.extra.planned} edited={true}  className={styles.input}/>
-                    <Dropdown
-                        setValue={()=>console.log(1234)}
-                        classNameContainer={cn(styles.input,styles.lowZIndex)}
-                        value={timeSelector?.find(el => el === service.stages[0].time.extra.type)}
-                        options={timeSelector}
-                    />
-                    <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.extra.actual'} value={service.stages[0].time.extra.actual} edited={true} className={cn(styles.input,styles.lowZIndex)}/>
-                    <Dropdown
-                        setValue={()=>console.log(1234)}
-                        classNameContainer={cn(styles.input,styles.lowZIndex)}
-                        value={timeSelector?.find(el => el === service.stages[0].time.extra.type)}
-                        options={timeSelector}
-                    />
-                </div>
-            </div>
+            {/*        <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.planned.planned'} value={service.stages[0].time.planned.planned} edited={true} className={styles.input}/>*/}
+            {/*        <Dropdown*/}
+            {/*            setValue={()=>console.log(1234)}*/}
+            {/*            classNameContainer={styles.input}*/}
+            {/*            value={timeSelector?.find(el => el === service.stages[0].time.planned.type)}*/}
+            {/*            options={timeSelector}*/}
+            {/*        />*/}
+            {/*        <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.planned.actual'}  value={service.stages[0].time.planned.actual} edited={true} className={styles.input}/>*/}
+            {/*        <Dropdown*/}
+            {/*            setValue={()=>console.log(1234)}*/}
+            {/*            classNameContainer={styles.input}*/}
+            {/*            value={timeSelector?.find(el => el === service.stages[0].time.planned.type)}*/}
+            {/*            options={timeSelector}*/}
+            {/*        />*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <div  className={styles.label}>Фактическое время</div>*/}
+            {/*    <div className={cn(styles.flex,styles.flex__lowerGap,styles.lowZIndex)}>*/}
+            {/*        <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.extra.planned'} value={service.stages[0].time.extra.planned} edited={true}  className={styles.input}/>*/}
+            {/*        <Dropdown*/}
+            {/*            setValue={()=>console.log(1234)}*/}
+            {/*            classNameContainer={cn(styles.input,styles.lowZIndex)}*/}
+            {/*            value={timeSelector?.find(el => el === service.stages[0].time.extra.type)}*/}
+            {/*            options={timeSelector}*/}
+            {/*        />*/}
+            {/*        <TextInput onChange={({target})=>handleChange(target.name,target.value)} name={'stages.0.time.extra.actual'} value={service.stages[0].time.extra.actual} edited={true} className={cn(styles.input,styles.lowZIndex)}/>*/}
+            {/*        <Dropdown*/}
+            {/*            setValue={()=>console.log(1234)}*/}
+            {/*            classNameContainer={cn(styles.input,styles.lowZIndex)}*/}
+            {/*            value={timeSelector?.find(el => el === service.stages[0].time.extra.type)}*/}
+            {/*            options={timeSelector}*/}
+            {/*        />*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
 
 

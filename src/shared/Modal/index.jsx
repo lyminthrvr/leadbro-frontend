@@ -80,8 +80,8 @@ const Modal = ({ size = 'sm', handleClose, handleSubmit, children, cls }) => {
                 </div>
                 {children}
                 <div className={styles.buttons}>
-                    <Button onClick={()=>handleSubmitModal()} classname={styles.button} name={'Сохранить'} type={'primary'}/>
-                    <Button onClick={()=>handleCloseModal()} classname={styles.button} name={'Удалить'} type={'secondary'}/>
+                    <Button  isSmall={false} onClick={()=>handleSubmitModal()} classname={styles.button} name={'Сохранить'} type={'primary'}/>
+                    <Button isSmall={false} onClick={()=>handleCloseModal()} classname={styles.button} name={'Удалить'} type={'secondary'}/>
                 </div>
             </div>
         </motion.div>,
