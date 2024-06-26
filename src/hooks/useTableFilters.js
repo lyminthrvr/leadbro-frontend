@@ -8,7 +8,6 @@ const useTableFilter = (data, defaultFilters = {}) => {
                 const filterValue = filters[key];
                 const filterKey = filterValue?.filterKey || key;
                 const itemValue = filterValue?.filterKey ? item[key][filterKey] : item[filterKey];
-                debugger
                 if(filterValue==='Все') continue
                 if ((filterValue?.id !== 'all' ) && ((filterValue?.filterKey && itemValue !== filterValue[filterKey]) ||  (!filterValue?.filterKey && itemValue !== filterValue))) {
                     return false;
@@ -19,7 +18,6 @@ const useTableFilter = (data, defaultFilters = {}) => {
     }, [data, filters]);
 
     const setFilterValue = (key, value) => {
-        debugger
         setFilters(prevFilters => ({
             ...prevFilters,
             [key]: value

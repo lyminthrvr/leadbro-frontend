@@ -8,7 +8,6 @@ const UseServiceTypes = () => {
     const api = useServiceApi()
     useEffect(() => {
         async function getServiceTypes(){
-            debugger
             if(!servicesStore.serviceTypes.length)
                 return api.getServiceTypes()
         }

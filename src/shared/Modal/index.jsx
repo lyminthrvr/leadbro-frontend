@@ -5,12 +5,13 @@ import Icon from "../Icon";
 import cn from "classnames";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import {motion} from 'framer-motion'
-import {opacityTransition} from "../../utils/motion.variants";
+import Button from "../Button ";
 
-const Modal = ({ size = 'sm', handleClose, children, cls }) => {
+const Modal = ({ size = 'sm', handleClose, handleSubmit, children, cls }) => {
     const [isVisible, setIsVisible] = useState(true);
     const ref = useRef(null);
     const innerRef = useRef(null);
+    const isFirstRender = useRef(true);
 
     const handleCloseModal = useCallback(() => {
         setIsVisible(false);
@@ -18,32 +19,47 @@ const Modal = ({ size = 'sm', handleClose, children, cls }) => {
         document.body.style.overflow = 'auto'
     }, [handleClose]);
 
-    const escFunction = useCallback(
-        (e) => {
-            debugger
-            if (e.keyCode === 27) {
-                handleCloseModal();
-            }
-        },
-        [handleCloseModal]
-    );
+    const handleSubmitModal = useCallback(()=>{
+        setIsVisible(false);
+        handleSubmit && handleSubmit()
+        document.body.style.overflow = 'auto'
+
+    },[handleSubmit])
+
+
+    // const escFunction = useCallback(
+    //     (e) => {
+    //         if (e.keyCode === 27) {
+    //             handleCloseModal();
+    //         }
+    //     },
+    //     [handleCloseModal]
+    // );
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+        } else {
+            handleSubmitModal();
+        }
+    }, [handleSubmitModal,handleSubmit]);
 
     useLayoutEffect(() => {
         const modalNode = ref.current;
         if(modalNode) {
             document.body.appendChild(modalNode);
-            document.addEventListener("keydown", escFunction, false);
+            document.addEventListener("keydown", ()=>null, false);
             document.body.style.overflow = 'hidden';
         }
 
         return () => {
-            document.removeEventListener("keydown", escFunction, false);
+            document.removeEventListener("keydown", ()=>null, false);
             if (modalNode && modalNode.parentNode) {
                 // modalNode.parentNode.removeChild(modalNode);
             }
             document.body.style.overflow = 'auto';
         };
-    }, [escFunction]);
+    }, []);
 
     useOutsideClick(innerRef, handleCloseModal);
 
@@ -53,16 +69,20 @@ const Modal = ({ size = 'sm', handleClose, children, cls }) => {
 
     return createPortal(
         <motion.div
-            initial={'hidden'} animate={'show'} variants={opacityTransition}
             ref={ref}
             className={cn(styles.appModal)}
             style={size === 'sm' ? undefined : { maxHeight: '100%', display: 'flex', flexDirection: 'column' }}
         >
-            <div ref={innerRef} className={cn(styles.appModal__inner,{[styles.appModal__inner__sm]:size==='sm'},{[styles.appModal__inner__xl]:size==='xl'}, cls)}>
+            <div id={'innerModal'} ref={innerRef}
+                 className={cn(styles.appModal__inner, {[styles.appModal__inner__sm]: size === 'sm'}, {[styles.appModal__inner__xl]: size === 'xl'}, cls)}>
                 <div className={styles.appModal__closeIcon} onClick={handleCloseModal}>
-                    <Icon fill={'#6F767E'} name={'close'} size={20} />
+                    <Icon fill={'#6F767E'} name={'close'} size={20}/>
                 </div>
                 {children}
+                <div className={styles.buttons}>
+                    <Button onClick={()=>handleSubmitModal()} classname={styles.button} name={'Сохранить'} type={'primary'}/>
+                    <Button onClick={()=>handleCloseModal()} classname={styles.button} name={'Удалить'} type={'secondary'}/>
+                </div>
             </div>
         </motion.div>,
         document.body

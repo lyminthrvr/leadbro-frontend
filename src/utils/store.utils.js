@@ -59,7 +59,6 @@ export const changeDraft = (store,id,object, path, value,withId) => {
     //
     // const lastPart = pathParts[pathParts.length - 1];
     // return { ...currentValue, [lastPart]: value };
-    debugger
     const pathParts = path.split('.');
     let currentDraft = store.drafts[id];
 
@@ -95,25 +94,25 @@ export function resetDraft(store,id,object, path){
     const client = object
     if (!client) return;
 
-    const pathParts = path.split('.');
-    let currentValue = client;
+    // const pathParts = path.split('.');
+    // let currentValue = client;
 
-    for (let i = 0; i < pathParts.length; i++) {
-        const part = pathParts[i];
-        if (Array.isArray(currentValue)) {
-            if (!isId(part)) return;
-            const index = Number(part);
-            currentValue = currentValue.find(x => x.id === index);
-            if (!currentValue) return;
-        } else if (typeof currentValue === "object" && currentValue !== null) {
-            if (!currentValue.hasOwnProperty(part)) return;
-            currentValue = currentValue[part];
-        } else {
-            return;
-        }
-    }
+    // for (let i = 0; i < pathParts.length; i++) {
+    //     const part = pathParts[i];
+    //     if (Array.isArray(currentValue)) {
+    //         if (!isId(part)) return;
+    //         const index = Number(part);
+    //         currentValue = currentValue.find(x => x.id === index);
+    //         if (!currentValue) return;
+    //     } else if (typeof currentValue === "object" && currentValue !== null) {
+    //         if (!currentValue.hasOwnProperty(part)) return;
+    //         currentValue = currentValue[part];
+    //     } else {
+    //         return;
+    //     }
+    // }
 
-    const lastPart = pathParts[pathParts.length - 1];
+    // const lastPart = pathParts[pathParts.length - 1];
     const newDraft = client ;
     // delete newDraft[lastPart];
 

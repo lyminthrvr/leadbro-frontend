@@ -55,7 +55,7 @@ const ValuesSelector = ({
         )}
         <Select
             onChange={handleChange}
-            value={value}
+            value={value??null}
             isMulti={true}
             name={name}
             options={options}

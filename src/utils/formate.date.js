@@ -13,7 +13,6 @@ export const formatDateWithoutHours = (date) => {
     if(!date)
         return ''
     const stringDate = date instanceof Date ? date.toISOString() : date
-    debugger
     let formatDate = format(stringDate, 'cccccc, dd LLL', { locale: ru });
     formatDate = formatDate.charAt(0).toUpperCase() + formatDate.slice(1);
     return formatDate

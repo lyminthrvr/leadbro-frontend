@@ -20,7 +20,7 @@ import EditModal from "./components/EditModal";
 const ServicesTable = observer(() => {
     const servicesStore = useServices()
 
-    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.services,servicesStore?.drafts])
+    const data = React.useMemo(() => servicesStore?.services, [servicesStore?.drafts])
     console.log(data,'123data')
     const {filteredData, setFilterValue,filters} = useTableFilters(data, {
         manager: {id: 'all', name: 'Все',filterKey:'id'},
@@ -64,7 +64,6 @@ const ServicesTable = observer(() => {
             // },
             width: 450,
             Cell: ({row}) => {
-                debugger
                 const data = row?.original
                 return <TableLink to={`/services/${data.id}`} name={data.title}/>
             },
@@ -102,7 +101,7 @@ const ServicesTable = observer(() => {
             width: 200,
             Cell: ({row}) => {
                 const data = row?.original
-                const fiosInTeam = data.command.map(el => <p>{el.fio}</p>)
+                const fiosInTeam = data.command.map(el => <p>{el.name} {el.surname}</p>)
                 return <Tooltip title={fiosInTeam}>
                     <div><TableLink name={getCorrectWordForm(data.command.length, 'участник')}/></div>
                 </Tooltip>

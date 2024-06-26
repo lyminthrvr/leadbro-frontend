@@ -29,13 +29,27 @@ const createServices = () => {
                     'Директор'
             },
             command:[{
-                id:0,
-                fio:'Александр Александр Александр1',
+                id: 0,
+                image: createBlob(),
+                name:
+                    'Александр',
+                surname:
+                    'Александр1',
+                role:
+                    'Директор'
+
             },
                 {
-                    id:1,
-                    fio:'Александр Александр Александр2',
-                },
+                    id: 1,
+                    image: createBlob(),
+                    name:
+                        'Александр',
+                    surname:
+                        'Александр2',
+                    role:
+                        'Директор'
+
+                }
             ],
             status:statusTypes.finished,
             stages:[
@@ -124,13 +138,16 @@ const createServices = () => {
                     'Директор'
             },
             command:[{
-                id:0,
-                fio:'Александр Александр Александр1',
+                id: 0,
+                image: createBlob(),
+                name:
+                    'Александр',
+                surname:
+                    'Александр1',
+                role:
+                    'Директор'
+
             },
-                {
-                    id:1,
-                    fio:'Александр Александр Александр2',
-                },
             ],
             status:statusTypes.finished,
             stages:[
@@ -205,11 +222,11 @@ const createServiceTypes = () =>{
             title:'Название услуги 1'
         },
         {
-            id:0,
+            id:1,
             title:'Название услуги 2'
         },
         {
-            id:0,
+            id:2,
             title:'Название услуги 3'
         }
     ]

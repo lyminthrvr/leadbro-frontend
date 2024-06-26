@@ -21,7 +21,6 @@ import ActionList from "./Actions/ActionList";
 //         props?.onHover()
 // }
 // } onMouseEnter={() => {
-//     debugger
 //     if ((props?.edited && props?.hovered) || !props?.onHover)
 //         return
 //     props?.onHover()

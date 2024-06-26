@@ -15,7 +15,7 @@ const Button = ({ name, after, before, onClick, adaptiveIcon, classname, type = 
                     [styles.secondary]: type === 'secondary'
                 }, { [styles.isNotSmallTable]: !rest.isSmallButton })}>
                     {before}
-                    <Link className={cn(styles.button, 'button')} to={rest.to}>
+                    <Link className={cn(styles.button, 'button')} onClick={onClick} to={rest.to}>
                         <span>{name}</span>
                     </Link>
                     {after}
