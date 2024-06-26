@@ -12,8 +12,9 @@ const Report = () => {
         <div>
             <CardField label={'Отчет'}>
                 <Basis className={styles.report_container}>
-                   <Button classname={styles.button} name={'Создать отчет'}/>
                 </Basis>
+                <Button isSmallButton={true} adaptiveIcon={<Icon size={16} viewBox={'0 0 20 20'}  name={'add'}/>} classname={styles.button} name={'Создать отчет'}/>
+
             </CardField>
         </div>
     );

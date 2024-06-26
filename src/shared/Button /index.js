@@ -26,7 +26,7 @@ const Button = ({ name, after, before, onClick, adaptiveIcon, classname, type = 
                 <div onClick={onClick} className={cn(styles.smallButton, {
                     [styles.primary]: type === 'primary',
                     [styles.secondary]: type === 'secondary'
-                })}>
+                },classname)}>
                     {adaptiveIcon}
                 </div>
             }

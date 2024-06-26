@@ -24,6 +24,8 @@ const Task = ({ stage, task, taskName }) => {
                         <span>{formatDateWithOnlyDigits(task.startDate)} - {formatDateWithOnlyDigits(task.endDate)}</span>
                         <ServiceBadge statusType={serviceStatuses.tasks} status={task.status}/>
                     </Basis>
+                    <Button classname={styles.button} type={'primary'} isSmallButton={true}  adaptiveIcon={<Icon size={16} viewBox={'0 0 20 20'}  name={'add'}/>} />
+
                 </CardField>
                 <CardField label={'Задача'}>
                     <Basis className={styles.taskName}>

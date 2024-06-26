@@ -32,7 +32,7 @@ const Bills = ({ bills }) => {
         },
         {
             Header: '',
-            width:'18%',
+            width:'21%',
 
             id: 'billWithoutSign',
             Cell: ({row}) => {
@@ -83,9 +83,9 @@ const Bills = ({ bills }) => {
         <div className={styles.table_container}>
             <Table smallTable={true}  cardComponent={(data,onPagination)=><AdaptiveCard data={data} onPagination={onPagination} />} headerActions={{
                 add: {
-                    isSmall:false,
+                    isSmall:true,
                     cls:`${styles.button} ${styles.button_title}`,
-                    type:'secondary',
+                    type:'primary',
                     title:'Добавить счет'
                 }
             }}  title={'Счета'} data={data} columns={cols}/>

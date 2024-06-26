@@ -16,6 +16,8 @@ import Report from "./components/Report";
 import TextLink from "../../../../shared/Table/TextLink";
 import {observer} from "mobx-react";
 import AdaptiveStages from "./components/AdaptiveCard";
+import Agreement from "./components/Agreement";
+import AdditionalAgreement from "./components/AdditionalAgreement";
 
 const ServicePage = observer(() => {
     let {id} = useParams();
@@ -33,6 +35,8 @@ const ServicePage = observer(() => {
                     <Hours time={el.time}/>
                     <Report/>
                     <Act act={el.act}/>
+                    <Agreement/>
+                    <AdditionalAgreement/>
                     <Bills bills={el.bills}/>
                 </Card>
                     <AdaptiveStages data={el}/>

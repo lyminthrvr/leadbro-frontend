@@ -3,9 +3,12 @@
 .button
   display: inline-flex
   flex-direction: row
+  +d
+    span
+      min-width: 80px
   span
     font-size: 13px
-    min-width: 120px
+    min-width: 125px
     text-align: start
   padding: 0
   height: 40px
@@ -13,15 +16,20 @@
     padding: 0
     height: 40px
   svg
-    padding-right: 12px
+    padding-right: 4px
     fill: $n4
   &_title
+    height: 24px
+    padding-left: 0
     span
-      text-align: center
-    //padding: 8px 16px 8px 16px
-    //a
-    //  padding: 0
-    //  height: 40px
+      font-size: 13px
+      padding: 0
+
+    a
+      height: 42px
+    svg
+      fill: $n1
+      padding-right: 0px
 .table_container
   div[class*=Table_smallTable],div[class*=Table_card_smallTable]
     padding-top: 0px !important
@@ -29,6 +37,7 @@
     table-layout: fixed
   th
     padding-top: 0 !important
+    padding-bottom: 0 !important
   th,td
     +d
       padding: 0.5rem 1.5rem 1.8rem 0.75rem
@@ -42,10 +51,15 @@
     padding: 0
   div[class*="Bills_button__"]
     +d
-      div[class*="Act_button__"]
+      div[class*="Bills_button__"]
         text-align: left
         max-width: 150px
       a
         margin-left: 0
+        max-width: 110px
       svg
         display: none
+  +d
+    div[class*="button_smallButton"]
+      svg
+        display: block !important
