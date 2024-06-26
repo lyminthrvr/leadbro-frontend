@@ -20,7 +20,6 @@ const MultiInputPasswords = ({onAdd,passwordData,label,onActions,param,index}) =
         <MultiInputLabeled actions={{...onActions( `passwords.${index}.name`,`passwords.${index}`),copy:null}} isInput={true} name={`passwords.${index}.name`} label={label} onAdd={()=>{
             onAdd(`passwords.${index}.${param}.${length}`,createEmptyCredentials())}}>
             {Object.entries(passwordData[param] ?? {}).map(([key,value], i) => {
-                debugger
                 const actions = onActions( `passwords.${index}.${param}.${key}`)
                 return Object.entries(value??{}).map(([keyCredential,valueCredential])=>{
                     return <CardInput placeholder={`${credentialsLabels[keyCredential]}...`} multiple={true}

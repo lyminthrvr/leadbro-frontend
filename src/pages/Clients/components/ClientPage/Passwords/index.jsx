@@ -22,7 +22,6 @@ const ClientPasswords = ({passwordsData, onRemove, onChange, onSubmit, onReset, 
                 navigator.clipboard.writeText(text).then(r => handleInfo(copy))
             },
             delete:  ({name}) => {
-                debugger
                 if(parentId){
                     onRemove(parentId)
                     return
