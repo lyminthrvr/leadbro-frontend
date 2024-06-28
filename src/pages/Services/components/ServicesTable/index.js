@@ -49,7 +49,7 @@ const ServicesTable = observer(() => {
             Cell: ({row}) => {
 
                 const data = row?.original
-                return <TableLink to={`/services/${data?.id}`} name={data.id}/>
+                return <span>{data.id}</span>
             }
         },
         {
@@ -70,7 +70,7 @@ const ServicesTable = observer(() => {
 
         },
         {
-            Header: '№ договора',
+            Header: <span style={{textWrap:'nowrap'}}>№ договора</span>,
             id: 'contractNumber',
             accessor: 'contractNumber',
             // editing: true,

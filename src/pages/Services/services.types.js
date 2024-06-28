@@ -12,7 +12,7 @@ export const statusTypesRu = {
 
 export const colorStatusTypes = {
     inProgress:{status:statusTypesRu.inProgress,class:'status-green'},
-    finished:{status:statusTypesRu.finished,class:'status-red-dark'},
+    finished:{status:statusTypesRu.finished,class:'status-red'},
 
 }
 

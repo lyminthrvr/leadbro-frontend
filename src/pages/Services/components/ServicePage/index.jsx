@@ -18,27 +18,40 @@ import {observer} from "mobx-react";
 import AdaptiveStages from "./components/AdaptiveCard";
 import Agreement from "./components/Agreement";
 import AdditionalAgreement from "./components/AdditionalAgreement";
+import Icon from "../../../../shared/Icon";
+import Button from "../../../../shared/Button ";
+import cn from "classnames";
 
 const ServicePage = observer(() => {
     let {id} = useParams();
     const services = useServices();
     const api = useServiceApi();
 
-    const service = useMemo(() => services.getById(+id), [id, ,services,services.services, services.drafts])
+    const service = useMemo(() => services.getById(+id), [id, , services, services.services, services.drafts])
     return (
         <motion.div initial={'hidden'} animate={'show'} variants={opacityTransition}>
             {service?.stages.map(el => (
-                <div>
-                <Card classCardHead={styles.card_title} className={styles.card} classCardHead={styles.head} classTitle={styles.card_title}
-                      head={<TextLink className={styles.etap}>Этап №{el.number}</TextLink>} title={el.title}>
-                    <Task stage={el} taskName={service.title} task={el.task}/>
-                    <Hours time={el.time}/>
-                    <Report/>
-                    <Act act={el.act}/>
-                    <Agreement/>
-                    <AdditionalAgreement/>
-                    <Bills bills={el.bills}/>
-                </Card>
+                <div className={styles.cards}>
+                    <Card classCardHead={styles.card_title} className={styles.card} classCardHead={styles.head}
+                          classTitle={styles.card_title}
+                          head={<TextLink className={styles.etap}>Этап №{el.number}</TextLink>} title={el.title}>
+                        <Task stage={el} taskName={service.title} task={el.task}/>
+                        <Hours time={el.time}/>
+                        <Report/>
+                        <Act act={el.act}/>
+                        <Agreement/>
+                        <AdditionalAgreement/>
+                        <Bills bills={el.bills}/>
+                    </Card>
+                    <Card classCardHead={styles.card_title} className={cn(styles.card, styles.secondCard)}
+                          title={'Документы'}>
+                        <div className={styles.buttons}>
+                            <Button type={'secondary'} after={<Icon size={24} name={'download'}/>}
+                                    classname={styles.button} name={'Договор'}/>
+                            <Button type={'secondary'} after={<Icon size={24} name={'download'}/>}
+                                    classname={styles.button} name={'Доп.соглашение'}/>
+                        </div>
+                    </Card>
                     <AdaptiveStages data={el}/>
                 </div>
             ))}

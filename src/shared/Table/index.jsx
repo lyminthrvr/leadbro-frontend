@@ -100,15 +100,16 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, edi
                         {!rest.disableHeader && headerGroups.map(headerGroup => (
                             <tr {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map(column => (
-                                    <motion.th {...column.getHeaderProps(column.getSortByToggleProps())}
+                                    <motion.th onClick={(e) => {
+                                        // debugger
+                                        if (column.canSort && !column.isSortedDesc)
+                                            clickRecursive(e.target);
+                                    }} {...column.getHeaderProps(column.getSortByToggleProps())}
                                                style={{width: column.width}}>
                                         <div className={cn(styles.headerCol_wrapper)}>
                                             <div
                                                 className={cn(styles.headerCol)}
-                                                onClick={(e) => {
-                                                    if (column.canSort && !column.isSortedDesc)
-                                                        clickRecursive(e.target);
-                                                }}
+
                                                 ref={headerSortingRef}
                                             >
                                                 <span>{column.render('Header')}</span>
@@ -116,7 +117,7 @@ const Table = observer(({columns, data, title, headerActions, cardComponent, edi
                                                     <span className={styles.margin}>
                                                             <div className={styles.flex}>
                                                                 <Icon fill={'#6F767E'} name={'sort-arrow'}
-                                                                      viewBox={'0 0 8 17'} size={20}/>
+                                                                      viewBox={'0 0 8 17'} size={16}/>
                                                                 <div
                                                                     className={cn(styles.component, {[styles.active]: column.isSortedDesc})}>
                                                                     <span/>

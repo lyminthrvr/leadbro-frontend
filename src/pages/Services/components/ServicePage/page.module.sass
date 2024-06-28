@@ -9,5 +9,57 @@
   &:hover
     +link
 .card
+  flex-shrink: 1
+  flex-basis: 100%
   +t
     display: none
+.cards
+
+
+  display: flex
+  flex-direction: row
+  gap: 8px
+  +t
+    >div:nth-of-type(2)
+      display: none
+.secondCard
+  flex-shrink: 1.5
+  max-height: 280px
+  flex-basis: 530px
+
+.button
+  display: inline-flex
+  flex-direction: row
+  +d
+    span
+      min-width: 80px
+  span
+    font-size: 13px
+    min-width: 125px
+    text-align: start
+  padding: 12px
+  height: 40px
+  a
+    padding: 0
+    height: 40px
+  svg
+    padding-right: 4px
+    fill: $n4
+  &_title
+    height: 24px
+    padding-left: 0
+    span
+      font-size: 13px
+      padding: 0
+
+    a
+      height: 42px
+    svg
+      fill: $n1
+      padding-right: 0px
+.buttons
+  display: flex
+  flex-direction: column
+  gap: 8px
+  >*
+    max-width: fit-content
