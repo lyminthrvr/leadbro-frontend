@@ -39,8 +39,8 @@ const ServicePage = observer(() => {
                         <Hours time={el.time}/>
                         <Report/>
                         <Act act={el.act}/>
-                        <Agreement/>
-                        <AdditionalAgreement/>
+                        {/*<Agreement/>*/}
+                        {/*<AdditionalAgreement/>*/}
                         <Bills bills={el.bills}/>
                     </Card>
                     <Card classCardHead={styles.card_title} className={cn(styles.card, styles.secondCard)}
