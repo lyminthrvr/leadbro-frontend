@@ -23,14 +23,16 @@ $datepicker__triangle-size: 8px !default;
 %navigation-chevron {
   border-color: $datepicker__muted-color;
   border-style: solid;
-  border-width: 3px 3px 0 0;
+  border-width: 2.7px 2.7px 0 0;
   content: "";
   display: block;
-  height: 9px;
+  height: 10px;
   position: absolute;
   top: 6px;
-  width: 9px;
+  width:10px;
   transition: border-color 0.2s;
+  border-radius: 1.8px;
+
 
   &--disabled,
   &--disabled:hover {
@@ -122,6 +124,8 @@ $datepicker__triangle-size: 8px !default;
   position: absolute;
   right: -150px;
   z-index: 29;
+  border-radius: 16px;
+  padding: 12px 18.5px;
   @media (max-width: 768px) {
     //right: calc(100vw + 250px);
     //left: 250px;
@@ -152,7 +156,7 @@ $datepicker__triangle-size: 8px !default;
     //right: unset;
     right: -46vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: calc(14vw - 6px);
+      width: calc(12.5vw - 5.5px);
       //max-width: 62px;
       //min-width: 48px;
     }
@@ -162,7 +166,7 @@ $datepicker__triangle-size: 8px !default;
     //right: unset;
     right: -49vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: calc(14vw - 2px);
+      width: calc(12.8vw - 3.1px);
       //max-width: 62px;
       //min-width: 48px;
     }
@@ -170,9 +174,9 @@ $datepicker__triangle-size: 8px !default;
   }
   @media (max-width: 318px) {
     //right: unset;
-    right: -55vw;
+    right: -54vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: calc(15vw - 1px);
+      width: calc(13vw - 1px);
       //max-width: 62px;
       //min-width: 48px;
     }
@@ -183,7 +187,7 @@ $datepicker__triangle-size: 8px !default;
     //right: unset;
     right: -57vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: calc(16vw - 1px);
+      width: calc(14vw - 1px);
       //max-width: 62px;
       //min-width: 48px;
     }
@@ -193,7 +197,7 @@ $datepicker__triangle-size: 8px !default;
     //right: unset;
     right: -60vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: calc(17vw - 1px);
+      width: calc(15vw - 1px);
       //max-width: 62px;
       //min-width: 48px;
     }
@@ -203,7 +207,37 @@ $datepicker__triangle-size: 8px !default;
     //right: unset;
     right: -66vw;
     .react-datepicker__day,.react-datepicker__day-name{
-      width: calc(18.5vw - 1px);
+      width: calc(16vw - 1px);
+      //max-width: 62px;
+      //min-width: 48px;
+    }
+
+  }
+  @media (max-width: 247px) {
+    //right: unset;
+    right: -68vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: calc(17vw - 1px);
+      //max-width: 62px;
+      //min-width: 48px;
+    }
+
+  }
+  @media (max-width: 226px) {
+    //right: unset;
+    right: -74vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: calc(19vw - 1px);
+      //max-width: 62px;
+      //min-width: 48px;
+    }
+
+  }
+  @media (max-width: 226px) {
+    //right: unset;
+    right: -80vw;
+    .react-datepicker__day,.react-datepicker__day-name{
+      width: calc(21vw - 4px);
       //max-width: 62px;
       //min-width: 48px;
     }
@@ -332,11 +366,16 @@ $datepicker__triangle-size: 8px !default;
 .react-datepicker__current-month,
 .react-datepicker-time__header,
 .react-datepicker-year-header {
-  margin-bottom: 8px;
+  position: relative;
+  top: -12px;
+  padding-bottom: 8px;
+  text-transform:capitalize ;
   margin-top: 0;
   color: $datepicker__header-color;
   font-weight: 600;
   font-size: 16px;
+  border-bottom: 1px solid $n3;
+
 }
 
 @at-root .dark-mode {
@@ -373,12 +412,19 @@ $datepicker__triangle-size: 8px !default;
   overflow: hidden;
 
   &--previous {
-    left: 2px;
+   &:hover {
+     background: $n3;
+   }
+    border-radius: 50px;
+    left: 20px;
   }
 
   &--next {
-    right: 2px;
-
+    right: 20px;
+    &:hover {
+      background: $n3;
+    }
+    border-radius: 50px;
     &--with-time:not(&--with-today-button) {
       right: 85px;
     }
@@ -402,7 +448,7 @@ $datepicker__triangle-size: 8px !default;
 
   &:hover {
     *::before {
-      border-color: darken($datepicker__muted-color, 15%);
+      border-color: $n7;
     }
   }
 }
@@ -418,16 +464,18 @@ $datepicker__triangle-size: 8px !default;
   }
 
   &--next {
-    left: -2px;
+    left: 2px;
+    top: 0.5px;
 
     &::before {
       transform: rotate(45deg);
-      left: -7px;
+      left: -9px;
     }
   }
 
   &--previous {
-    right: -2px;
+    right: 0px;
+    top: 0.5px;
 
     &::before {
       transform: rotate(225deg);
@@ -983,4 +1031,7 @@ $datepicker__triangle-size: 8px !default;
   .react-datepicker-time__header {
     font-size: $datepicker__font-size * 1.8;
   }
+}
+.react-datepicker__aria-live {
+  display: none;
 }

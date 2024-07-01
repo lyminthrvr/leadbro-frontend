@@ -19,7 +19,6 @@ import useServiceApi from "../../../../services.api";
 import {handleInfo, handleSubmit as handleSubmitSnackbar} from "../../../../../../utils/snackbar";
 import TextLink from "../../../../../../shared/Table/TextLink";
 const EditModal = observer(({data}) => {
-    debugger
     console.log(data,'editmodaldata')
     const serviceTypes = useServiceTypes()
     const serviceStore = useServices()
