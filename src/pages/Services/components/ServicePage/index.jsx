@@ -34,7 +34,7 @@ const ServicePage = observer(() => {
                 <div className={styles.cards}>
                     <Card classCardHead={styles.card_title} className={styles.card} classCardHead={styles.head}
                           classTitle={styles.card_title}
-                          head={<TextLink className={styles.etap}>Этап №{el.number}</TextLink>} title={el.title}>
+                          head={<TextLink  to={'stages'}  className={styles.etap}>Этап №{el.number}</TextLink>} title={el.title}>
                         <Task stage={el} taskName={service.title} task={el.task}/>
                         <Hours time={el.time}/>
                         <Report/>

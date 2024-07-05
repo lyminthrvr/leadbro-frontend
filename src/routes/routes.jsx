@@ -6,13 +6,15 @@ import React from "react";
 import {Outlet} from "react-router";
 import Services from "../pages/Services";
 import ServicePage from "../pages/Services/components/ServicePage";
+import StagesPage from "../pages/Stages/components/StagesPage";
 
 export const paths = {
     MAIN:'/',
     CLIENTS:'/clients',
     CLIENTS_ID:'/clients/:id',
     SERVICES:'/services',
-    SERVICES_ID:'/services/:id'
+    SERVICES_ID:'/services/:id',
+    SERVICES_ID_STAGES:'/services/:id/stages'
 }
 
 const routes = [
@@ -26,6 +28,7 @@ const routes = [
     {path: paths.SERVICES, element: <Page><Services/></Page>,},
     {path: paths.SERVICES, element: <Page><Services/></Page>,},
     {path: paths.SERVICES_ID, element: <Page><ServicePage/></Page>,},
+    {path: paths.SERVICES_ID_STAGES, element: <Page><StagesPage/></Page>,},
     {path: 'play', element: <div/>,},
     {
         path: 'profile',
