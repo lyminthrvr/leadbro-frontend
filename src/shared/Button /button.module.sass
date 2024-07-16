@@ -8,6 +8,13 @@
     color: white
     &:hover
       background: darken($p3, 10%)
+  &.secondary_outline
+    border: unset
+    background-color: white
+    .button
+      color: $p3
+    &:hover
+      background: darken(white, 2%)
 
   &.secondary
     box-sizing: border-box
@@ -61,6 +68,10 @@
   border-radius: 50px
   width: 24px
   height: 24px
+
+  &.secondary_outline
+    background-color: white
+    color: $p3
 
   &.primary
     background-color: $p3
