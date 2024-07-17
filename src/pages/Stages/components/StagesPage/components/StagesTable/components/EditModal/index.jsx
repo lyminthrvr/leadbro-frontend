@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import useStages from '../../../../../../hooks/useStages';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   handleError,
   handleSubmit as handleSubmitSnackbar,
@@ -16,36 +16,54 @@ import cn from 'classnames';
 import CommentsList from '../../../../../../../../components/CommentsList';
 import taskStyles from './components/TaskDescriptionPart/Description.module.sass';
 
-const EditModal = observer(({ data }) => {
+const EditModal = observer(({ stageId, data, setOpenedByTask }) => {
   const { data: stagesStore } = useStages();
   const stageTask = useMemo(
-    () => stagesStore.getById(data.id)?.tasks.find((el) => el.id === data.id),
-    [data.id, stagesStore.stages, stagesStore.currentStage, stagesStore.drafts],
+    () => stagesStore.getById(stageId)?.tasks.find((el) => el.id === data.id),
+    [
+      data.id,
+      stagesStore.stages,
+      stageId,
+      stagesStore.currentStage,
+      stagesStore.drafts,
+    ],
   );
   const [isOpened, setOpened] = useState(true);
   const api = useStageApi();
   const handleChange = (name, payload, withId = true) => {
-    stagesStore.changeById(data?.id, name, payload, withId);
+    stagesStore.changeById(stageId, name, payload, withId);
   };
   const handleReset = useCallback((path = '') => {
-    stagesStore.resetDraft(data.id, path);
+    stagesStore.resetDraft(stageId, path);
   }, []);
+
+  // useEffect(() => {
+  //   debugger;
+  //   if (isOpenedByTask !== null && !isOpenedByTask) setOpenedByTask(null);
+  // }, [isOpenedByTask, setOpenedByTask]);
 
   const handleDecline = () => {
     handleError('Задача отклонена');
     setOpened(false);
+    setOpenedByTask && setOpenedByTask(null);
   };
 
   const handleSubmit = useCallback((text) => {
     handleSubmitSnackbar(text ?? 'Задача успешно отредактирована');
-    stagesStore.submitDraft(data.id);
+    stagesStore.submitDraft(stageId);
     api.setStages(stagesStore.stages);
     setOpened(false);
+    setOpenedByTask && setOpenedByTask(null);
   }, []);
   return (
     stageTask &&
     isOpened && (
-      <Modal handleSubmit={() => handleSubmit()} size={'lg'}>
+      <Modal
+        closeButton={false}
+        handleClose={() => setOpenedByTask && setOpenedByTask(null)}
+        handleSubmit={() => handleSubmit()}
+        size={'lg'}
+      >
         <div className={styles.gridContainer}>
           <TaskDescriptionPart
             handleSave={() => handleSubmit('Задача принята')}

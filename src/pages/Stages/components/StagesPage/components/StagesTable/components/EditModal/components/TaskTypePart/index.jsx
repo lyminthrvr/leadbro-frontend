@@ -61,13 +61,14 @@ const Index = ({
         className={styles.input}
       />
       <ResponsibleInput
+        canAdd={false}
         max={1}
         onAdd={(name) =>
           handleAdd(name, { fio: '', id: initialResponsibles.length })
         }
         onChange={(name, value) => handleChange(`${name}.fio`, value)}
         name={'responsibles'}
-        label={'Ответственные'}
+        label={'Ответственный'}
         values={mappedResponsibles}
       />
       <ResponsibleInput

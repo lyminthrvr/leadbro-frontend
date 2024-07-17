@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStageApi from '../../../../stages.api';
 import ManagerCell from '../../../../../../components/ManagerCell';
@@ -11,12 +11,17 @@ import DeadLineTimeCell from './components/DeadLineTimeCell';
 import EditModal from './components/EditModal';
 import { convertToHours } from '../../../../../../utils/format.time';
 import AdaptiveCard from './components/AdaptiveCard';
+import TextLink from '../../../../../../shared/Table/TextLink';
+import useOutsideClick from '../../../../../../hooks/useOutsideClick';
 
 const StagesTable = observer(({ stage }) => {
   // const
   const api = useStageApi();
   const clientData = React.useMemo(() => stage, [stage]);
   const data = React.useMemo(() => stage?.tasks, [stage?.tasks, stage]);
+  const [taskData, setTaskData] = useState(null);
+  const ref = useRef();
+  // useOutsideClick(ref, () => setTaskData(null));
   const cols = React.useMemo(() => {
     return [
       {
@@ -27,7 +32,15 @@ const StagesTable = observer(({ stage }) => {
 
         Cell: ({ row }) => {
           const data = row?.original;
-          return <span>{data.title}</span>;
+          return (
+            <TextLink
+              onClick={() => {
+                setTaskData(data);
+              }}
+            >
+              {data.title}
+            </TextLink>
+          );
         },
       },
       {
@@ -85,7 +98,7 @@ const StagesTable = observer(({ stage }) => {
         },
       },
     ];
-  }, [data]);
+  }, [data, taskData]);
 
   const sumActualTime = useMemo(() => {
     const totalHours = stage.tasks.reduce(
@@ -99,7 +112,7 @@ const StagesTable = observer(({ stage }) => {
   return (
     <div className={styles.table}>
       <Table
-        editComponent={(data) => <EditModal data={data} />}
+        editComponent={(data) => <EditModal stageId={stage.id} data={data} />}
         classContainer={styles.tableContainer}
         // editComponent={(data, onClose) => <EditModal data={data} />}
         cardComponent={(data) => (
@@ -117,6 +130,14 @@ const StagesTable = observer(({ stage }) => {
         columns={cols}
       />
       {/*{stage && <ClientInfo client={stage.client} />}*/}
+      {taskData && (
+        <EditModal
+          stageId={stage.id}
+          data={taskData}
+          setOpenedByTask={() => setTaskData(null)}
+          isOpenedByTask={!!taskData}
+        />
+      )}
     </div>
   );
 });

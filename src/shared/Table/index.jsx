@@ -25,7 +25,7 @@ const Table = observer(
     ...rest
   }) => {
     const [editingRowIndex, setEditingRowIndex] = useState(null);
-
+    const [isSorting, setIsSorting] = useState(false);
     const tableInstance = useTable(
       {
         columns,
@@ -59,7 +59,16 @@ const Table = observer(
       />
     );
 
+    const handleEditClick = (index) => {
+      if (!isSorting) {
+        setEditingRowIndex(editingRowIndex === index ? null : index);
+        setTimeout(() => (editingRowIndex === index ? null : index), 5);
+      }
+      setIsSorting(false);
+    };
+
     const renderRow = (row, index) => {
+      debugger;
       prepareRow(row);
       const isEditing = editComponent && index === editingRowIndex;
 
@@ -84,7 +93,9 @@ const Table = observer(
                 <td>
                   <div
                     className={styles.editButton}
-                    onClick={() => setEditingRowIndex(isEditing ? null : index)}
+                    onClick={() => {
+                      handleEditClick(index);
+                    }}
                   >
                     {!isEditing ? (
                       <Icon fill={'#6F767E66'} name={'edit'} size={20} />
@@ -103,13 +114,15 @@ const Table = observer(
                 <td>
                   <div
                     className={styles.editButton}
+                    onMouseUp={() => setEditingRowIndex(null)}
                     onClick={() => {
+                      setIsSorting(false);
                       setEditingRowIndex((prev) => {
-                        return prev ? index : null;
+                        return index;
                       });
                       //Это костыль чтобы модальное окно закрывалось, иначе оно нужно будет кликнуть дважды
                       //Для оптимизации можно вынести логику в ui store mobx и работать через него
-                      setTimeout(() => setEditingRowIndex(index), 0);
+                      setTimeout(() => setEditingRowIndex(index), 100);
                     }}
                   >
                     <Icon fill={'#6F767E66'} name={'edit'} size={20} />
@@ -117,7 +130,7 @@ const Table = observer(
                 </td>
               ))}
           </tr>
-          {editComponentContent && editComponentContent()}
+          {editComponentContent && !isSorting && editComponentContent()}
         </React.Fragment>
       );
     };
@@ -144,6 +157,9 @@ const Table = observer(
                       {headerGroup.headers.map((column) => (
                         <motion.th
                           onClick={(e) => {
+                            debugger;
+                            console.log('sorted');
+                            setIsSorting(true);
                             // debugger
                             if (column.canSort && !column.isSortedDesc)
                               clickRecursive(e.target);
@@ -153,7 +169,12 @@ const Table = observer(
                           )}
                           style={{ width: column.width }}
                         >
-                          <div className={cn(styles.headerCol_wrapper)}>
+                          <div
+                            onClick={() => {
+                              setIsSorting(true);
+                            }}
+                            className={cn(styles.headerCol_wrapper)}
+                          >
                             <div
                               className={cn(styles.headerCol)}
                               ref={headerSortingRef}

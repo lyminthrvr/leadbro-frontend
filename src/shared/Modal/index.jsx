@@ -12,8 +12,16 @@ import cn from 'classnames';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { motion } from 'framer-motion';
 import Button from '../Button ';
+import { opacityTransition } from '../../utils/motion.variants';
 
-const Modal = ({ size = 'sm', handleClose, handleSubmit, children, cls }) => {
+const Modal = ({
+  size = 'sm',
+  handleClose,
+  handleSubmit,
+  children,
+  cls,
+  closeButton,
+}) => {
   const [isVisible, setIsVisible] = useState(true);
   const ref = useRef(null);
   const innerRef = useRef(null);
@@ -74,12 +82,16 @@ const Modal = ({ size = 'sm', handleClose, handleSubmit, children, cls }) => {
   return createPortal(
     <motion.div
       ref={ref}
+      animate={'show'}
+      initial={'hidden'}
+      exit={'hidden'}
       className={cn(styles.appModal)}
       style={
         size === 'sm'
           ? undefined
           : { maxHeight: '100%', display: 'flex', flexDirection: 'column' }
       }
+      variants={opacityTransition}
     >
       <div
         id={'innerModal'}
@@ -107,7 +119,7 @@ const Modal = ({ size = 'sm', handleClose, handleSubmit, children, cls }) => {
               type={'primary'}
             />
           )}
-          {handleClose && (
+          {handleClose && closeButton && (
             <Button
               isSmall={false}
               onClick={() => handleCloseModal()}

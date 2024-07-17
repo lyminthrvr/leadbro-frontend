@@ -35,7 +35,7 @@ const ServicePage = observer(() => {
     <motion.div
       initial={'hidden'}
       animate={'show'}
-      variants={opacityTransition}
+      variants={`opacityTransition`}
     >
       {service?.stages.map((el) => (
         <div className={styles.cards}>
