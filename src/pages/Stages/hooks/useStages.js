@@ -38,15 +38,19 @@ const useStages = (id = null) => {
         stagesStore.clearCurrentStage();
       }
     };
-  }, [stagesStore, id]);
+  }, [stagesStore, id, api]);
 
   const result = useMemo(() => {
     if (id !== null) {
-      return stagesStore.currentStage || stagesStore.getById(id);
+      return (
+        stagesStore.currentStage ||
+        stagesStore.getById(id) ||
+        api.getStageById(id)
+      );
     } else {
       return stagesStore;
     }
-  }, [id, stagesStore.currentStage, stagesStore.stages]);
+  }, [id, stagesStore.currentStage, stagesStore.stages, api]);
 
   return { data: result, isLoading };
 };

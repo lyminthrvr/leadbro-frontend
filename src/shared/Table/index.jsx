@@ -68,7 +68,6 @@ const Table = observer(
     };
 
     const renderRow = (row, index) => {
-      debugger;
       prepareRow(row);
       const isEditing = editComponent && index === editingRowIndex;
 
@@ -157,7 +156,6 @@ const Table = observer(
                       {headerGroup.headers.map((column) => (
                         <motion.th
                           onClick={(e) => {
-                            debugger;
                             console.log('sorted');
                             setIsSorting(true);
                             // debugger

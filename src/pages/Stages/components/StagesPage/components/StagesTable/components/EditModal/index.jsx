@@ -16,7 +16,7 @@ import cn from 'classnames';
 import CommentsList from '../../../../../../../../components/CommentsList';
 import taskStyles from './components/TaskDescriptionPart/Description.module.sass';
 
-const EditModal = observer(({ stageId, data, setOpenedByTask }) => {
+const EditModal = observer(({ stageId, data, handleClose }) => {
   const { data: stagesStore } = useStages();
   const stageTask = useMemo(
     () => stagesStore.getById(stageId)?.tasks.find((el) => el.id === data.id),
@@ -37,15 +37,10 @@ const EditModal = observer(({ stageId, data, setOpenedByTask }) => {
     stagesStore.resetDraft(stageId, path);
   }, []);
 
-  // useEffect(() => {
-  //   debugger;
-  //   if (isOpenedByTask !== null && !isOpenedByTask) setOpenedByTask(null);
-  // }, [isOpenedByTask, setOpenedByTask]);
-
   const handleDecline = () => {
     handleError('Задача отклонена');
     setOpened(false);
-    setOpenedByTask && setOpenedByTask(null);
+    handleClose && handleClose(null);
   };
 
   const handleSubmit = useCallback((text) => {
@@ -53,14 +48,14 @@ const EditModal = observer(({ stageId, data, setOpenedByTask }) => {
     stagesStore.submitDraft(stageId);
     api.setStages(stagesStore.stages);
     setOpened(false);
-    setOpenedByTask && setOpenedByTask(null);
+    handleClose && handleClose(null);
   }, []);
   return (
     stageTask &&
     isOpened && (
       <Modal
         closeButton={false}
-        handleClose={() => setOpenedByTask && setOpenedByTask(null)}
+        handleClose={() => handleClose && handleClose(null)}
         handleSubmit={() => handleSubmit()}
         size={'lg'}
       >

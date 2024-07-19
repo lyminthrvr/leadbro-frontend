@@ -134,8 +134,7 @@ const StagesTable = observer(({ stage }) => {
         <EditModal
           stageId={stage.id}
           data={taskData}
-          setOpenedByTask={() => setTaskData(null)}
-          isOpenedByTask={!!taskData}
+          handleClose={() => setTaskData(null)}
         />
       )}
     </div>

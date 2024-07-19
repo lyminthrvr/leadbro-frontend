@@ -7,6 +7,7 @@ const createStages = () => {
       id: 0,
       number: '1234',
       title: 'SEO-продвижение',
+      startTime: new Date(),
       deadline: new Date(),
       deadlineTime: '5 ч',
       contactPerson: 'Александр Шилов',
