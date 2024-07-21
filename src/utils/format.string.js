@@ -33,3 +33,24 @@ export const truncateString = (str, maxLength) => {
   }
   return str.slice(0, maxLength) + '...';
 };
+
+function formatDuration(value, type) {
+  const pluralize = (number, one, few, many) => {
+    if (number % 10 === 1 && number % 100 !== 11) {
+      return `${number} ${one}`;
+    } else if ([2, 3, 4].includes(number % 10) && ![12, 13, 14].includes(number % 100)) {
+      return `${number} ${few}`;
+    } else {
+      return `${number} ${many}`;
+    }
+  };
+
+  switch (type) {
+    case 'minutes':
+      return pluralize(value, 'минута', 'минуты', 'минут');
+    case 'hours':
+      return pluralize(value, 'час', 'часа', 'часов');
+    case 'days':
+      return pluralize(value, 'день', 'дня', 'дней');
+  }
+}
