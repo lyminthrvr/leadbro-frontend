@@ -35,6 +35,16 @@ export const truncateString = (str, maxLength) => {
 };
 
 function formatDuration(value, type) {
+  if(value ===  null){
+    switch (type) {
+      case 'minutes':
+        return 'минуты'
+      case 'hours':
+        return 'часы'
+      case 'days':
+        return 'дни'
+    }
+  }
   const pluralize = (number, one, few, many) => {
     if (number % 10 === 1 && number % 100 !== 11) {
       return `${number} ${one}`;
