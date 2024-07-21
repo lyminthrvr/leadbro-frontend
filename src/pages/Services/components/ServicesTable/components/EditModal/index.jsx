@@ -13,7 +13,7 @@ import DatePicker from 'react-datepicker';
 import Calendar from '../../../../../../shared/Datepicker';
 import useClients from '../../../../../Clients/hooks/useClients';
 import cn from 'classnames';
-import Button from '../../../../../../shared/Button ';
+import Button from '../../../../../../shared/Button';
 import useServices from '../../../../hooks/useServices';
 import useServiceApi from '../../../../services.api';
 import {

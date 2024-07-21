@@ -6,7 +6,7 @@ import {
   formatDateWithoutHours,
 } from '../../../../../../utils/formate.date';
 import CardField from '../CardField';
-import Button from '../../../../../../shared/Button ';
+import Button from '../../../../../../shared/Button';
 import Badge from '../../../../../../shared/Badge';
 import ServiceBadge, { serviceStatuses } from '../Statuses';
 import Image from '../../../../../../shared/Image';

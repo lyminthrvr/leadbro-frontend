@@ -1,5 +1,5 @@
 import Clients from '../pages/Clients';
-import Button from '../shared/Button ';
+import Button from '../shared/Button';
 import ClientPage from '../pages/Clients/components/ClientPage';
 import Page from '../shared/Page';
 import React from 'react';

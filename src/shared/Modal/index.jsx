@@ -11,7 +11,7 @@ import Icon from '../Icon';
 import cn from 'classnames';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { motion } from 'framer-motion';
-import Button from '../Button ';
+import Button from '../Button';
 import { opacityTransition } from '../../utils/motion.variants';
 
 const Modal = ({

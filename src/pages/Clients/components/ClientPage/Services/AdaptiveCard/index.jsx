@@ -5,7 +5,7 @@ import Badge from "../../../../../../shared/Badge";
 import Avatar from "../../../../../../shared/Avatar";
 import cn from "classnames";
 import {formatDate, formatDateWithoutHours} from "../../../../../../utils/formate.date";
-import Button from "../../../../../../shared/Button ";
+import Button from "../../../../../../shared/Button";
 import Tooltip from "../../../../../../shared/Tooltip";
 
 const AdaptiveCard = ({data, className, onPagination}) => {

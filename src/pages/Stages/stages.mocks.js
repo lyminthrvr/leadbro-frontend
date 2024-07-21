@@ -12,6 +12,9 @@ const createStages = () => {
       deadlineTime: '5 ч',
       contactPerson: 'Александр Шилов',
       extraCosts: '7500',
+      actSum: '2500',
+      taskDescription: 'Нарисовать СРМ',
+      sumByHand: true,
       service: {
         id: 0,
         title: 'Услуга 1',

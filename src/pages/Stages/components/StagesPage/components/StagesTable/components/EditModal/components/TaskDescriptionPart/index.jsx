@@ -1,6 +1,6 @@
 import React from 'react';
 import StageBadge, { StageStatuses } from '../../../StagesBadge';
-import Button from '../../../../../../../../../../shared/Button ';
+import Button from '../../../../../../../../../../shared/Button';
 import TextInput from '../../../../../../../../../../shared/TextInput';
 import Dropdown from '../../../../../../../../../../shared/Dropdown/Default';
 import TextLink from '../../../../../../../../../../shared/Table/TextLink';

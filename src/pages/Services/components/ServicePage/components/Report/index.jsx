@@ -4,7 +4,7 @@ import Icon from "../../../../../../shared/Icon";
 import {formatDateWithOnlyDigits} from "../../../../../../utils/formate.date";
 import ServiceBadge, {serviceStatuses} from "../Statuses";
 import CardField from "../CardField";
-import Button from "../../../../../../shared/Button ";
+import Button from "../../../../../../shared/Button";
 import Basis from "../../../../../../shared/Basis";
 
 const Report = () => {

@@ -4,7 +4,7 @@ import styles from './Description.module.sass'
 import Icon from "../../../../../shared/Icon";
 import cn from "classnames";
 import TextInput from "../../../../../shared/TextInput";
-import Button from "../../../../../shared/Button ";
+import Button from "../../../../../shared/Button";
 
 const ClientDescription = ({description, onChange,onSubmit,onReset}) => {
     const [isEdit, setIsEdit] = useState(false)

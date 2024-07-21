@@ -7,7 +7,7 @@ import {formatSum} from "../../../../../../utils/format.number";
 import ServiceBadge, {serviceStatuses} from "../Statuses";
 import Table from "../../../../../../shared/Table";
 import AdaptiveCard from "../../../../../Clients/components/ClientPage/Deals/AdaptiveCard";
-import Button from "../../../../../../shared/Button ";
+import Button from "../../../../../../shared/Button";
 import Icon from "../../../../../../shared/Icon";
 const Bills = ({ bills }) => {
     const cols =  React.useMemo(() => [

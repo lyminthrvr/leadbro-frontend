@@ -19,7 +19,7 @@ const TextArea = forwardRef((props, ref) => {
     <textarea
       value={props.value}
       ref={ref ?? textAreaRef}
-      rows={1}
+      rows={props.rows ?? 1}
       {...props}
     />
     //
