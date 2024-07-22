@@ -1,12 +1,16 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import TextInput from '../../shared/TextInput';
-import { observer } from 'mobx-react';
 import styles from '../../pages/Services/components/ServicesTable/components/EditModal/Modal.module.sass';
 import Calendar from '../../shared/Datepicker';
 import Switch from "../../shared/Switch";
-import Button from "../../shared/Button";
+import Dropdown from "../../shared/Dropdown/Default";
+import useStageStatuses from '../../pages/Stages/hooks/useStageStatuses';
+import {stageStatusTypesRu, stageStatusTypes} from "../../pages/Stages/stages.types";
 
 const Index =({ stage, onChange, submit }) => {
+    const statuses = useStageStatuses();
+    const statusKey = Object.keys(stageStatusTypesRu).find(i => stageStatusTypesRu[i] === stage.status);
+
   return (
     <div>
       <div className={styles.name}>Редактирование этапа</div>
@@ -19,14 +23,14 @@ const Index =({ stage, onChange, submit }) => {
           className={styles.input}
           label={'Название этапа'}
         />
-        <TextInput
-          onChange={({ target }) => onChange(target.name, target.value)}
-          name={'status'}
-          value={stage?.title}
-          edited={true}
-          className={styles.input}
+      <Dropdown
+          setValue={(e) => onChange(`status`, e[0])}
+          classNameContainer={styles.input}
           label={'Статус'}
-        />
+          renderOption={(opt) => opt[1]}
+          options={statuses}
+          value={stageStatusTypesRu[stage.status]}
+      />
       </div>
       <div className={styles.flex}>
         <Calendar
@@ -71,17 +75,6 @@ const Index =({ stage, onChange, submit }) => {
                 label={'Задача'}
                 rows={14}
             />
-        </div>
-        <div className={styles.buttons}>
-            {submit && (
-                <Button
-                    isSmall={false}
-                    onClick={() => submit()}
-                    classname={styles.button}
-                    name={'Сохранить'}
-                    type={'primary'}
-                />
-            )}
         </div>
     </div>
   );

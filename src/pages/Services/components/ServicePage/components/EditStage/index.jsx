@@ -12,6 +12,7 @@ const Index = observer(({ handleClose, stageId }) => {
     const api = useStagesApi();
     const handleChange = (name, payload, withId = true) => {
         stagesStore.changeById(stage.id, name, payload, withId);
+        console.log(name, payload)
     };
 
     const handleSubmit = useCallback(() => {
@@ -25,8 +26,8 @@ const Index = observer(({ handleClose, stageId }) => {
     );
   return (
       stage &&
-    <Modal handleClose={() => handleClose()} size={'lg'}>
-      <EditStage stage={stage} onChange={handleChange} submit={handleSubmit} />
+    <Modal handleClose={() => handleClose()} handleSubmit={() => handleSubmit()} size={'lg'}>
+      <EditStage stage={stage} onChange={handleChange} />
     </Modal>
   );
 });

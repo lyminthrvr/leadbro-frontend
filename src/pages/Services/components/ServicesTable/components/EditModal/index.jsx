@@ -68,7 +68,7 @@ const EditModal = observer(({ data }) => {
         value={serviceTypes?.find((el) => el.id === service?.type?.id)?.title}
         renderOption={(opt) => opt.title}
         options={serviceTypes}
-      />
+    />
       <ValuesSelector
         onChange={(e) =>
           handleChange(
