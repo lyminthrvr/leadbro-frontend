@@ -9,7 +9,6 @@ import {stageStatusTypesRu, stageStatusTypes} from "../../pages/Stages/stages.ty
 
 const Index =({ stage, onChange, submit }) => {
     const statuses = useStageStatuses();
-    const statusKey = Object.keys(stageStatusTypesRu).find(i => stageStatusTypesRu[i] === stage.status);
 
   return (
     <div>
