@@ -33,3 +33,51 @@ export const truncateString = (str, maxLength) => {
   }
   return str.slice(0, maxLength) + '...';
 };
+
+export function formatUnts(type) {
+  switch (type) {
+    case 'минут':
+    case 'минута':
+    case 'минуты':
+      return 'minutes'
+    case 'часов':
+    case 'часа':
+    case 'час':
+      return 'hours'
+    case 'дней':
+    case 'дня':
+    case 'день':
+      return 'days'
+  }
+}
+
+export function formatDuration(value, type) {
+  if(value ===  null){
+    switch (type) {
+      case 'minutes':
+        return 'минуты'
+      case 'hours':
+        return 'часы'
+      case 'days':
+        return 'дни'
+    }
+  }
+  const pluralize = (number, one, few, many) => {
+    if (number % 10 === 1 && number % 100 !== 11) {
+      return `${number} ${one}`;
+    } else if ([2, 3, 4].includes(number % 10) && ![12, 13, 14].includes(number % 100)) {
+      return `${number} ${few}`;
+    } else {
+      return `${number} ${many}`;
+    }
+  };
+
+  switch (type) {
+    case 'minutes':
+      return pluralize(value, 'минута', 'минуты', 'минут');
+    case 'hours':
+      return pluralize(value, 'час', 'часа', 'часов');
+    case 'days':
+      return pluralize(value, 'день', 'дня', 'дней');
+  }
+}

@@ -6,9 +6,11 @@ import Switch from "../../shared/Switch";
 import Dropdown from "../../shared/Dropdown/Default";
 import useStageStatuses from '../../pages/Stages/hooks/useStageStatuses';
 import {stageStatusTypesRu, stageStatusTypes} from "../../pages/Stages/stages.types";
+import DurationSelector from "../DurationSelector";
 
 const Index =({ stage, onChange, submit }) => {
     const statuses = useStageStatuses();
+    console.log(stageStatusTypesRu)
 
   return (
     <div>
@@ -74,6 +76,9 @@ const Index =({ stage, onChange, submit }) => {
                 label={'Задача'}
                 rows={14}
             />
+        </div>
+        <div className={styles.flex}>
+            <DurationSelector onChange={onChange} label={'Бюджет планируемого времени'}/>
         </div>
     </div>
   );

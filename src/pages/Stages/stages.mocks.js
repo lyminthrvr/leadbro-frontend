@@ -13,6 +13,8 @@ const createStages = () => {
       contactPerson: 'Александр Шилов',
       extraCosts: '7500',
       actSum: '2500',
+      budgetTimeValue: 20,
+      budgetTimeType: 'minutes',
       status: stageStatusTypes.created,
       taskDescription: 'Нарисовать СРМ',
       sumByHand: true,

@@ -8,11 +8,11 @@ import {handleSubmit as handleSubmitSnackbar} from "../../../../../../utils/snac
 import useStagesApi from "../../../../../Stages/stages.api";
 
 const Index = observer(({ handleClose, stageId }) => {
+
     const { data: stagesStore } = useStages();
     const api = useStagesApi();
     const handleChange = (name, payload, withId = true) => {
         stagesStore.changeById(stage.id, name, payload, withId);
-        console.log(name, payload)
     };
 
     const handleSubmit = useCallback(() => {
@@ -24,6 +24,7 @@ const Index = observer(({ handleClose, stageId }) => {
         () => stagesStore.getById(+stageId),
         [stageId, stagesStore, stagesStore.stages, stagesStore.drafts],
     );
+
   return (
       stage &&
     <Modal handleClose={() => handleClose()} handleSubmit={() => handleSubmit()} size={'lg'}>
