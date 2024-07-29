@@ -65,7 +65,7 @@ const Index = observer(() => {
                 }}
             />
 
-            <TasksTable data={filteredTasks} handleChange={handleChange} />
+            <TasksTable counts = {taskCounts} data={filteredTasks} handleChange={handleChange} />
         </>
     );
 });
