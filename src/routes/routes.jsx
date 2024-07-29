@@ -7,6 +7,7 @@ import { Outlet } from 'react-router';
 import Services from '../pages/Services';
 import ServicePage from '../pages/Services/components/ServicePage';
 import StagesPage from '../pages/Stages/components/StagesPage';
+import Tasks from '../pages/Tasks';
 
 export const paths = {
   MAIN: '/',
@@ -15,6 +16,7 @@ export const paths = {
   SERVICES: '/services',
   SERVICES_ID: '/services/:id',
   SERVICES_ID_STAGES: '/services/:id/stages/:stageId',
+  TASKS: '/tasks',
 };
 
 const routes = [
@@ -70,7 +72,14 @@ const routes = [
       </Page>
     ),
   },
-  { path: 'play', element: <div /> },
+  {
+    path: paths.TASKS,
+    element: (
+      <Page>
+        <Tasks />
+      </Page>
+    ),
+  },
   {
     path: 'profile',
     element: <div>123566</div>,

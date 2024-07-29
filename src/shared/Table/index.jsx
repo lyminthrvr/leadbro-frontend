@@ -52,8 +52,6 @@ const Table = observer(
             rows[0].allCells[0].column.toggleSortBy(decr);
           },
         }}
-        tableHeaders={headerGroups}
-        tableProps={getTableProps()}
         actions={headerActions}
         title={title}
       />

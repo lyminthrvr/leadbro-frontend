@@ -4,12 +4,13 @@ import cn from "classnames";
 import Icon from "../../Icon";
 import Button from "../../Button ";
 import Filters from "../../Filter";
+import {action} from "mobx";
 
 const TitleButtons = ({doSort,isSortDecrease,titleButton,isSmallButton,actions}) => {
     return (
         <div className={styles.container}>
             {actions.filter && <div>
-                <Filters title={actions.filter.title}>{actions.filter?.children ?? <></>}</Filters>
+                <Filters classNameBody={actions.filter?.classNameBody} className={actions.filter?.className} classNameTitle={actions.filter?.classNameTitle} title={actions.filter.title}>{actions.filter?.children ?? <></>}</Filters>
             </div>}
             {actions.sorting && <div onClick={doSort}
                  className={cn(styles.icon, styles.sortIcon, {[styles.sortIcon_active]: !isSortDecrease})}>

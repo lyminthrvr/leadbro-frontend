@@ -4,7 +4,7 @@ import styles from "./Filters.module.sass";
 import Icon from "../Icon";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-const Filters = ({ className, children, title }) => {
+const Filters = ({ className, classNameTitle,classNameBody, children, title }) => {
     const [visible, setVisible] = useState(false);
     const ref = useRef(null)
     useOutsideClick(ref,()=>setVisible(false))
@@ -20,9 +20,9 @@ const Filters = ({ className, children, title }) => {
             >
                 <Icon name="filter" size="24"  />
             </div>
-            <div className={styles.body}>
+            <div className={cn(styles.body,classNameBody)}>
                 <div className={styles.top}>
-                    <div className={cn("title-red", styles.title)}>{title}</div>
+                    {title && <div className={cn("title-red", styles.title,classNameTitle)}>{title}</div>}
                     <button className={styles.close} onClick={() => setVisible(false)}>
                         <Icon name="close" size="20" />
                     </button>

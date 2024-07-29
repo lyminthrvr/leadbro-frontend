@@ -7,7 +7,7 @@ import TitleButtons from "./Buttons";
 const Title = ({title,...rest}) => {
     const {actions,tableActions,smallTable} = rest??{}
     const [isSortDecrease,setSortDecrease] = useState(true)
-
+    debugger
     const makeAction = (name) => {
         if(actions[name] && actions[name].hasOwnProperty('action')){
             actions[name].action()

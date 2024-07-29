@@ -3,36 +3,41 @@ import cn from "classnames";
 import styles from "./Checkbox.module.sass";
 
 const Checkbox = ({
-  className,
-  classCheckboxTick,
-  content,
-  value,
-  onChange,
-  reverse,
-}) => {
-  return (
-    <label
-      className={cn(styles.checkbox, className, { [styles.reverse]: reverse })}
-    >
-      <input
-        className={styles.input}
-        type="checkbox"
-        onChange={onChange}
-        checked={value}
-      />
-      <span className={styles.inner}>
+                      className,
+                      classCheckboxTick,
+                      content,
+                      value,
+                      onChange,
+                      reverse,
+                      status
+                  }) => {
+    const handleChange = (e) => {
+        onChange(status, e.target.checked);
+    };
+
+    return (
+        <label
+            className={cn(styles.checkbox, className, { [styles.reverse]: reverse })}
+        >
+            <input
+                className={styles.input}
+                type="checkbox"
+                onChange={handleChange}
+                checked={value}
+            />
+            <span className={styles.inner}>
         <span className={cn(styles.tick, classCheckboxTick)}></span>
-        {content && (
-          <>
+                {content && (
+                    <>
             <span
-              className={styles.text}
-              dangerouslySetInnerHTML={{ __html: content }}
-            ></span>
-          </>
-        )}
+                className={styles.text}
+
+            >{content}</span>
+                    </>
+                )}
       </span>
-    </label>
-  );
+        </label>
+    );
 };
 
 export default Checkbox;

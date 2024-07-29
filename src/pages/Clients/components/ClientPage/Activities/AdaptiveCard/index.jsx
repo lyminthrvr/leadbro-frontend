@@ -8,6 +8,7 @@ import {formatDateWithoutHours, formatHours} from "../../../../../../utils/forma
 import Tooltip from "../../../../../../shared/Tooltip";
 import ManagerCell from "../../../../../../components/ManagerCell";
 import ActivityType from "../Type";
+import TooltipedAvatar from "../../../../../../shared/Avatar/Tooltiped";
 
 const AdaptiveCard = ({data, onPagination}) => {
     const groupByDate = (items) => {
@@ -39,13 +40,7 @@ const AdaptiveCard = ({data, onPagination}) => {
                                     <div>{item.description}</div>
                                     <div className={styles.time}>{formatHours(item.time)}</div>
                                 </div>
-                                <div>
-                                    <Tooltip title={item?.assignee.name}>
-                                        <div>
-                                            <Avatar className={styles.avatar} imageSrc={item?.assignee.image}/>
-                                        </div>
-                                    </Tooltip>
-                                </div>
+                                <TooltipedAvatar title={item?.assignee.name} imageSrc={item?.assignee.image}/>
                                 <div>
                                     <ActivityType className={styles.cell_manager} type={item.type} membersCount={item.members}/>
                                 </div>
