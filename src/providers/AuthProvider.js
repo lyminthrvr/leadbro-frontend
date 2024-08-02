@@ -1,7 +1,8 @@
 import React, { createContext } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router';
-import { useCookies } from '../hooks/useCookies'; // Импортируйте хук
+import { useCookies } from '../hooks/useCookies';
+import { API_URL } from '../shared/constants'; // Импортируйте хук
 
 export const AuthContext = createContext();
 
@@ -15,16 +16,13 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/auth`,
-        {
-          params: { email, password },
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
+      const response = await axios.get(`${API_URL}/api/auth`, {
+        params: { email, password },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
-      );
+      });
       const { data } = response;
       if (data.token) {
         setAuthToken(data.token);
