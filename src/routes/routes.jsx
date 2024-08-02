@@ -1,13 +1,16 @@
+import React, { useContext } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Clients from '../pages/Clients';
-import Button from '../shared/Button ';
 import ClientPage from '../pages/Clients/components/ClientPage';
 import Page from '../shared/Page';
-import React from 'react';
-import { Outlet } from 'react-router';
 import Services from '../pages/Services';
 import ServicePage from '../pages/Services/components/ServicePage';
 import StagesPage from '../pages/Stages/components/StagesPage';
 import Tasks from '../pages/Tasks';
+import NotFound from '../pages/NotFound';
+import { AuthContext } from '../providers/AuthProvider';
+import LoginPage from '../pages/Login';
+import { useLocation } from 'react-router';
 
 export const paths = {
   MAIN: '/',
@@ -17,86 +20,77 @@ export const paths = {
   SERVICES_ID: '/services/:id',
   SERVICES_ID_STAGES: '/services/:id/stages/:stageId',
   TASKS: '/tasks',
+  LOGIN: '/login',
+  NOTFOUND: '*',
 };
 
-const routes = [
+const PrivateRoute = ({ element }) => {
+  const { authToken } = useContext(AuthContext);
+  const location = useLocation();
+
+  if (!authToken) {
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+
+  return <Page>{element}</Page>;
+};
+
+const protectedRoutes = [
   {
     path: paths.MAIN,
-    element: <Page></Page>,
+    element: <></>,
   },
   {
     path: paths.CLIENTS,
-    element: (
-      <Page>
-        <Clients />
-      </Page>
-    ),
+    element: <Clients />,
   },
   {
     path: paths.CLIENTS_ID,
-    element: (
-      <Page>
-        <ClientPage />
-      </Page>
-    ),
+    element: <ClientPage />,
   },
   {
     path: paths.SERVICES,
-    element: (
-      <Page>
-        <Services />
-      </Page>
-    ),
-  },
-  {
-    path: paths.SERVICES,
-    element: (
-      <Page>
-        <Services />
-      </Page>
-    ),
+    element: <Services />,
   },
   {
     path: paths.SERVICES_ID,
-    element: (
-      <Page>
-        <ServicePage />
-      </Page>
-    ),
+    element: <ServicePage />,
   },
   {
     path: paths.SERVICES_ID_STAGES,
-    element: (
-      <Page>
-        <StagesPage />
-      </Page>
-    ),
+    element: <StagesPage />,
   },
   {
     path: paths.TASKS,
-    element: (
-      <Page>
-        <Tasks />
-      </Page>
-    ),
+    element: <Tasks />,
+  },
+];
+
+const openRoutes = [
+  {
+    path: paths.LOGIN,
+    element: <LoginPage />,
   },
   {
-    path: 'profile',
-    element: <div>123566</div>,
+    path: paths.NOTFOUND,
+    element: <NotFound />,
   },
 ];
 
 export const prepareRoutes = () => {
-  const prepareRoute = (el) => {
-    el.element = (
-      <>
-        <Page>{el.element}</Page>
-      </>
-    );
-    // if (el.children) {
-    //     // el.children.map((sub) => prepareRoute(sub))
-    // }
-    return el;
-  };
-  return routes;
+  return (
+    <Routes>
+      {protectedRoutes.map(({ path, element }) => (
+        <Route
+          key={path}
+          path={path}
+          element={<PrivateRoute element={element} />}
+        />
+      ))}
+      {openRoutes.map(({ path, element }) => (
+        <Route key={path} path={path} element={element} />
+      ))}
+      <Route path="*" element={<Navigate to={paths.NOTFOUND} />} />
+    </Routes>
+  );
 };

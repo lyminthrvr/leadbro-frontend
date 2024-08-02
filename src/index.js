@@ -15,7 +15,7 @@ root.render(
                     autoHideDuration={3000}
                     anchorOrigin={{vertical:'top',horizontal:'right'}}
                 />
-                <App/>
+                    <App/>
             </StoreProvider>
 );
 
