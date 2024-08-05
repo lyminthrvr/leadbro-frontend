@@ -1,25 +1,32 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { API_URL } from './constants';
-import Cookies from "js-cookie"
-import MockAdapter from "axios-mock-adapter";
+import Cookies from 'js-cookie';
+import MockAdapter from 'axios-mock-adapter';
 
 export const http = axios.create({
   baseURL: API_URL,
-})
-
-export const mockHttp = new MockAdapter(http)
-
-
-
-http.interceptors.request.use(async (request) => {
-  request.headers.Authorization = `Bearer ${await getToken()}`
-  return request;
-}, function (error) {
-  // Do something with request error
-  return Promise.reject(error);
 });
 
-http.interceptors.response.use(
+export const mockHttp = new MockAdapter(http);
+
+export const adapter = http.defaults.adapter;
+
+http.interceptors.request.use(
+  async (request) => {
+    if (request.url.toLowerCase().includes('/auth')) {
+      return request;
+    }
+    request.headers.Authorization = `Bearer ${await getToken()}`;
+    return request;
+  },
+  function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  },
+);
+
+http.interceptors.response
+  .use
   // async (response) => {
   //   if(response.request.url.toString().contains('/auth')){
   //     await handleSetToken(response)
@@ -34,31 +41,29 @@ http.interceptors.response.use(
   //
   //   throw err
   // },
-)
+  ();
 const setToken = async (accessToken) => {
-  Cookies.set('accessToken', accessToken );
-}
-export const getToken =  async () => {
+  Cookies.set('accessToken', accessToken);
+};
+export const getToken = async () => {
   return Cookies.get('accessToken') || '';
-
-}
+};
 export const removeToken = async () => {
   Cookies.remove('accessToken');
-}
-
+};
 
 export const handleHttpResponse = (response) => {
-  return { status: 'success', body: response.data }
-}
+  return { status: 'success', body: response.data };
+};
 
 export const handleHttpError = (error) => {
-  const code = error?.code
+  const code = error?.code;
 
-  return { status: 'error', message: error?.message, code }
-}
+  return { status: 'error', message: error?.message, code };
+};
 
-export const resetApiProvider = () => mockHttp.restore()
+export const resetApiProvider = () => mockHttp.restore();
 
 const handleSetToken = async (response) => {
-   await setToken(response.data.accessToken)
-}
+  await setToken(response.data.accessToken);
+};

@@ -1,8 +1,9 @@
 import React, { createContext } from 'react';
-import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router';
 import { useCookies } from '../hooks/useCookies';
-import { API_URL } from '../shared/constants'; // Импортируйте хук
+import { API_URL } from '../shared/constants';
+import { adapter, http, mockHttp } from '../shared/http';
+import axios from 'axios'; // Импортируйте хук
 
 export const AuthContext = createContext();
 
@@ -16,18 +17,23 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.get(`${API_URL}/api/auth`, {
-        params: { email, password },
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
+      mockHttp.restore();
+      const response = await http.post(
+        `/api/auth`,
+        { email: email, password: password },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
         },
-      });
+      );
       const { data } = response;
       if (data.token) {
         setAuthToken(data.token);
         const from = location.state?.from?.pathname || '/';
         navigate(from, { replace: true });
+        http.defaults.adapter = adapter;
       } else {
         alert('Неверный email или пароль');
       }
