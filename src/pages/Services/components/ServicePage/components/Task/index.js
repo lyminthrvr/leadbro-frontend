@@ -63,7 +63,7 @@ const Task = ({ stage, task, taskName }) => {
       </div>
       <div>
         {isOpen && (
-          <EditStage stageId={stage.id} handleClose={() => setIsOpen(false)} />
+          <EditStage stageId={stage.id} idStage={stage.id} handleClose={() => setIsOpen(false)} />
         )}
       </div>
     </div>

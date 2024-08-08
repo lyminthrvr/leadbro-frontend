@@ -58,6 +58,7 @@ const EditModal = observer(({ stageId, data, handleClose }) => {
         handleClose={() => handleClose && handleClose(null)}
         handleSubmit={() => handleSubmit()}
         size={'lg'}
+        stageId={stageId}
       >
         <div className={styles.gridContainer}>
           <TaskDescriptionPart

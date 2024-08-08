@@ -1,9 +1,45 @@
-import React from 'react';
+import React, {useMemo} from 'react';
+import styles from "../../pages/Services/components/ServicesTable/components/EditModal/Modal.module.sass";
+import Switch from "../../shared/Switch";
+import { inject } from "mobx-react";
+import DurationSelector from "../DurationSelector";
+import useStages from "../../pages/Stages/hooks/useStages";
 
-const Index = () => {
+const Index = ({onChange, stageId}) => {
+    const { data: stagesStore } = useStages();
+    const stage = useMemo(
+        () => stagesStore.getById(+stageId),
+        [stageId, stagesStore, stagesStore.stages, stagesStore.drafts],
+    );
+
     return (
         <div>
-            
+            <div className={styles.name}>Обновления PDF-документов</div>
+            <div>
+                <Switch
+                    className={styles.switch}
+                    name={'sumByHand'}
+                    label={'Обновление ТЗ'}
+                    value={stage?.sumByHand}
+                    onChange={onChange}
+                />
+            </div>
+
+            <div>
+                <Switch
+                    className={styles.switch}
+                    name={'sumByHand'}
+                    label={'Обновление PDF акта'}
+                    value={stage?.sumByHand}
+                    onChange={onChange}
+                />
+            </div>
+
+            <div className={styles.name}>Время</div>
+            <div>
+                <DurationSelector onChange={onChange} stageId={stageId} label={'Бюджет планируемого времени'}/>
+                <DurationSelector onChange={onChange} stageId={stageId} label={'Фактическое время'}/>
+            </div>
         </div>
     );
 };

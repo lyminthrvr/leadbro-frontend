@@ -132,6 +132,7 @@ const StagesTable = observer(({ stage }) => {
       {/*{stage && <ClientInfo client={stage.client} />}*/}
       {taskData && (
         <EditModal
+          idStage={stage.id}
           stageId={stage.id}
           data={taskData}
           handleClose={() => setTaskData(null)}

@@ -28,7 +28,7 @@ const Index = observer(({ handleClose, stageId }) => {
   return (
       stage &&
     <Modal handleClose={() => handleClose()} handleSubmit={() => handleSubmit()} size={'lg'}>
-      <EditStage stage={stage} onChange={handleChange} />
+      <EditStage stage={stage} onChange={handleChange} stageId={stageId}/>
     </Modal>
   );
 });

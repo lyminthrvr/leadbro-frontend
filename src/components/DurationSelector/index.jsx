@@ -2,22 +2,22 @@ import React, { useCallback, useMemo, useState } from 'react';
 import DualTimeSelector from "../DualTimeSelector";
 import useStages from "../../pages/Stages/hooks/useStages";
 import styles from "../../pages/Services/components/ServicesTable/components/EditModal/Modal.module.sass";
+import cn from "classnames";
 
-const Index =({ onChange, label }) => {
+const Index =({ onChange, label, stageId }) => {
     const { data: stagesStore } = useStages();
     const stage = useMemo(
-        () => stagesStore.getById(+0),
-        [0, stagesStore, stagesStore.stages, stagesStore.drafts],
+        () => stagesStore.getById(+stageId),
+        [stageId, stagesStore, stagesStore.stages, stagesStore.drafts],
     );
-    const handleChange = (name, payload, withId = true) => {
-        console.log(name, payload)
-        stagesStore.changeById(0, name, payload, withId);
-    };
 
     return (
         <div>
             <div className={styles.label}>{label}</div>
-            <DualTimeSelector onChange={handleChange} label={'Бюджет планируемого времени'} timeValue={stage?.budgetTimeValue} timeType={stage?.budgetTimeType}/>
+            <div className={cn(styles.dualTimeWrap, styles.flex)}>
+                <DualTimeSelector onChange={onChange}  timeValue={stage?.budgetTimeValue} timeType={stage?.budgetTimeType}/>
+                <DualTimeSelector onChange={onChange}  timeValue={stage?.budgetTimeValue} timeType={stage?.budgetTimeType}/>
+            </div>
         </div>
     );
 };

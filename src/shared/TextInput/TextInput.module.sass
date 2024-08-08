@@ -263,6 +263,9 @@
         display: none
         //display: flex !important
 
+.noMinWidth
+    min-width: auto !important
+
 .add
     cursor: pointer
     &:hover
@@ -274,3 +277,7 @@
         margin-right: 6px
     +m
         margin-left: 6px
+
+@media (max-width: 1600px)
+.noMinWidth
+    margin-bottom: 0 !important

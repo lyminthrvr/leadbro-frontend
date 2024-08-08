@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import cn from "classnames";
 import styles from '../../pages/Services/components/ServicesTable/components/EditModal/Modal.module.sass';
 import Dropdown from "../../shared/Dropdown/Default";
 import useUnits from "../../hooks/useUnits";
@@ -11,13 +12,14 @@ const Index =({onChange, timeValue, timeType}) => {
 
     return (
         <div>
-            <div className={styles.flex}>
+            <div className={cn(styles.dualTime, styles.flex)}>
                 <TextInput
                     onChange={({ target }) =>onChange(target.name, target.value)}
                     name={'budgetTimeValue'}
                     value={timeValue}
                     edited={true}
                     className={styles.input}
+                    noMinWidth={true}
                 />
 
                 <Dropdown
@@ -25,6 +27,7 @@ const Index =({onChange, timeValue, timeType}) => {
                     value={formatDuration(timeValue, timeType).split(' ')[1]}
                     classNameContainer={styles.input}
                     options={unitsRU}
+                    noMinWidth={true}
                 />
             </div>
         </div>
