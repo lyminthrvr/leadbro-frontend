@@ -15,6 +15,17 @@ export const taskStatusTypesRu = {
   onHold: 'Отложено',
 };
 
+export const stageStatusTypes = {
+  inProgress: 'inProgress',
+  finished: 'finished',
+  created: 'created',
+};
+export const stageStatusTypesRu = {
+  inProgress: 'В работе',
+  finished: 'Завершен',
+  created: 'Создан',
+};
+
 export const colorStatusTaskTypes = {
   inProgress: { status: taskStatusTypesRu.inProgress, class: 'status-green' },
   finished: { status: taskStatusTypesRu.finished, class: 'status-red' },

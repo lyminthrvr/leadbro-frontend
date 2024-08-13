@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import cn from "classnames";
 import styles from "./Title.module.sass";
 import Icon from "../Icon";
-import Button from "../Button ";
+import Button from "../Button";
 import TitleButtons from "./Buttons";
 const Title = ({title,...rest}) => {
     const {actions,tableActions,smallTable} = rest??{}

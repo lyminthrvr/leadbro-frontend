@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "../Title.module.sass";
 import cn from "classnames";
 import Icon from "../../Icon";
-import Button from "../../Button ";
+import Button from "../../Button";
 import Filters from "../../Filter";
 import {action} from "mobx";
 

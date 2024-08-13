@@ -39,11 +39,11 @@ const TextInput = ({
                        tooltip,
                        place,
                        actions,
+                       noMinWidth,
                        ...props
                    }) => {
     const inputRef = useRef(null)
     const wrapRef = useRef(null)
-
 
 
     return (
@@ -53,6 +53,7 @@ const TextInput = ({
                 {[styles.fieldIcon]: icon},
                 {[styles.fieldCopy]: copy},
                 {[styles.fieldCurrency]: currency},
+                {[styles.noMinWidth]: noMinWidth},
                 className
             )}
         >

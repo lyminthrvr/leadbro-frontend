@@ -19,7 +19,7 @@ import AdaptiveStages from './components/AdaptiveCard';
 import Agreement from './components/Agreement';
 import AdditionalAgreement from './components/AdditionalAgreement';
 import Icon from '../../../../shared/Icon';
-import Button from '../../../../shared/Button ';
+import Button from '../../../../shared/Button';
 import cn from 'classnames';
 
 const ServicePage = observer(() => {

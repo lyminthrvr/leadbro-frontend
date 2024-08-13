@@ -9,7 +9,7 @@ import Item from "./Item";
 import useStore from "../../../hooks/useStore";
 import OutsideClickLayout from "../../Layouts/outsideClickLayout";
 import {observer} from "mobx-react";
-import Button from "../../Button ";
+import Button from "../../Button";
 import useOutsideClick from "../../../hooks/useOutsideClick";
 
 // data

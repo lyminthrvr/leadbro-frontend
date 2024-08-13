@@ -1,5 +1,5 @@
 import styles from './Act.module.sass'
-import Button from "../../../../../../shared/Button ";
+import Button from "../../../../../../shared/Button";
 import CardField from "../CardField";
 import React from "react";
 import Icon from "../../../../../../shared/Icon";

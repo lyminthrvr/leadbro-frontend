@@ -34,7 +34,24 @@ export const truncateString = (str, maxLength) => {
   return str.slice(0, maxLength) + '...';
 };
 
-function formatDuration(value, type) {
+export function formatUnts(type) {
+  switch (type) {
+    case 'минут':
+    case 'минута':
+    case 'минуты':
+      return 'minutes'
+    case 'часов':
+    case 'часа':
+    case 'час':
+      return 'hours'
+    case 'дней':
+    case 'дня':
+    case 'день':
+      return 'days'
+  }
+}
+
+export function formatDuration(value, type) {
   if(value ===  null){
     switch (type) {
       case 'minutes':

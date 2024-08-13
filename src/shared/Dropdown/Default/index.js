@@ -19,6 +19,7 @@ const Dropdown = ({
                       small,
                       upBody,
                       renderOption,
+                      noMinWidth,
                       renderValue,
                   }) => {
     const [visible, setVisible] = useState(false);
@@ -32,7 +33,12 @@ const Dropdown = ({
     useOutsideClick(ref, () => setVisible(false));
 
     return (
-        <div ref={ref} className={classNameContainer}>
+        <div ref={ref} className={
+            cn(
+                classNameContainer,
+                {[styles.noMinWidth]: noMinWidth},
+            )
+        }>
             {label && (
                 <div className={cn(styles.label, classDropdownLabel)}>
                     {label}{" "}

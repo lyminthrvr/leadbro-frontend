@@ -1,5 +1,5 @@
 import { createBlob } from '../../utils/create.utils';
-import { taskStatusTypes, taskStatusTypesRu } from './stages.types';
+import { taskStatusTypes, taskStatusTypesRu, stageStatusTypes, stageStatusTypesRu } from './stages.types';
 
 const createStages = () => {
   return [
@@ -12,6 +12,12 @@ const createStages = () => {
       deadlineTime: '5 ч',
       contactPerson: 'Александр Шилов',
       extraCosts: '7500',
+      actSum: '2500',
+      budgetTimeValue: 20,
+      budgetTimeType: 'minutes',
+      status: stageStatusTypes.created,
+      taskDescription: 'Нарисовать СРМ',
+      sumByHand: true,
       service: {
         id: 0,
         title: 'Услуга 1',

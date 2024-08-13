@@ -1,7 +1,7 @@
 import styles from './Hours.module.sass';
 import CardField from '../CardField';
 import Icon from '../../../../../../shared/Icon';
-import Button from '../../../../../../shared/Button ';
+import Button from '../../../../../../shared/Button';
 import Basis from '../../../../../../shared/Basis';
 import cn from 'classnames';
 import { getFormattedTimeType } from '../../../../../../utils/format.time';

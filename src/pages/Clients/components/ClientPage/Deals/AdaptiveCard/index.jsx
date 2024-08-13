@@ -3,7 +3,7 @@ import styles from "./Card.module.sass";
 import Card from "../../../../../../shared/Card";
 import Badge from "../../../../../../shared/Badge";
 import Avatar from "../../../../../../shared/Avatar";
-import Button from "../../../../../../shared/Button ";
+import Button from "../../../../../../shared/Button";
 import Tooltip from "../../../../../../shared/Tooltip";
 import cn from "classnames";
 

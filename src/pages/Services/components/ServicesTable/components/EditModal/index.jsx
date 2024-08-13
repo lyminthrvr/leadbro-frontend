@@ -13,7 +13,7 @@ import DatePicker from 'react-datepicker';
 import Calendar from '../../../../../../shared/Datepicker';
 import useClients from '../../../../../Clients/hooks/useClients';
 import cn from 'classnames';
-import Button from '../../../../../../shared/Button ';
+import Button from '../../../../../../shared/Button';
 import useServices from '../../../../hooks/useServices';
 import useServiceApi from '../../../../services.api';
 import {
@@ -68,7 +68,7 @@ const EditModal = observer(({ data }) => {
         value={serviceTypes?.find((el) => el.id === service?.type?.id)?.title}
         renderOption={(opt) => opt.title}
         options={serviceTypes}
-      />
+    />
       <ValuesSelector
         onChange={(e) =>
           handleChange(

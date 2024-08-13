@@ -113,6 +113,7 @@ $datepicker__triangle-size: 8px !default;
   padding: 0;
   border: 0;
   width: 100%;
+  margin-bottom: 24px;
 }
 
 .react-datepicker {
@@ -487,6 +488,8 @@ $datepicker__triangle-size: 8px !default;
 .react-datepicker__month-container {
   float: left;
 }
+
+
 
 .react-datepicker__year {
   margin: $datepicker__margin;

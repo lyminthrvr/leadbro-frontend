@@ -1,6 +1,6 @@
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStages from '../../../../../../hooks/useStages';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   handleError,
   handleSubmit as handleSubmitSnackbar,
@@ -9,7 +9,7 @@ import useStageApi from '../../../../../../stages.api';
 import Modal from '../../../../../../../../shared/Modal';
 import TaskDescriptionPart from './components/TaskDescriptionPart';
 import TaskTypePart from './components/TaskTypePart';
-import Button from '../../../../../../../../shared/Button ';
+import Button from '../../../../../../../../shared/Button';
 import styles from './Modal.module.sass';
 import TextInput from '../../../../../../../../shared/TextInput';
 import cn from 'classnames';
@@ -58,6 +58,7 @@ const EditModal = observer(({ stageId, data, handleClose }) => {
         handleClose={() => handleClose && handleClose(null)}
         handleSubmit={() => handleSubmit()}
         size={'lg'}
+        stageId={stageId}
       >
         <div className={styles.gridContainer}>
           <TaskDescriptionPart
