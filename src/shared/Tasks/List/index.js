@@ -3,9 +3,13 @@ import { useDrag, useDrop } from 'react-dnd';
 import styles from './List.module.sass';
 import cn from 'classnames';
 import Task from '../Task';
-import withScrolling from 'react-dnd-scrolling';
+import withScrolling, { createHorizontalStrength } from 'react-dnd-scrolling';
 
-const ScrollingComponent = withScrolling('div');
+const horizontalStrength = createHorizontalStrength(100); // Увеличиваем зону чувствительности
+const ScrollingComponent = withScrolling('div', {
+  strengthMultiplier: 1000000, // Увеличиваем скорость скроллинга
+  horizontalStrength, // Применяем новую зону чувствительности
+});
 
 const TaskList = ({ data: { data, counts }, onChange }) => {
   const handleDrop = (taskId, newStatus) => {
