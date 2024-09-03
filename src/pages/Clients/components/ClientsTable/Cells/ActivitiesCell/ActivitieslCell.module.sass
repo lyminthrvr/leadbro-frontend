@@ -1,19 +1,44 @@
 @import ../../../../../../styles/helpers
 
-.name
-  text-overflow: ellipsis
-  width: 19rem
-  overflow: hidden
-  white-space: nowrap
+.name 
+  display: flex
+  justify-content: space-between
 
-.deadline
+  .link 
+    flex-grow: 1
+    text-overflow: ellipsis
+    overflow: hidden
+    white-space: nowrap
+    margin-right: 0.5rem
+    &:hover
+      cursor: pointer
+      color: $p3
+
+  .moreActivities 
+    flex-shrink: 0
+    margin-left: auto
+    &:hover
+      cursor: pointer
+      color: $p3
+
+
+
+.deadline 
   color: $shades2
   line-height: 12px
   font-weight: 600
   font-size: 12px
-.activity
+
+
+.activity 
   margin-bottom: 1rem
-  &:hover
-    cursor: pointer
-    .name
-      +link
+
+
+  
+
+
+
+.activitiesCell 
+  display: flex
+  flex-direction: column
+
