@@ -25,7 +25,7 @@ const Table = observer(
     paging, // Добавлено для пагинации
     ...rest
   }) => {
-    const [editingRowIndex, setEditingRowIndex] = useState(null);
+    const [editingRowIndex, setEditingRowIndex  ] = useState(null);
     const [isSorting, setIsSorting] = useState(false);
     const [activeMenuRowIndex, setActiveMenuRowIndex] = useState(null);
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const Table = observer(
         columns,
         data,
         initialState: {
-          pageIndex: paging.current,
+          pageIndex: paging?.current ?? undefined,
           columnWidths: columns.map((col) =>
             col.width ? `${col.width}%` : 'auto',
           ),
