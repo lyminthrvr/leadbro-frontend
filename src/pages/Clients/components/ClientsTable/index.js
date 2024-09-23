@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Table.module.sass';
 import Table from '../../../../shared/Table';
 import { observer } from 'mobx-react';
@@ -12,16 +12,27 @@ import ActivitiesCell from './Cells/ActivitiesCell';
 import logo from '../../../../shared/Logo';
 import AdaptiveCard from './Cells/AdaptiveCard';
 import usePagingData from '../../../../hooks/usePagingData';
+import CreateModal from './CreateModal';
+import useClientsApi from '../../clients.api';
 
 const ClientsTable = observer(() => {
   const { clientsStore } = useStore();
+  const api = useClientsApi();
+  const [createModalOpen, setModalOpen] = useState(false);
+  const fetchClients = React.useCallback((page) => {
+    api.getClients(page);
+  }, []);
+
   const {
     currentPage,
+    totalPages,
     totalItems,
     paginatedData,
     itemsPerPage,
     handlePageChange,
-  } = usePagingData(clientsStore?.clients);
+  } = usePagingData(clientsStore, fetchClients, () =>
+    clientsStore?.getClients(),
+  );
   const cols = React.useMemo(
     () => [
       {
@@ -62,6 +73,7 @@ const ClientsTable = observer(() => {
       {
         Header: 'Активные услуги',
         id: 'services',
+        width: '5%',
         // flexCol:true,
         // disableResizing:false,
         Cell: ({ row }) => {
@@ -72,6 +84,8 @@ const ClientsTable = observer(() => {
       {
         Header: 'Активные дела',
         id: 'activities',
+        width: '18%',
+
         Cell: ({ row }) => {
           const data = row?.original;
           return <ActivitiesCell activities={data.activities} />;
@@ -94,31 +108,37 @@ const ClientsTable = observer(() => {
   };
 
   return (
-    <div className={styles.table}>
-      <Table
-        cardComponent={(data) => (
-          <AdaptiveCard data={data} statusType={statusTypes.clients} />
-        )}
-        headerActions={{
-          sorting: true,
-          settings: true,
-          add: {
-            action: () => console.log('1234'),
-            title: 'Добавить клиента',
-          },
-        }}
-        title={'Клиенты'}
-        data={paginatedData}
-        columns={cols}
-        actions={getActions}
-        paging={{
-          current: currentPage,
-          all: totalItems,
-          offset: itemsPerPage,
-          onPageChange: handlePageChange, // Функция для смены страниц
-        }}
-      />
-    </div>
+    <>
+      <div className={styles.table}>
+        <Table
+          cardComponent={(data) => (
+            <AdaptiveCard data={data} statusType={statusTypes.clients} />
+          )}
+          headerActions={{
+            sorting: true,
+            settings: true,
+            add: {
+              action: () => {
+                setModalOpen(true);
+                console.log('123', createModalOpen);
+              },
+              title: 'Добавить клиента',
+            },
+          }}
+          title={'Клиенты'}
+          data={paginatedData}
+          columns={cols}
+          actions={getActions}
+          paging={{
+            current: currentPage,
+            all: totalItems,
+            offset: itemsPerPage,
+            onPageChange: handlePageChange, // Функция для смены страниц
+          }}
+        />
+      </div>
+      {createModalOpen && <CreateModal onClose={() => setModalOpen(false)} />}
+    </>
   );
 });
 

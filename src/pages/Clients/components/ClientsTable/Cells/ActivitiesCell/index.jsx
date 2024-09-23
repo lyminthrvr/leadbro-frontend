@@ -5,6 +5,7 @@ import {
   formatHours,
 } from '../../../../../../utils/formate.date';
 import { Link } from 'react-router-dom';
+import HiddenCount from '../../../../../../components/HiddenCount';
 
 const ActivitiesCell = ({ activities }) => {
   const [showAll, setShowAll] = useState(false);
@@ -24,14 +25,20 @@ const ActivitiesCell = ({ activities }) => {
             <div className={styles.activity}>
               <div className={styles.name}>
                 <Link className={styles.link}>{el.description}</Link>
-                {hiddenCount > 0 && !showAll && (
-                  <div
-                    className={styles.moreActivities}
-                    onClick={toggleShowAll}
-                  >
-                    +{hiddenCount}
-                  </div>
-                )}
+                {/*{hiddenCount > 0 && !showAll && (*/}
+                {/*  <div*/}
+                {/*    className={styles.moreActivities}*/}
+                {/*    onClick={toggleShowAll}*/}
+                {/*  >*/}
+                {/*    +{hiddenCount}*/}
+                {/*  </div>*/}
+                {/*)}*/}
+                <HiddenCount
+                  cls={styles.moreCount}
+                  hiddenCount={hiddenCount}
+                  show={hiddenCount > 0 && !showAll}
+                  onClick={toggleShowAll}
+                />
               </div>
               <div className={styles.deadline}>
                 {formatDateWithoutHours(el.date)}, {formatHours(el.time)}

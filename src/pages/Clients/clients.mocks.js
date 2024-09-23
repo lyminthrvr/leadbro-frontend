@@ -165,6 +165,7 @@ const createClients = () => {
         deadline: new Date(),
       },
     ],
+
     deals: [
       {
         status: 'Догоовр подписан',
