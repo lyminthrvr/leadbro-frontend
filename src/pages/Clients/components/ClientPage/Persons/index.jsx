@@ -55,7 +55,7 @@ const ClientPersons = ({ persons, onChange, onSubmit, onReset }) => {
             title: 'Добавить клиента',
           },
         }}
-        title={'Контактные лица'}
+        title={'Контактные лицаf'}
       />
       {mappedPersons?.map(([key,el]) => {
         const values = el;
